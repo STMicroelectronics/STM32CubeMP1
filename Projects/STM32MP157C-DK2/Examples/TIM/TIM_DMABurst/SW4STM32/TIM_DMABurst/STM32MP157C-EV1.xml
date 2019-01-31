@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE targetDefinitions [ 
+	<!ELEMENT targetDefinitions (board)>
+	<!ELEMENT board (name, dbgIF+, dbgDEV, mcuId)>
+	<!ELEMENT name (#PCDATA)>
+	<!ELEMENT dbgIF (#PCDATA)>
+	<!ELEMENT dbgDEV (#PCDATA)>
+	<!ELEMENT mcuId (#PCDATA)>
+	<!ATTLIST board id CDATA #REQUIRED>
+]>
+
+<targetDefinitions>
+  <board id="stm32mp157c-ev1">
+    <name>STM32MP157C-EV1</name>
+    <dbgIF>JTAG</dbgIF>
+    <dbgIF>SWD</dbgIF>
+    <dbgDEV>ST-Link</dbgDEV>
+    <mcuId>stm32mp157caax_m4</mcuId>
+  </board>
+</targetDefinitions>

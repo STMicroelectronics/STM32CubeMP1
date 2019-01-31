@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html><head><title>Projects Overview</title>
+
+<style>
+.descriptionColumn { min-width:550px;}
+em{color:red;font-weight: bold;}
+importantLink {font-size:10pt; font-family: "Verdana","sans-serif" color:black;}
+article{border: 1px solid #828282;margin: 20px 0px 20px 9px;}
+body{font-family: Verdana;font-size: 10pt; color: black;margin-left: 40px;}
+.picture{text-align: center}
+.copyright{text-align: center}
+h1{text-align: center;font-size: 20pt; font-family: Verdana; color: rgb(51, 102, 255);}
+</style>
+</head>
+
+
+  <body>
+<h1>STM32CubeMP1 Firmware Examples for STM32MP1xx Series</h1>
+<p class="copyright">Copyright 2019 STMicroelectronics</p>
+<div class="picture"> <img alt="" id="_x0000_i1025" src="../_htmresc/st_logo.png" style="border: 0px solid ; width: 104px; height: 77px;"> </div>
+<p>The STM32CubeMP1 Firmware package comes with a rich set of
+examples running on STMicroelectronics boards, organized by board and
+provided with preconfigured projects for the main supported toolchains.</p>
+<div class="picture"> <img alt="" src="../_htmresc/STM32Cube.bmp"> </div>
+<p></p>
+<p>The examples are classified depending on the STM32Cube level
+they apply to, and are named as follows:</p>
+<ul>
+<li id="Examples"><b>Examples</b> uses only
+the HAL and BSP drivers (Middleware not used), having as objective to
+demonstrate the product/peripherals features and usage. The examples
+are organized per peripheral (a folder for each peripheral, ex. TIM)
+and offers different complexity level from basic usage of a given
+peripheral (ex. PWM generation using timer) till integration of several
+peripherals(use DAC for signals generation with synchronization from
+TIM2 and DMA). Board resources usage is reduced to the strict minimum.</li>
+<li id="Applications"><b>Applications</b>
+intends to demonstrate the product performance and how to use the
+different Middleware stacks available. The Applications are organized
+per Middleware (a folder for each Middleware, ex. OpenAMP). Integration
+Applications that use several Middleware stacks are provided as well.</li>
+<li id="Demonstrations"><b>Demonstrations</b>
+aims to integrate and run the maximum of peripherals and Middleware
+stacks to showcase the product features and performance.</li>
+<li>A Template project is provided to allow user to quickly
+build any firmware application on a given board.</li>
+</ul>
+<p>The examples are located under
+STM32Cube_FW_STM32CubeMP1_VX.Y.Z\Projects\, and all of them have the
+same structure:</p>
+<ul>
+<li>\Inc folder that contains all header files.</li>
+<li>\Src folder for the sources code.</li>
+<li>\SW4STM32 folders contain the preconfigured project for
+the toolchain.</li><li>\Remoteproc folder that contains specific files related to the use of Linux<sup>®</sup> remote processor framework to load STM32Cube Cortex-M firmware</li>
+<li>readme.txt describing the example behavior and the
+environment required to run the example.</li>
+</ul>
+<p>To run the example, you have to do the following:</p>
+<ul>
+<li>Open the example using your preferred IDE (SW4STM32).</li>
+<li>Rebuild all files and load the image into target memory.</li>
+<li>Run the example by following the readme.txt instructions.</li>
+<li><i><u>Note</u>: refer to section
+"Development Toolchains and Compilers" and "Supported Devices and EVAL
+boards" of the Firmware package release notes to know about the SW/HW
+environment used for the Firmware development and validation. The
+correct operation of the provided examples is not guaranteed on some
+environments, for example when using different compiler or board
+versions.</i> </li>
+</ul>
+<p>The provided examples can be tailored to run on any compatible
+hardware; user simply need to update the BSP drivers for his board, if
+it has the same hardware functions (LED,&nbsp;push buttons...etc.).
+The BSP is based on a modular architecture that allows it to be ported
+easily to any hardware by just implementing the low level routines.</p>
+<p>The table below contains the list of examples provided within
+STM32CubeMP1 Firmware package.</p>
+<p id="STM32MP1xxImportantLink" style="margin-left: 40px;">The
+execution of the examples could be done in 2 different mode :</p>
+<ul>
+<ul>
+<li><b>Production </b>boot mode: Firmware is
+loaded in coprocessor by the master processor (Cortex A7 - Flash Memory
+boot mode)</li>
+<li><b>Engineering </b>boot mode is used for
+specific needs as to test a Firmware directly on coprocessor</li>
+</ul>
+</ul>
+<div>Reference materials available on <a href="http://www.st.com/stm32cubefw" target="_blank">www.st.com/stm32cubefw</a></div>
+<ul>
+<li><a href="https://wiki.st.com/stm32mpu" target="_blank">Wiki</a>: Wiki STM32 MP1 Main Page.</li>
+<li><a href="https://wiki.st.com/stm32mpu/index.php/Category:STM32CubeMP1" target="_blank">Wiki</a>: Wiki STM32CubeMP1.</li>
+</ul>
+<br>
+<table style="background-color: rgb(240, 240, 255); width: 1282px;" border="1">
+<tbody>
+<tr style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" align="center">
+<td><b>Level</b></td>
+<td><b>Module Name</b></td>
+<td style="width: 229px;"><b>Project Name</b></td>
+<td style="width: 266px;" class="descriptionColumn"><b>Description</b></td>
+<td style="width: 130px;">STM32MP157C-EV1</td>
+<td style="width: 130px;">STM32MP157C-DK2</td>
+<td style="width: 130px;">Mode</td>
+<td style="width: 130px;">Core</td>
+</tr>
+<tr align="center">
+<td style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" rowspan="2">
+<p id="Templates">Templates</p>
+</td>
+<td rowspan="1" align="left">
+<p id="-">-</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="Starter project">Starter project</p>
+</td>
+<td style="width: 266px;" align="left">This
+projects provides a reference template that can be used to build any
+firmware application.
+</td>
+<td style="text-align: center; vertical-align: middle; width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" align="center">
+<td style="width: 266px;" colspan="3"><b>Total
+number of templates: 2</b></td>
+<td style="width: 130px;">1</td>
+<td style="width: 130px;">1</td>
+<td style="width: 130px;"></td>
+<td style="width: 130px;"></td>
+</tr>
+<tr align="center">
+<td style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" rowspan="22">
+<p id="Examples">Examples</p>
+</td>
+<td rowspan="1" align="left">
+<p id="ADC">ADC</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="ADC_SingleConversion_TriggerTimer_DMA">ADC_SingleConversion_TriggerTimer_DMA</p>
+</td>
+<td style="width: 266px;" align="left">Use
+ADC to convert a single channel at each trig from timer, conversion
+data are transferred by DMA into an array, indefinitely (circular
+mode).
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="1" align="left">
+<p id="CRC">CRC</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="CRC_UserDefinedPolynomial">CRC_UserDefinedPolynomial</p>
+</td>
+<td style="width: 266px;" align="left">How to
+configure the CRC using the HAL API. The CRC (cyclic
+redundancy check) calculation unit computes the 8-bit CRC code for a
+given
+buffer of 32-bit data words, based on a user-defined generating
+polynomial.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="1" align="left">
+<p id="CRYP">CRYP</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="CRYP_AES_DMA">CRYP_AES_DMA</p>
+</td>
+<td style="width: 266px;" align="left">This
+example provides a short description of how to use the CRYPTO
+peripheral to encrypt and decrypt data using AES-128 Algorithm with ECB
+chaining mode.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="1" align="left">
+<p id="Cortex">Cortex</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="CORTEXM_MPU">CORTEXM_MPU</p>
+</td>
+<td style="width: 266px;" align="left">Presentation
+of the MPU feature. This example configures a memory area as privileged
+read-only, and attempts to perform read and write operations in
+different modes.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="1" align="left">
+<p id="DAC">DAC</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="DAC_SimpleConversion">DAC_SimpleConversion</p>
+</td>
+<td style="width: 266px;" align="left">How to
+use the DAC peripheral to do a simple conversion.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">-</td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="1" align="left">
+<p id="DMA">DMA</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="DMA_FIFOMode">DMA_FIFOMode</p>
+</td>
+<td style="width: 266px;" align="left">This
+example provides a description of how to use a DMA to transfer a word
+data buffer from Flash memory to embedded SRAM with FIFO mode
+enabled through the HAL API.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="1" align="left">
+<p id="FDCAN">FDCAN</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="FDCAN_Loopback">FDCAN_Loopback</p>
+</td>
+<td style="width: 266px;" align="left">How to
+configure the FDCAN to operate in loopback mode.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><span style="font-weight: bold;"></span>Engineering <span style="font-weight: bold;">Only</span></td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="1" align="left">
+<p id="GPIO">GPIO</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="GPIO_EXTI">GPIO_EXTI</p>
+</td>
+<td style="width: 266px;" align="left">How to
+configure external interrupt lines.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="1" align="left">
+<p id="HASH">HASH</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="HASH_SHA224SHA256_DMA">HASH_SHA224SHA256_DMA</p>
+</td>
+<td style="width: 266px;" align="left">This
+example provides a short description of how to use the HASH peripheral
+to hash data using SHA224 and SHA256 Algorithms.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="2" align="left">
+<p id="I2C">I2C</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="I2C_TwoBoards_ComDMA">I2C_TwoBoards_ComDMA</p>
+</td>
+<td style="width: 266px;" align="left">How to
+handle I2C data buffer transmission/reception between two boards, via
+DMA.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">-</td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td style="width: 229px;" align="left">
+<p id="I2C_TwoBoards_ComIT">I2C_TwoBoards_ComIT</p>
+</td>
+<td style="width: 266px;" align="left">How to
+handle I2C data buffer transmission/reception between two boards, using
+an interrupt.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="1" align="left">
+<p id="LPTIM">LPTIM</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="LPTIM_PulseCounter">LPTIM_PulseCounter</p>
+</td>
+<td style="width: 266px;" align="left">This
+example describes how to configure and use LPTIM to count pulses
+through
+the LPTIM HAL API.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production (<span style="font-weight: bold;">only for
+DK2</span>)<br>
+&amp;<br>
+Engineering (EV1 and DK2)</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="1" align="left">
+<p id="QSPI">QSPI</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="QSPI_ReadWrite_IT">QSPI_ReadWrite_IT</p>
+</td>
+<td style="width: 266px;" align="left">This
+example describes how to erase part of the QSPI memory, write data in
+IT mode, read data in IT mode and compare the result in a forever loop.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">-</td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="4" align="left">
+<p id="SPI">SPI</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="SPI_FullDuplex_ComDMA_Master">SPI_FullDuplex_ComDMA_Master</p>
+</td>
+<td style="width: 266px;" align="left">Data
+buffer transmission/reception between two boards via SPI in Polling.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td style="width: 229px;" align="left">
+<p id="SPI_FullDuplex_ComDMA_Slave">SPI_FullDuplex_ComDMA_Slave</p>
+</td>
+<td style="width: 266px;" align="left">Data
+buffer transmission/reception between two boards via SPI using DMA.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td style="width: 229px;" align="left">
+<p id="SPI_FullDuplex_ComIT_Master">SPI_FullDuplex_ComIT_Master</p>
+</td>
+<td style="width: 266px;" align="left">Data
+buffer transmission/reception between two boards via SPI using
+Interrupt mode.
+</td>
+<td style="width: 130px;">-</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td style="width: 229px;" align="left">
+<p id="SPI_FullDuplex_ComIT_Slave">SPI_FullDuplex_ComIT_Slave</p>
+</td>
+<td style="width: 266px;" align="left">Data
+buffer transmission/reception between two boards via SPI using
+Interrupt mode.
+</td>
+<td style="width: 130px;">-</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="1" align="left">
+<p id="TIM">TIM</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="TIM_DMABurst">TIM_DMABurst</p>
+</td>
+<td style="width: 266px;" align="left">This
+example shows how to update the TIMER TIM2_CH4 period and the duty
+cycle using the TIMER DMA burst feature.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="2" align="left">
+<p id="UART">UART</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="UART_TwoBoards_ComDMA">UART_TwoBoards_ComDMA</p>
+</td>
+<td style="width: 266px;" align="left">UART
+transmission (transmit/receive) in DMA mode between two boards.
+</td>
+<td style="width: 130px;">-</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td style="width: 229px;" align="left">
+<p id="UART_TwoBoards_ComIT">UART_TwoBoards_ComIT</p>
+</td>
+<td style="width: 266px;" align="left">UART
+transmission (transmit/receive) in Interrupt mode between two boards.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="1" align="left">
+<p id="WWDG">WWDG</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="WWDG_Example">WWDG_Example</p>
+</td>
+<td style="width: 266px;" align="left">Configuration
+of the HAL API to periodically update the WWDG counter and simulate a
+software fault that generates an MCU WWDG reset when a predefined time
+period has elapsed.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" align="center">
+<td style="width: 266px;" colspan="3"><b>Total
+number of examples: 36</b></td>
+<td style="width: 130px;">18</td>
+<td style="width: 130px;">18</td>
+<td style="width: 130px;"></td>
+<td style="width: 130px;"></td>
+</tr>
+<tr align="center">
+<td style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" rowspan="6">
+<p id="Applications">Applications</p>
+</td>
+<td rowspan="1" align="left">
+<p id="CoproSync">CoproSync</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="CoproSync_ShutDown">CoproSync_ShutDown</p>
+</td>
+<td style="width: 266px;" align="left">Send of shutdown information
+to Cortex-M4 so that it is able to take necessary actions before going
+to reset state.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">-</td>
+<td style="width: 130px;">Production<br>
+</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="1" align="left">
+<p id="FreeRTOS">FreeRTOS</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="FreeRTOS_ThreadCreation">FreeRTOS_ThreadCreation</p>
+</td>
+<td style="width: 266px;" align="left">How to
+implement thread creation using CMSIS RTOS API. </td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+&amp;<br>
+Engineering</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td rowspan="3">OpenAMP</td>
+<td style="width: 229px;" align="left">
+<p id="OpenAMP_TTY_echo">OpenAMP_TTY_echo</p>
+</td>
+<td style="width: 266px;" align="left">How to
+use OpenAMP MW + Virtual UART to create an Inter-Processor
+Communication channel seen as TTY device in Linux OS.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td style="width: 229px;" align="left">
+<p id="OpenAMP_TTY_echo_wakeup">OpenAMP_TTY_echo_wakeup</p>
+</td>
+<td style="width: 266px;" align="left">How to
+enter different PWR system operating mode (Run, Stop and Standby).
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr align="center">
+<td style="width: 229px;" align="left">
+<p id="OpenAMP_raw">OpenAMP_raw</p>
+</td>
+<td style="width: 266px;" align="left">How to
+use OpenAMP MW to create an Inter-Processor Communication channel.
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" align="center">
+<td style="width: 266px;" colspan="3"><b>Total
+number of applications: 9</b></td>
+<td style="width: 130px;">5</td>
+<td style="width: 130px;">4</td>
+<td style="width: 130px;"></td>
+<td style="width: 130px;"></td>
+</tr>
+<tr align="center">
+<td style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" rowspan="2">
+<p id="Demonstrations">Demonstrations</p>
+</td>
+<td rowspan="1" align="left">
+<p id="-">-</p>
+</td>
+<td style="width: 229px;" align="left">
+<p id="AI_Character_Recognition">AI_Character_Recognition</p>
+</td>
+<td style="width: 266px;" align="left">This
+project demonstrate a complex application that is running on both
+CPU1(CA7) and CPU2(CM4).
+</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">Production<br>
+</td>
+<td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" align="center">
+<td style="width: 266px;" colspan="3"><b>Total
+number of demonstrations: 2</b></td>
+<td style="width: 130px;">1</td>
+<td style="width: 130px;">1</td>
+<td style="width: 130px;"></td>
+<td style="width: 130px;"></td>
+</tr>
+<tr style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" align="center">
+<td style="width: 266px;" colspan="4"><b>Total
+number of projects: 49</b></td>
+<td style="width: 130px;">25</td>
+<td style="width: 130px;">24</td>
+<td style="width: 130px;"></td>
+<td style="width: 130px;"></td>
+</tr>
+</tbody>
+</table>
+</body></html>
