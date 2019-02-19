@@ -910,8 +910,7 @@ typedef struct
                                           ((__DELAY__) == ADC_TWOSAMPLINGDELAY_5CYCLES)  || \
                                           ((__DELAY__) == ADC_TWOSAMPLINGDELAY_6CYCLES)  || \
                                           ((__DELAY__) == ADC_TWOSAMPLINGDELAY_7CYCLES)  || \
-                                          ((__DELAY__) == ADC_TWOSAMPLINGDELAY_8CYCLES)  || \
-                                          ((__DELAY__) == ADC_TWOSAMPLINGDELAY_9CYCLES)    )
+                                          ((__DELAY__) == ADC_TWOSAMPLINGDELAY_8CYCLES)    )
 #endif /* ADC_MULTIMODE_SUPPORT */
 
 /**
