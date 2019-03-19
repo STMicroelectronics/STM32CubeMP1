@@ -207,10 +207,10 @@ started with the STM32CubeMP1 firmware package</span> :</p>
 <ul><li><a href="https://wiki.st.com/stm32mpu" target="_blank">Wiki</a>: Wiki STM32 MP1 Main Page.</li><li><a href="https://wiki.st.com/stm32mpu/index.php/Category:STM32CubeMP1" target="_blank">Wiki</a>: Wiki STM32CubeMP1.</li><li>Reference materials available on <a href="http://www.st.com/stm32cubefw" target="_blank">www.st.com/stm32cubefw</a></li></ul><br></div>
 <div id="release_container" class="topic1">
 <div class="topic2" id="identification">
-<h3 style="width: 230px;">V1.0.0 / 25-January-2019</h3>
+<h3 style="width: 230px;">V1.0.1 / 19-March-2019</h3>
 </div>
 <div class="topic3" id="changes">
-<h4>Main changes</h4><div style="margin-left: 40px;">First release of STM32CubeMP1 (STM32Cube for STM32MP1 Series) supporting STM32MP15xx devices<br><br><span style="background-color: white;"></span><span lang="fr"></span><span style="background-color: white;"></span></div>
+<h4>Main changes</h4><div style="margin-left: 40px;">Patch release of STM32CubeMP1 (STM32Cube for STM32MP1 Series) supporting STM32MP15xx devices</div><h4>Details</h4><div style="margin-left: 40px;"><span style="font-weight: bold;">HAL Driver&nbsp;:</span><br><ul><li>HAL ADC: Fix ADC warning for ADC_TWOSAMPLINGDELAY_9CYCLES (not valid for STM32MP1xx)</li></ul><br><span style="font-weight: bold;">CMSIS DEVICE&nbsp;:</span><br><ul><li>Missing CRYP in CMSIS header files of STM32MP151Cx and STM32MP153Cx</li></ul><br><span style="font-weight: bold;">Resources Manager:</span><br><ul><li>Update RESMGR_ID according to device ID</li></ul></div>
 </div>
 <div class="topic3" id="contents">
 <h4>Contents</h4>
@@ -240,6 +240,141 @@ exhaustive list of projects is provided in this table (<a href="Projects/STM32Cu
 <li>STM32MP157C-DK2</li>
 <ul><li>Applications</li><li>Demonstrations</li><li>HAL Examples</li><li>Templates</li></ul></ul>
 </ul>
+<table style="width: 90%; height: 89px; text-align: left; margin-left: auto; margin-right: auto;" class="tickets" cellpadding="5" cellspacing="0">
+<caption>Released drivers components</caption><tbody>
+<tr>
+<th style="width: 268px;">Component</th>
+<th style="width: 99px;">Version</th>
+<th>Release note</th>
+</tr>
+<tr>
+<td style="width: 268px;">Cortex-M CMSIS V5.2.0</td>
+<td style="text-align: center; width: 99px;">V5.2.0</td>
+<td style="text-align: center;"><a href="Drivers/CMSIS/docs/index.html" target="_blank">release
+notes</a></td>
+</tr>
+<tr>
+<td style="background-color: white; width: 268px;">STM32MP1xx
+CMSIS</td>
+<td style="text-align: center; width: 99px; background-color: rgb(153, 255, 153);">V1.0.1</td>
+<td style="text-align: center; background-color: white;"><a href="Drivers/CMSIS/Device/ST/STM32MP1xx/Release_Notes.html" target="_blank">release notes</a></td>
+</tr>
+<tr>
+<td style="width: 268px;">STM32MP1xx HAL</td>
+<td style="text-align: center; width: 99px; background-color: rgb(153, 255, 153);">V1.0.1</td>
+<td style="text-align: center;"><a href="Drivers/STM32MP1xx_HAL_Driver/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr>
+<td style="width: 268px;">BSP STM32MP15xx_EVAL</td>
+<td style="text-align: center; width: 99px;">V1.0.0</td>
+<td style="text-align: center;"><a href="Drivers/BSP/STM32MP15xx_EVAL/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr>
+<td>BSP STM32MP15xx_DISCO</td>
+<td style="text-align: center;">V1.0.0</td>
+<td style="text-align: center;"><a href="Drivers/BSP/STM32MP15xx_DISCO/Release_Notes.html">release
+notes</a></td>
+</tr>
+
+
+
+
+
+
+
+
+</tbody>
+</table>
+<table style="width: 90%; height: 89px; text-align: left; margin-left: auto; margin-right: auto;" class="tickets" cellpadding="5" cellspacing="0">
+<caption>Released Middlewares components</caption><tbody>
+<tr>
+<th style="width: 268px;">Component</th>
+<th style="width: 99px;">Version</th>
+<th>Release note</th>
+</tr>
+<tr>
+<td style="width: 268px;">FreeRTOS<br>
+</td>
+<td style="text-align: center; width: 99px;">V10.0.1<br>
+<span style="font-family: Verdana; font-size: 10pt;">ST&nbsp;modified
+20180813</span></td>
+<td style="text-align: center;"><a style="background-color: white;" href="Middlewares/Third_Party/FreeRTOS/Source/readme.txt" target="_blank">release notes</a><br>
+<br>
+<a href="Middlewares/Third_Party/FreeRTOS/Source/st_readme.txt">release
+notes</a></td>
+</tr>
+<tr>
+<td style="width: 268px;"><span style="background-color: yellow;"></span>OpenAMP</td>
+<td style="text-align: center; width: 99px;"><span style="font-family: Verdana; font-size: 10pt;">v2018.10</span><span style="font-family: Verdana; font-size: 10pt;"><br>
+ST&nbsp;modified <br>20190125</span><span style="background-color: yellow;"></span></td>
+<td style="text-align: center;"><a style="background-color: white;" href="Middlewares/Third_Party/OpenAMP/libmetal/README.md" target="_blank">release notes</a><br>
+<br style="background-color: white;">
+<a style="background-color: white;" href="Middlewares/Third_Party/OpenAMP/open-amp/README.md" target="_blank">release notes</a></td>
+</tr>
+
+
+</tbody>
+</table>
+<table style="width: 90%; height: 89px; text-align: left; margin-left: auto; margin-right: auto;" class="tickets" cellpadding="5" cellspacing="0">
+<caption>Released Utilities components</caption><tbody>
+<tr>
+<th style="width: 268px;">Component</th>
+<th style="width: 99px;">Version</th>
+<th>Release note</th>
+</tr>
+
+
+
+<tr>
+<td style="width: 268px;"><span style="font-size: 10pt; font-family: Verdana;">Resourcemanager</span></td>
+<td style="text-align: center; width: 99px; background-color: rgb(153, 255, 153);">V1.6.0</td>
+<td style="text-align: center;"><a href="Utilities/ResourcesManager/Release_Notes.html">release
+notes</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="topic3" id="tools">
+<h4>Development Toolchains and Compilers</h4>
+<ul style="background-color: white;"><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">System
+                              Workbench for STM32 (SW4STM32)</span><span style="font-family: Verdana; font-size: 10pt;"> toolchain <span style="font-weight: bold;">v2.8.0</span></span></li>
+</ul>
+</div>
+<div class="topic3" id="boards">
+<h4>Supported Devices and HW boards</h4>
+<ul>
+<li>&nbsp;STM32MP157C-EV1 RevC</li>
+<li>&nbsp;STM32MP157C-DK2 RevC</li></ul>
+</div>
+<div class="topic3" id="limitations">
+<h4>Known limitations</h4>
+<ul>
+<li>NA</li></ul>
+</div>
+</div>
+<div style="margin-left: 40px;"><button id="filter_hist" onclick="toggle_history()">Show
+History</button><br>
+</div>
+<div id="history" class="topic1" hidden="">
+<h2>Update History</h2>
+<div id="release_container" class="topic1"><div id="release_container" class="topic1">
+<div class="topic2" id="identification">
+<h3 style="width: 230px;">V1.0.0 / 25-January-2019</h3>
+</div>
+<div class="topic3" id="changes">
+<h4>Main changes</h4><div style="margin-left: 40px;">First release of STM32CubeMP1 (STM32Cube for STM32MP1 Series) supporting STM32MP15xx devices<br><br><span style="background-color: white;"></span><span lang="fr"></span><span style="background-color: white;"></span></div>
+</div>
+<div class="topic3" id="contents">
+<h4>Contents</h4>
+<ul><li>Projects</li></ul>
+<ul><ul><li>The STM32CubeMP1
+Firmware package comes with a rich set of examples running on
+STMicroelectronics boards, organized by board and provided with
+preconfigured projects for the main supported toolchains. The
+exhaustive list of projects is provided in this table (<a href="Projects/STM32CubeProjectsList.html">STM32CubeProjectsList.html</a>).&nbsp;</li><li>Projects release notes (Updates in bold): </li></ul></ul>
+<ul><ul><li>STM32MP157C-EV1</li><ul><li>Applications</li><li>Demonstrations</li><li>HAL Examples</li><li>Templates</li></ul><li>STM32MP157C-DK2</li><ul><li>Applications</li><li>Demonstrations</li><li>HAL Examples</li><li>Templates</li></ul></ul></ul>
 <table style="width: 90%; height: 89px; text-align: left; margin-left: auto; margin-right: auto;" class="tickets" cellpadding="5" cellspacing="0">
 <caption>Released drivers components</caption><tbody>
 <tr>
@@ -339,28 +474,17 @@ notes</a></td>
 <div class="topic3" id="tools">
 <h4>Development Toolchains and Compilers</h4>
 <ul style="background-color: white;"><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">System
-                              Workbench for STM32 (SW4STM32)</span><span style="font-family: Verdana; font-size: 10pt;"> toolchain <span style="font-weight: bold;">v2.8.0</span></span></li>
-</ul>
+                              Workbench for STM32 (SW4STM32)</span><span style="font-family: Verdana; font-size: 10pt;"> toolchain <span style="font-weight: bold;">v2.8.0</span></span></li></ul>
 </div>
 <div class="topic3" id="boards">
 <h4>Supported Devices and HW boards</h4>
-<ul>
-<li>&nbsp;STM32MP157C-EV1 RevC</li>
-<li>&nbsp;STM32MP157C-DK2 RevC</li></ul>
+<ul><li>&nbsp;STM32MP157C-EV1 RevC</li><li>&nbsp;STM32MP157C-DK2 RevC</li></ul>
 </div>
 <div class="topic3" id="limitations">
 <h4>Known limitations</h4>
-<ul>
-<li>NA</li></ul>
+<ul><li>NA</li></ul>
 </div>
-</div>
-<div style="margin-left: 40px;"><button id="filter_hist" onclick="toggle_history()">Show
-History</button><br>
-</div>
-<div id="history" class="topic1" hidden="">
-<h2>Update History</h2>
-<div id="release_container" class="topic1"><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">Version
-/ Date</span></h3><br></div>
+</div></div>
 <br>
 <br>
 </div>
