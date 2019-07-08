@@ -279,7 +279,7 @@ void SystemCoreClockUpdate (void)
 #ifdef DATA_IN_ExtSRAM
 /**
   * @brief  Setup the external memory controller.
-  *         Called in startup_stm32L4xx.s before jump to main.
+  *         Called in startup_stm32mp15xx.s before jump to main.
   *         This function configures the external SRAM mounted on Eval boards
   *         This SRAM will be used as program data memory (including heap and stack).
   * @param  None
