@@ -3106,6 +3106,7 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint64_t PeriphClk)
 
         case RCC_SDMMC3CLKSOURCE_HSI:
           frequency = (HSI_VALUE >> __HAL_RCC_GET_HSI_DIV());
+          break;
 
         default:
           frequency = 0;
@@ -3133,6 +3134,7 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint64_t PeriphClk)
         case RCC_ADCCLKSOURCE_PLL3:
           HAL_RCC_GetPLL3ClockFreq(&pll3_clocks);
           frequency = pll3_clocks.PLL3_Q_Frequency;
+          break;
 
         default:
           frequency = 0;
