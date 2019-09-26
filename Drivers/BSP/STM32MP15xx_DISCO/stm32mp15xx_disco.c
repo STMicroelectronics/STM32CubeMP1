@@ -50,7 +50,7 @@ typedef void (* BSP_EXTI_LineCallback)(void);
 /** @brief STM32MP15XX DISCO BSP Driver version number V2.0.0
   */
 #define STM32MP15XX_DISCO_BSP_VERSION_MAIN   (0x01U) /*!< [31:24] main version */
-#define STM32MP15XX_DISCO_BSP_VERSION_SUB1   (0x00U) /*!< [23:16] sub1 version */
+#define STM32MP15XX_DISCO_BSP_VERSION_SUB1   (0x01U) /*!< [23:16] sub1 version */
 #define STM32MP15XX_DISCO_BSP_VERSION_SUB2   (0x00U) /*!< [15:8]  sub2 version */
 #define STM32MP15XX_DISCO_BSP_VERSION_RC     (0x00U) /*!< [7:0]  release candidate */
 #define STM32MP15XX_DISCO_BSP_VERSION         ((STM32MP15XX_DISCO_BSP_VERSION_MAIN << 24)\
@@ -693,6 +693,9 @@ int32_t BSP_COM_SelectLogPort(COM_TypeDef COM)
 
 /**
   * @brief  Redirect console output to COM
+  * @param  ch: character to send
+  * @param  f: pointer to file (not used)
+  * @retval The character received
   */
  #ifdef __GNUC__
  int __io_putchar (int ch)
@@ -701,6 +704,22 @@ int32_t BSP_COM_SelectLogPort(COM_TypeDef COM)
  #endif /* __GNUC__ */
 {
   HAL_UART_Transmit (&hComHandle [COM_ActiveLogPort], (uint8_t *) &ch, 1, COM1_POLL_TIMEOUT);
+  return ch;
+}
+
+/**
+  * @brief  Get console input from COM
+  * @param  f: pointer to file (not used)
+  * @retval The character received
+  */
+#ifdef __GNUC__
+int __io_getchar (void)
+#else
+int fgetc(FILE * f)
+#endif /* __GNUC__ */
+{
+  uint8_t ch = 0;
+  HAL_UART_Receive(&hComHandle[COM_ActiveLogPort], (uint8_t *)&ch, 1, COM1_POLL_TIMEOUT);
   return ch;
 }
 #endif /* USE_COM_LOG */

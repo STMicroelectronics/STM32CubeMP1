@@ -5,7 +5,7 @@
  */
 
 #include <string.h>
-#include <errno.h>
+#include <metal/errno.h>
 #include <metal/assert.h>
 #include <metal/device.h>
 #include <metal/list.h>

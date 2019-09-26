@@ -69,7 +69,7 @@ void HAL_LPTIM_MspInit(LPTIM_HandleTypeDef* hlptim)
     PERIPH_UNLOCK(GPIOD);
 
     /* LPTIM1 interrupt Init */
-    HAL_NVIC_SetPriority(LPTIM1_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(LPTIM1_IRQn, DEFAULT_IRQ_PRIO, 0);
     HAL_NVIC_EnableIRQ(LPTIM1_IRQn);
   /* USER CODE BEGIN LPTIM1_MspInit 1 */
 

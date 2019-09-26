@@ -50,12 +50,12 @@ extern "C" {
 
 static inline void sys_irq_enable(unsigned int vector)
 {
-	(void)vector;	
+	(void)vector;
 }
 
 static inline void sys_irq_disable(unsigned int vector)
 {
-	(void)vector;	
+	(void)vector;
 }
 
 #ifdef __cplusplus

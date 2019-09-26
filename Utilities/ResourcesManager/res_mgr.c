@@ -244,7 +244,7 @@ device_config_t mp1_device_config[] = {
   { RESMGR_ID_MDIOS,        MDIOS_BASE,     ETZPC_NO_INDEX },
   { RESMGR_ID_MDMA,         MDMA_BASE,      ETZPC_NO_INDEX },
   { RESMGR_ID_SYSCFG,       SYSCFG_BASE,    ETZPC_NO_INDEX },
-  { RESMGR_ID_TMPSENS,      DTS_BASE,       ETZPC_NO_INDEX },
+  { RESMGR_ID_DTS,          DTS_BASE,       ETZPC_NO_INDEX },
   { RESMGR_ID_WWDG1,        WWDG1_BASE,     ETZPC_NO_INDEX },
 };
 
@@ -300,11 +300,23 @@ static uint32_t ResMgr_DeviceAddress(uint32_t id)
 static ResMgr_Status_t ResMgr_RpmsgInit(void)
 {
   ResMgr_Status_t ret = RESMGR_OK;
+  uint32_t tickstart;
 
   if (OPENAMP_create_endpoint(&resmgr_ept, RESMGR_SERVICE_NAME, RPMSG_ADDR_ANY,
                               ResMgr_read_cb, NULL) < 0)
   {
     ret = RESMGR_ERROR;
+  }
+
+  /* Wait for initial message from remote */
+  tickstart = HAL_GetTick();
+  while ((received_status == RX_NONE) && (ret == RESMGR_OK))
+  {
+    OPENAMP_check_for_message();
+    if ((HAL_GetTick() - tickstart ) > RPMSG_TIMEOUT_MS)
+    {
+      ret = RESMGR_ERROR;
+    }
   }
 
   return ret;
@@ -398,11 +410,10 @@ ResMgr_Status_t ResMgr_Request(uint32_t id, uint32_t flags, uint32_t prio, void 
   uint32_t secu_status, lock_status;
   ResMgr_Status_t ret = RESMGR_OK;
   uint32_t etzpc_id;
-  uint8_t etzpc_access = true;
+  uint8_t etzpc_access = 1;
 
-  /* Valid case: Slave CPU + NO pending access + NO Inherit */
-  if (((flags & RESMGR_FLAGS_OWNER_MSK) == RESMGR_FLAGS_CPU_SLAVE) &&
-      ((flags & RESMGR_FLAGS_ACCESS_MSK) != RESMGR_FLAGS_ACCESS_PEND) &&
+  /* Valid case: NO pending access + NO Inherit */
+  if (((flags & RESMGR_FLAGS_ACCESS_MSK) != RESMGR_FLAGS_ACCESS_PEND) &&
       ((flags & RESMGR_FLAGS_INHERIT_MSK) != RESMGR_FLAGS_INHERIT_HANDLE))
   {
     /* lock table modification (TBC) */
@@ -468,9 +479,10 @@ ResMgr_Status_t ResMgr_Request(uint32_t id, uint32_t flags, uint32_t prio, void 
 /**
   * @brief  Release a resource
   * @param  id : Resource identifier
+  * @param  flags : Options
   * @retval Return status
   */
-ResMgr_Status_t ResMgr_Release(uint32_t id)
+ResMgr_Status_t ResMgr_Release(uint32_t id, uint32_t flags)
 {
   /* lock table modification (TBC) */
   while(ResMgr_Tbl[id].Spinlock);

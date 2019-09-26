@@ -33,11 +33,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN Define */
-#define RCC_WAKEUP_IRQ_PRIO 0U
-#define IPCC_RX1_IRQ_PRIO   2U
-#define TIM2_IRQ_PRIO       2U
-#define ADCx_IRQ_PRIO       2U
-#define ADCx_DMA_IRQ_PRIO   2U
+
 /* USER CODE END Define */
 
 /* Private macro -------------------------------------------------------------*/
@@ -69,7 +65,8 @@
 void HAL_MspInit(void)
 {
   /* USER CODE BEGIN MspInit 0 */
-
+  /*HW semaphore Clock enable*/
+  __HAL_RCC_HSEM_CLK_ENABLE();
   /* USER CODE END MspInit 0 */
 
   /* System interrupt init*/
@@ -78,6 +75,7 @@ void HAL_MspInit(void)
   /* RCC_WAKEUP_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(RCC_WAKEUP_IRQn, RCC_WAKEUP_IRQ_PRIO, 0);
   HAL_NVIC_EnableIRQ(RCC_WAKEUP_IRQn);
+  __HAL_RCC_ENABLE_IT(RCC_IT_WKUP);
 
   /* USER CODE BEGIN MspInit 1 */
 
@@ -101,7 +99,7 @@ void HAL_IPCC_MspInit(IPCC_HandleTypeDef* hipcc)
     /* Peripheral clock enable */
     __HAL_RCC_IPCC_CLK_ENABLE();
   /* IPCC interrupt Init */
-    HAL_NVIC_SetPriority(IPCC_RX1_IRQn, IPCC_RX1_IRQ_PRIO, 0);
+    HAL_NVIC_SetPriority(IPCC_RX1_IRQn, DEFAULT_IRQ_PRIO, 0);
     HAL_NVIC_EnableIRQ(IPCC_RX1_IRQn);
   /* USER CODE BEGIN IPCC_MspInit 1 */
 
@@ -185,7 +183,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
     /* Peripheral clock enable */
     __HAL_RCC_TIM2_CLK_ENABLE();
     /* TIM2 interrupt Init */
-    HAL_NVIC_SetPriority(TIM2_IRQn, TIM2_IRQ_PRIO, 0);
+    HAL_NVIC_SetPriority(TIM2_IRQn, DEFAULT_IRQ_PRIO, 0);
     HAL_NVIC_EnableIRQ(TIM2_IRQn);
   /* USER CODE BEGIN TIM2_MspInit 1 */
 
@@ -278,12 +276,12 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef *hadc)
   /*##-4- Configure the NVIC #################################################*/
   /* NVIC configuration for ADC interrupt */
   /* Priority: high-priority */
-  HAL_NVIC_SetPriority(ADCx_IRQn, ADCx_IRQ_PRIO, 0);
+  HAL_NVIC_SetPriority(ADCx_IRQn, DEFAULT_IRQ_PRIO, 0);
   HAL_NVIC_EnableIRQ(ADCx_IRQn);
   
   /* NVIC configuration for DMA interrupt (transfer completion or error) */
   /* Priority: high-priority */
-  HAL_NVIC_SetPriority(ADCx_DMA_IRQn, ADCx_DMA_IRQ_PRIO, 0);
+  HAL_NVIC_SetPriority(ADCx_DMA_IRQn, DEFAULT_IRQ_PRIO, 0);
   HAL_NVIC_EnableIRQ(ADCx_DMA_IRQn);
 }
 

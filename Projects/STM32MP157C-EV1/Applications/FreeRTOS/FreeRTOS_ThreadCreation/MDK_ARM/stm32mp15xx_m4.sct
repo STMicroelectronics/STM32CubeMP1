@@ -1,0 +1,20 @@
+; *************************************************************
+; *** Scatter-Loading Description                           ***
+; *************************************************************
+
+LR_VECTORS 0x00000000 0x00000400  {    ; load region size_region
+  .isr_vector +0 {
+    startup*.o (RESET, +First)
+  }
+}
+
+LR_IROM1 0x10000000 0x00020000  {      ; load region size_region
+  ER_IROM1 0x10000000 0x00020000  {    ; load address = execution address
+    *(InRoot$$Sections)
+    .ANY (+RO)
+    .ANY (+XO)
+  }
+  RW_IRAM1 0x10020000 0x00020000  {    ; RW data
+    .ANY (+RW +ZI)
+  }
+}

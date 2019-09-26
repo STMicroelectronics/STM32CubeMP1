@@ -16,11 +16,16 @@
 #ifndef __METAL_GENERIC_CONDITION__H__
 #define __METAL_GENERIC_CONDITION__H__
 
+#if defined (__CC_ARM)
+#include <stdio.h>
+#endif
 #include <unistd.h>
 #include <metal/atomic.h>
 #include <stdint.h>
 #include <limits.h>
-#include <errno.h>
+#include <metal/errno.h>
+
+
 
 #ifdef __cplusplus
 extern "C" {

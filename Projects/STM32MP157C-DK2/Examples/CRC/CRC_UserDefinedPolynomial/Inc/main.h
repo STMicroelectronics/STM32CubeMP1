@@ -23,13 +23,15 @@
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
+#include "stm32mp1xx_hal.h"
 #include "lock_resource.h"
 
 /* USER CODE BEGIN Includes */
 #include "stm32mp15xx_disco.h"
 /* USER CODE END Includes */
 
-/* Private define ------------------------------------------------------------*/
+/* Private defines -----------------------------------------------------------*/
+#define DEFAULT_IRQ_PRIO      1U
 
 #define BT_HOST_WAKE_Pin GPIO_PIN_5
 #define BT_HOST_WAKE_GPIO_Port GPIOH

@@ -102,7 +102,7 @@
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_gpio.c</locationURI>
 		</link>
 		<link>
-			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_qspic.c</name>
+			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_qspi.c</name>
 			<type>1</type>
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_qspi.c</locationURI>
 		</link>
@@ -135,7 +135,6 @@
 			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_hsem.c</name>
 			<type>1</type>
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_hsem.c</locationURI>
-
 		</link>
 	</linkedResources>
 </projectDescription>

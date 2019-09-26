@@ -53,10 +53,11 @@ TIM_HandleTypeDef htim2;
 EXTI_HandleTypeDef hexti14;
 /* ADC handler declaration */
 ADC_HandleTypeDef    hadc2;
-/* RCC System clock configuration backup variable */
-RCC_ClkInitTypeDef  RCC_ClkInit;
+/* RCC MCU clock configuration backup variable */
+RCC_MCUInitTypeDef  RCC_MCUInit;
 /* RCC Peripheral clock configuration backup variable*/
 RCC_PeriphCLKInitTypeDef  PeriphClk;
+
 /* Variables for ADC conversion data */
 __IO   uint16_t   aADCxConvertedData[ADC_CONVERTED_DATA_BUFFER_SIZE]; /* ADC group regular conversion data (array of data) */
 
@@ -130,26 +131,7 @@ int main(void)
   {
     /* Configure the system clock */
     SystemClock_Config();
-    BSP_PMIC_Init();
-    BSP_PMIC_InitRegulators();
-  }
 
-  log_info("Cortex-M4 boot successful with STM32Cube FW version: v%ld.%ld.%ld \r\n",
-                                            ((HAL_GetHalVersion() >> 24) & 0x000000FF),
-                                            ((HAL_GetHalVersion() >> 16) & 0x000000FF),
-                                            ((HAL_GetHalVersion() >> 8) & 0x000000FF));
-  /* USER CODE END Init */
-
-  /*HW semaphore Clock enable*/
-  __HAL_RCC_HSEM_CLK_ENABLE();
-  /* IPCC initialisation */
-   MX_IPCC_Init();
-  /* OpenAmp initialisation ---------------------------------*/
-  MX_OPENAMP_Init(RPMSG_REMOTE, NULL);
-
-  /* USER CODE BEGIN SysInit */
-  if(IS_ENGINEERING_BOOT_MODE())
-  {
     /* Configure PMIC */
     BSP_PMIC_Init();
     BSP_PMIC_InitRegulators();
@@ -159,6 +141,20 @@ int main(void)
     HAL_SYSCFG_VREFBUF_HighImpedanceConfig(SYSCFG_VREFBUF_HIGH_IMPEDANCE_DISABLE);
     HAL_SYSCFG_EnableVREFBUF();
   }
+
+  log_info("Cortex-M4 boot successful with STM32Cube FW version: v%ld.%ld.%ld \r\n",
+                                            ((HAL_GetHalVersion() >> 24) & 0x000000FF),
+                                            ((HAL_GetHalVersion() >> 16) & 0x000000FF),
+                                            ((HAL_GetHalVersion() >> 8) & 0x000000FF));
+  /* USER CODE END Init */
+
+  /* IPCC initialisation */
+   MX_IPCC_Init();
+  /* OpenAmp initialisation ---------------------------------*/
+  MX_OPENAMP_Init(RPMSG_REMOTE, NULL);
+
+  /* USER CODE BEGIN SysInit */
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -207,20 +203,6 @@ int main(void)
   HAL_EXTI_SetConfigLine(&hexti62, &EXTI_ConfigStructure);
   PERIPH_UNLOCK(EXTI);
   
-  /*
-   * -4- Enable RCC_IT_WKUP to exit M4 from CStop mode.
-   *     Indeed, due to SOC issue, M4 firmware shall make sure
-   *     RCC_WAKEUP interrupt is the first one used to exit M4 from CStop mode.
-   *     Therefore, M4 masks all NVIC interrupts with priority higher than 0
-   *     before entering CStop mode and unmasks them when moving from WFI.
-   *     (in HAL_PWR_EnterSTOPMode function) 
-   *     Note: All other NVIC interrupts shall be set to a different value 
-   *     from 0 to make sure that this workaround works well.
-   */
-   __HAL_RCC_ENABLE_IT(RCC_IT_WKUP);
-
-  
-
   /* Configure ADC */
   /* Note: This function configures the ADC but does not enable it.           */
   /*       Only ADC internal voltage regulator is enabled by function         */
@@ -316,7 +298,7 @@ void SystemClock_Config(void)
     */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSE
                               |RCC_OSCILLATORTYPE_LSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS_DIG;
   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = 16;
@@ -520,17 +502,19 @@ void Check_Delay(uint8_t *BuffRx, uint16_t BuffSize)
 
 void Check_Sleep(uint8_t *BuffRx)
 {
+  FlagStatus Stop_Flag = RESET;
+
   if (!strncmp((char *)BuffRx, MSG_STOP, strlen(MSG_STOP)))
   {
     HAL_Delay(500); /* wait for ack message to be received */
 
-    log_info("Back up clock context\r\n");
-    RCC_backupClocks();
+    log_info("Going into CStop mode\r\n");
 
-    /* Clear the MCU flags before going into CSTOP */
-    SET_BIT(PWR->MCUCR, PWR_MCUCR_CSSF);
-
-    log_info("Going to CStop mode\r\n");
+    /* CRITICAL SECTION STARTS HERE!
+     * IRQs will be masked (Only RCC IRQ allowed).
+     * Eg. SysTick IRQ won't be able to increment uwTick HAL variable, use a
+     * polling method if delays or timeouts are required.
+     */
 
     /* (C)STOP protection mechanism
      * Only the IT with the highest priority (0 value) can interrupt.
@@ -538,34 +522,48 @@ void Check_Sleep(uint8_t *BuffRx)
      * only one IT having this value
      * RCC_WAKEUP_IRQn is generated only when RCC is completely resumed from
      * CSTOP */
-    __set_BASEPRI(1 << (8 - __NVIC_PRIO_BITS));
+    __set_BASEPRI((RCC_WAKEUP_IRQ_PRIO + 1) << (8 - __NVIC_PRIO_BITS));
+
+    /* Note: log_info must not be used on critical section as it uses
+     * HAL_GetTick() (IRQ based) */
+
+    /* Back up clock context */
+    RCC_backupClocks();
+
+    /* Clear the Low Power MCU flags before going into CSTOP */
+    LL_PWR_ClearFlag_MCU();
 
     HAL_PWR_EnterSTOPMode(PWR_MAINREGULATOR_ON, PWR_STOPENTRY_WFI);
 
-    /* To allow Systick to increment after CSTOP (Eg.: to not block during
-     * TIMEOUT routines), TICK_INT_PRIORITY < BASEPRI
-     * For this example as TICK_INT_PRIORITY = 1, BASEPRI should be 2  */
-    __set_BASEPRI(2 << (8 - __NVIC_PRIO_BITS));
-
-    log_info("Leaving CStop mode\r\n");
+    /* Leaving CStop mode */
 
     /* Test if system was on STOP mode */
-    if( (PWR->MCUCR & PWR_MCUCR_STOPF) == PWR_MCUCR_STOPF)
+    if(LL_PWR_MCU_IsActiveFlag_STOP() == 1U)
     {
-      log_info("System was on STOP mode\r\n");
+      /* System was on STOP mode */
+      Stop_Flag = SET;
 
-      /* Clear the MCU flags */
-      SET_BIT(PWR->MCUCR, PWR_MCUCR_CSSF);
+      /* Clear the Low Power MCU flags */
+      LL_PWR_ClearFlag_MCU();
 
       /* Restore clocks */
-      if (RCC_restoreClocks() == HAL_OK)
+      if (RCC_restoreClocks() != HAL_OK)
       {
-        log_info("CM4 restored clocks successfully\r\n");
+        Error_Handler();
       }
     }
 
     /* All level of ITs can interrupt */
     __set_BASEPRI(0U);
+
+    /* CRITICAL SECTION ENDS HERE */
+
+    log_info("CStop mode left\r\n");
+
+    if (Stop_Flag == SET)
+    {
+      log_info("System was on STOP mode\r\n");
+    }
 
   }
 
@@ -574,6 +572,7 @@ void Check_Sleep(uint8_t *BuffRx)
     HAL_Delay(500); /* wait for ack message to be received */
 
     log_info("Going to Standby mode\r\n");
+    /* MCU CSTOP allowing system Standby mode */
     HAL_PWR_EnterSTANDBYMode();
     log_info("Leaving Standby mode\r\n");
   }
@@ -613,7 +612,7 @@ static void EXTI14_IRQHandler_Config(void)
   HAL_EXTI_RegisterCallback(&hexti14, HAL_EXTI_FALLING_CB_ID, Exti14FallingCb);
 
   /* Enable and set line 14 Interrupt to the lowest priority */
-  HAL_NVIC_SetPriority(EXTI14_IRQn, 2, 0);
+  HAL_NVIC_SetPriority(EXTI14_IRQn, DEFAULT_IRQ_PRIO, 0);
   HAL_NVIC_EnableIRQ(EXTI14_IRQn);
 }
 
@@ -862,29 +861,29 @@ static void Generate_waveform_SW_update(void)
   *         After a STOP platform mode re-enable PLL3 and PLL4 if used as
   *         CM4/peripheral (allocated by CM4) clock source and restore the CM4
   *         clock source muxer and the CM4 prescaler.
-  *
+  *         Use polling mode on for timeout generation as code is used
+  *         on critical section.
   * @param  None
   * @retval HAL_StatusTypeDef value
   */
 static HAL_StatusTypeDef RCC_restoreClocks(void)
 {
-  uint32_t tickstart;
   bool pll3_enable = false;
   bool pll4_enable = false;
-  RCC_ClkInitTypeDef RCC_ClkInitStructure;
   HAL_StatusTypeDef status = HAL_OK;
 
   /* Update SystemCoreClock variable */
   SystemCoreClockUpdate();
 
   /* Reconfigure Systick */
-  if(HAL_InitTick(TICK_INT_PRIORITY) != HAL_OK)
+  status = HAL_InitTick(uwTickPrio);
+  if (status != HAL_OK)
   {
-    Error_Handler();
+    return status;
   }
 
   /* Check out if it is needed to enable PLL3 and PLL4 */
-  if (RCC_ClkInit.MCUInit.MCU_Clock == RCC_MCUSSOURCE_PLL3)
+  if (RCC_MCUInit.MCU_Clock == LL_RCC_MCUSS_CLKSOURCE_PLL3)
   {
       pll3_enable = true;
   }
@@ -906,17 +905,8 @@ static HAL_StatusTypeDef RCC_restoreClocks(void)
     /* Enable PLL3 */
     LL_RCC_PLL3_Enable();
 
-    /* Get Start Tick*/
-    tickstart = HAL_GetTick();
-
     /* Wait till PLL3 is ready */
-    while (LL_RCC_PLL3_IsReady() == RESET)
-    {
-      if ((HAL_GetTick() - tickstart) > CLOCKSWITCH_TIMEOUT_VALUE)
-      {
-        Error_Handler();
-      }
-    }
+    __WAIT_EVENT_TIMEOUT(LL_RCC_PLL3_IsReady(), CLOCKSWITCH_TIMEOUT_VALUE);
 
     /* Enable PLL3 outputs */
     LL_RCC_PLL3P_Enable();
@@ -930,17 +920,8 @@ static HAL_StatusTypeDef RCC_restoreClocks(void)
     /* Enable PLL4 */
     LL_RCC_PLL4_Enable();
 
-    /* Get Start Tick*/
-    tickstart = HAL_GetTick();
-
     /* Wait till PLL4 is ready */
-    while (LL_RCC_PLL4_IsReady() == RESET)
-    {
-      if ((HAL_GetTick() - tickstart) > CLOCKSWITCH_TIMEOUT_VALUE)
-      {
-        Error_Handler();
-      }
-    }
+    __WAIT_EVENT_TIMEOUT(LL_RCC_PLL4_IsReady(), CLOCKSWITCH_TIMEOUT_VALUE);
 
     /* Enable PLL4 outputs */
     LL_RCC_PLL4P_Enable();
@@ -949,10 +930,38 @@ static HAL_StatusTypeDef RCC_restoreClocks(void)
   }
 
   /* Configure MCU clock only */
-  RCC_ClkInitStructure.ClockType = RCC_CLOCKTYPE_HCLK;
-  RCC_ClkInitStructure.MCUInit.MCU_Clock = RCC_ClkInit.MCUInit.MCU_Clock;
-  RCC_ClkInitStructure.MCUInit.MCU_Div = RCC_ClkInit.MCUInit.MCU_Div;
-  status = HAL_RCC_ClockConfig( (&RCC_ClkInitStructure));
+  LL_RCC_SetMCUSSClkSource(RCC_MCUInit.MCU_Clock);
+
+  /* Wait till MCU is ready */
+  __WAIT_EVENT_TIMEOUT(__HAL_RCC_GET_FLAG(RCC_FLAG_MCUSSRCRDY),
+                       CLOCKSWITCH_TIMEOUT_VALUE);
+
+  /* Update SystemCoreClock variable */
+  SystemCoreClockUpdate();
+
+  /* Reconfigure Systick */
+  status = HAL_InitTick(uwTickPrio);
+  if (status != HAL_OK)
+  {
+    return status;
+  }
+
+  /* Set MCU division factor */
+  LL_RCC_SetMLHCLKPrescaler(RCC_MCUInit.MCU_Div);
+
+  /* Wait till MCUDIV is ready */
+  __WAIT_EVENT_TIMEOUT(__HAL_RCC_GET_FLAG(RCC_FLAG_MCUDIVRDY),
+                       CLOCKSWITCH_TIMEOUT_VALUE);
+
+  /* Update SystemCoreClock variable */
+  SystemCoreClockUpdate();
+
+  /* Reconfigure Systick */
+  status = HAL_InitTick(uwTickPrio);
+  if (status != HAL_OK)
+  {
+    return status;
+  }
 
   return status;
 }
@@ -964,10 +973,9 @@ static HAL_StatusTypeDef RCC_restoreClocks(void)
   */
 static void RCC_backupClocks(void)
 {
-  uint32_t *pFLatency = NULL;
-
-  /* Back up System clock configuration */
-  HAL_RCC_GetClockConfig(&RCC_ClkInit, pFLatency);
+  /* Back up MCU clock configuration */
+  RCC_MCUInit.MCU_Clock = LL_RCC_GetMCUSSClkSource();
+  RCC_MCUInit.MCU_Div = LL_RCC_GetMLHCLKPrescaler();
 
   /* Back up peripheral clock configuration */
   HAL_RCCEx_GetPeriphCLKConfig(&PeriphClk);

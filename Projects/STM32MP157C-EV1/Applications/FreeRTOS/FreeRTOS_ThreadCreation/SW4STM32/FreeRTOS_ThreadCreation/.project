@@ -47,6 +47,11 @@
 			<locationURI>PARENT-2-PROJECT_LOC/Src/lock_resource.c</locationURI>
 		</link>
 		<link>
+			<name>Application/User/copro_sync.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Src/copro_sync.c</locationURI>
+		</link>
+		<link>
 			<name>Application/SW4STM32/startup_stm32mp15xx.s</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/startup_stm32mp15xx.s</locationURI>
@@ -65,6 +70,11 @@
 			<name>Application/User/stm32mp1xx_it.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/Src/stm32mp1xx_it.c</locationURI>
+		</link>
+		<link>
+			<name>Application/User/stm32mp1xx_hal_timebase_tim.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Src/stm32mp1xx_hal_timebase_tim.c</locationURI>
 		</link>
 		<link>
 			<name>Drivers/CMSIS/system_stm32mp1xx.c</name>
@@ -102,11 +112,6 @@
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_gpio.c</locationURI>
 		</link>
 		<link>
-			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_mdma.c</name>
-			<type>1</type>
-			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_mdma.c</locationURI>
-		</link>
-		<link>
 			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_pwr.c</name>
 			<type>1</type>
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_pwr.c</locationURI>
@@ -115,6 +120,16 @@
 			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_pwr_ex.c</name>
 			<type>1</type>
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_pwr_ex.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_tim.c</name>
+			<type>1</type>
+			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_tim.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_tim_ex.c</name>
+			<type>1</type>
+			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_tim_ex.c</locationURI>
 		</link>
 		<link>
 			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_rcc.c</name>
@@ -130,6 +145,11 @@
 			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_hsem.c</name>
 			<type>1</type>
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_hsem.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_ipcc.c</name>
+			<type>1</type>
+			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_ipcc.c</locationURI>
 		</link>
 		<link>
 			<name>Middlewares/FreeRTOS/croutine.c</name>

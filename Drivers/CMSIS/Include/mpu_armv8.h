@@ -1,11 +1,11 @@
 /******************************************************************************
  * @file     mpu_armv8.h
- * @brief    CMSIS MPU API for ARMv8 MPU
- * @version  V5.0.3
- * @date     09. August 2017
+ * @brief    CMSIS MPU API for Armv8-M MPU
+ * @version  V5.0.4
+ * @date     10. January 2018
  ******************************************************************************/
 /*
- * Copyright (c) 2017 ARM Limited. All rights reserved.
+ * Copyright (c) 2017-2018 Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -25,7 +25,7 @@
 #if   defined ( __ICCARM__ )
   #pragma system_include         /* treat file as system include file for MISRA check */
 #elif defined (__clang__)
-  #pragma clang system_header   /* treat file as system include file */
+  #pragma clang system_header    /* treat file as system include file */
 #endif
 
 #ifndef ARM_MPU_ARMV8_H
@@ -87,7 +87,7 @@
 * \oaram XN eXecute Never: Set to 1 for a non-executable memory region.
 */
 #define ARM_MPU_RBAR(BASE, SH, RO, NP, XN) \
-  ((BASE & MPU_RBAR_BASE_Pos) | \
+  ((BASE & MPU_RBAR_BASE_Msk) | \
   ((SH << MPU_RBAR_SH_Pos) & MPU_RBAR_SH_Msk) | \
   ((ARM_MPU_AP_(RO, NP) << MPU_RBAR_AP_Pos) & MPU_RBAR_AP_Msk) | \
   ((XN << MPU_RBAR_XN_Pos) & MPU_RBAR_XN_Msk))
@@ -104,7 +104,7 @@
 /**
 * Struct for a single MPU Region
 */
-typedef struct _ARM_MPU_Region_t {
+typedef struct {
   uint32_t RBAR;                   /*!< Region Base Address Register value */
   uint32_t RLAR;                   /*!< Region Limit Address Register value */
 } ARM_MPU_Region_t;

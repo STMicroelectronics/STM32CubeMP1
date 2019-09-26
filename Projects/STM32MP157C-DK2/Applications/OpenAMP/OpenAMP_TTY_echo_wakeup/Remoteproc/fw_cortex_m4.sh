@@ -29,9 +29,10 @@ then
 
 if [ $rproc_state == "running" ]
 then
-echo "Not possible to start fw, a M4 firmware is already running"
+echo "Stopping running fw ..."
+echo stop > $rproc_class_dir/state
+fi
 
-else
 # Create /lib/firmware directory if not exist
 if [ ! -d $fmw_dir ]
 then
@@ -44,7 +45,6 @@ cp lib/firmware/$fmw_name $fmw_dir/
 # load and start firmware
 echo $fmw_name > $rproc_class_dir/firmware
 echo start > $rproc_class_dir/state
-fi
 
 fi
 

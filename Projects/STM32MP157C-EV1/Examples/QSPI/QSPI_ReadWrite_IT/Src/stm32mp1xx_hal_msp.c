@@ -92,7 +92,7 @@ void HAL_QSPI_MspInit(QSPI_HandleTypeDef* hqspi)
     PERIPH_UNLOCK(GPIOF);
 
     /* QUADSPI interrupt Init */
-    HAL_NVIC_SetPriority(QUADSPI_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(QUADSPI_IRQn, DEFAULT_IRQ_PRIO, 0);
     HAL_NVIC_EnableIRQ(QUADSPI_IRQn);
   /* USER CODE BEGIN QUADSPI_MspInit 1 */
     /* Reset the QuadSPI memory interface */

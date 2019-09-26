@@ -73,7 +73,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     PERIPH_UNLOCK(GPIOE);
 
     /* UART7 interrupt Init */
-    HAL_NVIC_SetPriority(UART7_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(UART7_IRQn, DEFAULT_IRQ_PRIO, 0);
     HAL_NVIC_EnableIRQ(UART7_IRQn);
   /* USER CODE BEGIN UART7_MspInit 1 */
 

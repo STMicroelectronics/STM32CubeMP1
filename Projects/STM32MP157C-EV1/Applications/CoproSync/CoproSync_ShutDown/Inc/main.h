@@ -23,6 +23,7 @@
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
+#include "stm32mp1xx_hal.h"
 #include "lock_resource.h"
 
 /* USER CODE BEGIN Includes */
@@ -51,7 +52,9 @@
 
 /* USER CODE END EFP */
 
-/* Private define ------------------------------------------------------------*/
+/* Private defines -----------------------------------------------------------*/
+#define DEFAULT_IRQ_PRIO      1U
+
 /* ########################## Assert Selection ############################## */
 /**
   * @brief Uncomment the line below to expanse the "assert_param" macro in the 

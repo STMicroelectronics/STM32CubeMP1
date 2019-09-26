@@ -59,6 +59,7 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define DEFAULT_IRQ_PRIO      1U
 
 /* USER CODE BEGIN Private defines */
 

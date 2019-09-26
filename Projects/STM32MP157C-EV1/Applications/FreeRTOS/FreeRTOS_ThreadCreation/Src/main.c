@@ -47,6 +47,7 @@
 osThreadId THREAD1Handle;
 osThreadId THREAD2Handle;
 /* USER CODE BEGIN PV */
+IPCC_HandleTypeDef hipcc;
 __IO uint32_t OsStatus = 0;
 /* USER CODE END PV */
 
@@ -54,6 +55,7 @@ __IO uint32_t OsStatus = 0;
 void SystemClock_Config(void);
 void LED_Thread1(void const * argument);
 void LED_Thread2(void const * argument);
+static void MX_IPCC_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -99,6 +101,7 @@ int main(void)
   }
 
   /* USER CODE END Init */
+
   /*HW semaphore Clock enable*/
   __HAL_RCC_HSEM_CLK_ENABLE();
 
@@ -109,8 +112,10 @@ int main(void)
 
   /* Initialize all configured peripherals */
   /* USER CODE BEGIN 2 */
- 
+  MX_IPCC_Init();
   /* USER CODE END 2 */
+
+  CoproSync_Init();
 
   /* USER CODE BEGIN RTOS_MUTEX */
 
@@ -177,7 +182,7 @@ void SystemClock_Config(void)
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSE
                 |RCC_OSCILLATORTYPE_LSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS_DIG;
   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = 16;
@@ -275,6 +280,17 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
+/* IPCC init function */
+static void MX_IPCC_Init(void)
+{
+
+  hipcc.Instance = IPCC;
+  if (HAL_IPCC_Init(&hipcc) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_LED_Thread1 */
@@ -352,6 +368,39 @@ void LED_Thread2(void const * argument)
     OsStatus = osThreadSuspend(THREAD2Handle); 
   }
   /* USER CODE END LED_Thread2 */
+}
+
+/**
+  * @brief  Period elapsed callback in non blocking mode
+  * @note   This function is called  when TIM2 interrupt took place, inside
+  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+  * a global variable "uwTick" used as application time base.
+  * @param  htim : TIM handle
+  * @retval None
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
+
+  /* USER CODE END Callback 0 */
+  if (htim->Instance == TIM2) {
+    HAL_IncTick();
+  }
+  /* USER CODE BEGIN Callback 1 */
+
+  /* USER CODE END Callback 1 */
+}
+
+void CoproSync_ShutdownCb(IPCC_HandleTypeDef * hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir)
+{
+  /* Deinitializes all peripherals */
+  HAL_DeInit();
+
+  /* Turn off LED4 */
+  BSP_LED_Off(LED4);
+
+  /* When ready, notify the remote processor that we can be shut down */
+  HAL_IPCC_NotifyCPU(hipcc, ChannelIndex, IPCC_CHANNEL_DIR_RX);
 }
 
 /**

@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy;  Copyright (c) 2019 STMicroelectronics. 
+  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics. 
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under BSD 3-Clause license,
@@ -27,7 +27,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #if defined (__LOG_TRACE_IO_) || defined(__LOG_UART_IO_)
-#include "log.h"
+#include "openamp_log.h"
 #endif
 
  /* ########################## Mailbox Interface Selection ############################## */
@@ -102,19 +102,71 @@
   * @{
   */
 
-extern int __OPENAMP_region_start__[];   /* defined by linker script */
-extern int __OPENAMP_region_end__[];  /* defined by linker script */
- 
+
+#if defined (__ICCARM__)
+/*
+ * For IAR, the .icf file should contain the following lines:
+ * define symbol __OPENAMP_region_start__ = BASE_ADDRESS; (0x38000400 for example)
+ * define symbol __OPENAMP_region_size__   = MEM_SIZE; (0xB000 as example)
+ *
+ * export symbol __OPENAMP_region_start__;
+ * export symbol __OPENAMP_region_size__;
+ */
+extern const uint32_t  __OPENAMP_region_start__;
+extern const uint8_t  __OPENAMP_region_size__;
+#define SHM_START_ADDRESS       ((metal_phys_addr_t)&__OPENAMP_region_start__)
+#define SHM_SIZE        ((size_t)&__OPENAMP_region_size__)
+
+#elif defined(__CC_ARM)
+/*
+ * For MDK-ARM, the scatter file .sct should contain the following line:
+ * LR_IROM1 ....  {
+ *  ...
+ *   __OpenAMP_SHMEM__ 0x38000400  EMPTY 0x0000B000 {} ; Shared Memory area used by OpenAMP
+ *  }
+ *
+ */
+extern unsigned int Image$$__OpenAMP_SHMEM__$$Base;
+extern unsigned int Image$$__OpenAMP_SHMEM__$$ZI$$Length;
+#define SHM_START_ADDRESS (unsigned int)&Image$$__OpenAMP_SHMEM__$$Base
+#define SHM_SIZE          ((size_t)&Image$$__OpenAMP_SHMEM__$$ZI$$Length)
+
+#else
+/*
+ * for GCC add the following content to the .ld file:
+ * MEMORY
+ * {
+ * ...
+ * OPEN_AMP_SHMEM (xrw) : ORIGIN = 0x38000400, LENGTH = 63K
+ * }
+ * __OPENAMP_region_start__  = ORIGIN(OPEN_AMP_SHMEM);
+ * __OPENAMP_region_end__ = ORIGIN(OPEN_AMP_SHMEM) + LENGTH(OPEN_AMP_SHMEM);
+ *
+ * using the LENGTH(OPEN_AMP_SHMEM) to set the SHM_SIZE lead to a crash thus we
+ * use the start and end address.
+ */
+
+extern int __OPENAMP_region_start__[];  /* defined by linker script */
+extern int __OPENAMP_region_end__[];    /* defined by linker script */
 
 #define SHM_START_ADDRESS       ((metal_phys_addr_t)__OPENAMP_region_start__)
-#define SHM_SIZE                (size_t)((void *)__OPENAMP_region_end__-(void *) __OPENAMP_region_start__)
+#define SHM_SIZE                (size_t)((void *)__OPENAMP_region_end__ - (void *) __OPENAMP_region_start__)
 
+#endif
+
+#if defined STM32MP157Cxx
 #define VRING_RX_ADDRESS        -1        /* allocated by Master processor: CA7 */
 #define VRING_TX_ADDRESS        -1        /* allocated by Master processor: CA7 */
 #define VRING_BUFF_ADDRESS      -1        /* allocated by Master processor: CA7 */
 #define VRING_ALIGNMENT         16        /* fixed to match with linux constraint */
 #define VRING_NUM_BUFFS         16		  /* number of rpmsg buffer */
-
+#else
+#define VRING_RX_ADDRESS        SHM_START_ADDRESS
+#define VRING_TX_ADDRESS        (SHM_START_ADDRESS + 0x400)
+#define VRING_BUFF_ADDRESS      (SHM_START_ADDRESS + 0x800)
+#define VRING_ALIGNMENT         4
+#define VRING_NUM_BUFFS         4   /* number of rpmsg buffers */
+#endif
 
 /* Fixed parameter */
 #define NUM_RESOURCE_ENTRIES    2

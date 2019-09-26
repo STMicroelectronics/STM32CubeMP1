@@ -16,7 +16,7 @@
 #ifndef __METAL_LINUX_SYS__H__
 #define __METAL_LINUX_SYS__H__
 
-#include <errno.h>
+#include <metal/errno.h>
 #include <fcntl.h>
 #include <libgen.h>
 #include <limits.h>

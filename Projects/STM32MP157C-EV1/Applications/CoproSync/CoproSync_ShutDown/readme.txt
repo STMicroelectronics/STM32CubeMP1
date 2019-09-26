@@ -73,14 +73,18 @@ LED4 is turned OFF if any error occurs.
 
 @par Directory contents 
 
-  - WWDG/WWDG_Example/Inc/stm32mp1xx_hal_conf.h    HAL configuration file
-  - WWDG/WWDG_Example/Inc/stm32mp1xx_it.h          Interrupt handlers header file
-  - WWDG/WWDG_Example/Inc/main.h                  Header for main.c module  
-  - WWDG/WWDG_Example/Src/stm32mp1xx_it.c          Interrupt handlers
-  - WWDG/WWDG_Example/Src/main.c                  Main program
-  - WWDG/WWDG_Example/Src/stm32mp1xx_hal_msp.c     HAL MSP file
-  - WWDG/WWDG_Example/Src/system_stm32mp1xx.c      STM32MP1xx system source file
-
+  - CoproSync/CoproSync_ShutDown/Inc/stm32mp1xx_hal_conf.h      HAL configuration file
+  - CoproSync/CoproSync_ShutDown/Inc/stm32mp15xx_eval_conf.h    Board configuration file
+  - CoproSync/CoproSync_ShutDown/Inc/stm32mp1xx_it.h            Interrupt handlers header file
+  - CoproSync/CoproSync_ShutDown/Inc/main.h                     Header for main.c module
+  - CoproSync/CoproSync_ShutDown/Inc/copro_sync.h               CoproSync header file
+  - CoproSync/CoproSync_ShutDown/Inc/lock_resource.h            Header file for lock_resource.c
+  - CoproSync/CoproSync_ShutDown/Inc/stm32mp1xx_it.c            Interrupt handlers
+  - CoproSync/CoproSync_ShutDown/Inc/main.c                     Main program
+  - CoproSync/CoproSync_ShutDown/Inc/stm32mp1xx_hal_msp.c       HAL MSP file
+  - CoproSync/CoproSync_ShutDown/Inc/system_stm32mp1xx.c        STM32MP1xx system source file
+  - CoproSync/CoproSync_ShutDown/Inc/copro_sync.c               Services to handle synchron between the processors
+  - CoproSync/CoproSync_ShutDown/Inc/lock_resource.c            lock_resource file
 
 @par Hardware and Software environment
 

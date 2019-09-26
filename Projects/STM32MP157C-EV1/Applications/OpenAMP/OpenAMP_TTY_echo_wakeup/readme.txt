@@ -54,7 +54,7 @@ In this example:
     - Some messages are handled specifically by CM4:
         - "*stop"    : upon reception of this message, CM4 goes to CStop mode and only allow entering System Stop mode
         - "*standby" : upon reception of this message, CM4 goes to CStop mode and allow entering System Stop or Standby mode.
-        - "*delay"   : CM4 sends a RPMsg message to CA7 after a 20 second delay. It is a Wakeup source for CA7?
+        - "*delay"   : CM4 sends a RPMsg message to CA7 after a 20 second delay. It is a Wakeup source for CA7
 
 
     Notes:
@@ -80,15 +80,16 @@ In this example:
 
 1)  System Run Mode with CA7 in CRun and CM4 in CStop
     -------------------------------------------------
-    Objective: Testing CM4 CStop low power mode and CM4 wake up with Exti line 62 (IPCC interrupt CPU2)
+    Objective: Testing CM4 CStop low power mode and CM4 wakes up with Exti line 62 (IPCC interrupt CPU2)
 
     1.0 - CM4 firmware has configured Exti line 62 (IPCC interrupt CPU2) as a wake up source
 
     1.1 - Move CM4 in CStop mode
           > echo "*stop" >/dev/ttyRPMSG0
 
-          On reception of this message, CM4 calls HAL_PWR_EnterSTOPMode(PWR_MAINREGULATOR_ON, PWR_STOPENTRY_WFI)
-          and goes to CStop mode.
+          On reception of this message, CM4 backs up PLL3/PLL4 and MCU clock
+          configuration. Finally MCU calls HAL_PWR_EnterSTOPMode(PWR_MAINREGULATOR_ON,
+          PWR_STOPENTRY_WFI) and goes into CStop mode.
           LED4 stops toggling as CM4 subsystem peripherals clock is stalled and therefore
           ADC conversions are stopped
 
@@ -105,10 +106,11 @@ In this example:
 
 2)  System Run Mode with CA7 in CStop and CM4 in CRun
     -------------------------------------------------
-    Objective: Testing CA7 CStop low power mode and CA7 wake up with source Exti line 61 (IPCC interrupt CPU1)
+    Objective: Testing CA7 CStop low power mode and CA7 wakes up with source Exti line 61 (IPCC interrupt CPU1)
 
     2.0 - Set Exti line 61 (IPCC interrupt CPU1) as source of wakeup.
           > echo enabled > /sys/devices/platform/soc/4c001000.mailbox/power/wakeup
+
           Note: This commands allows CA7 mailbox wakeup capability. EXTI->IMR2(61) will be configured
           only when Linux command to move CA7 in low power mode will be done.
 
@@ -119,10 +121,10 @@ In this example:
          to CA7 which will activate Exti line 61 (IPCC interrupt CPU1)
 
     2.2 - Move CA7 in CStop mode before 20 seconds delay expiration
-          > echo mem > /sys/power/state
+          > systemctl suspend
 
-          In that case, this command moves CA7 in CStop mode in keeping System Run Mode
-          as CM4 is still CRun
+          In that case, this command moves CA7 in CStop mode keeping System on Run Mode
+          as CM4 is still on CRun
           LED5 stops toggling (Linux heartbeat)
 
     2.3 - Move CA7 in CRun mode using Exti line 61 (IPCC interrupt CPU1)
@@ -135,7 +137,7 @@ In this example:
           > cat /sys/kernel/debug/remoteproc/remoteproc0/trace0
 
 
-3) System Stop Mode with CA7 in CStop and CM4 in CStop - CA7 wake up first
+3) System Stop Mode with CA7 in CStop and CM4 in CStop - CA7 wakes up first
    -----------------------------------------------------------------------
     Objective: Testing System Stop Mode with CA7 in charge of re-configuring
                oscillators PLL3/PLL4, MCU Clock Mux and MCU DIV prescaller
@@ -147,42 +149,43 @@ In this example:
     3.1 - Move CM4 in CStop mode
           > echo "*stop" >/dev/ttyRPMSG0
 
-          On reception of this message, CM4 calls HAL_PWR_EnterSTOPMode(PWR_MAINREGULATOR_ON, PWR_STOPENTRY_WFI)
-          and goes to CStop mode.
+          On reception of this message, CM4 backs up PLL3/PLL4 and MCU clock
+          configuration. Finally MCU calls HAL_PWR_EnterSTOPMode(PWR_MAINREGULATOR_ON,
+          PWR_STOPENTRY_WFI) and goes into CStop mode.
           LED4 stops toggling as CM4 subsystem peripherals clock is stalled and therefore
           ADC conversions are stopped
 
     3.2 - Move CA7 in CStop mode
-          > echo mem > /sys/power/state
+          > systemctl suspend
 
           In that case, this command moves CA7 in CStop mode  and we enter in System Stop Mode
           as CM4 is in CStop.
           LED5 stops toggling (Linux heartbeat)
 
-    3.3 - Move CA7 in CRun mode using  Wake up button which raises Exti line WKUP1 (PIN PA0)
+    3.3 - Move CA7 in CRun mode using Wake up button which raises Exti line WKUP1 (PIN PA0)
 
           CA7 firmware re-configures oscillators PLL3/PLL4, MCU Clock Mux, MCU DIV prescaller
           LED5 toggles (Linux heartbeat)
 
     3.4 - Move CM4 in CRun mode using Exti line 62 (IPCC interrupt CPU2)
           > echo "wakeup" >/dev/ttyRPMSG0
-          Sending a new message wakes up CM4 with Exti line 62 (IPCC interrupt CPU2) 
+          Sending a new message wakes up CM4 with Exti line 62 (IPCC interrupt CPU2)
 
           CA7 firmware has re-configured oscillators PLL3/PLL4, MCU Clock Mux, MCU DIV prescaller
           in step 3.3.
           Thus, LED4 toggles as CM4 subsystem peripherals clock is resumed
-          and therefore ADC conversions are resumed          
+          and therefore ADC conversions are resumed
 
     Note: you can check CM4 logs :
           > cat /sys/kernel/debug/remoteproc/remoteproc0/trace0
 
-    Note: As system was on platform STOP mode CM4 will try to restore PLL3/PLL4, MCU 
+    Note: As system was on platform STOP mode CM4 will try to restore PLL3/PLL4, MCU
           Clock Mux and MCU DIV prescaller after waking up. This reconfiguration
           doesn't disturb previous CA7 configuration.
 
 4) System Stop Mode with CA7 in CStop and CM4 in CStop - CM4 wakes up first
    -----------------------------------------------------------------------
-    Objective: Testing System Stop Mode with CM4 in charge of re-configuring 
+    Objective: Testing System Stop Mode with CM4 in charge of re-configuring
                oscillators PLL3/PLL4, MCU Clock Mux and MCU DIV prescaller
                CA7 wakes up with Wake up button which raises Exti line WKUP1 (PIN PA0)
 
@@ -193,34 +196,35 @@ In this example:
     4.1 - Move CM4 in CStop mode
           > echo "*stop" >/dev/ttyRPMSG0
 
-          On reception of this message, CM4 calls HAL_PWR_EnterSTOPMode(PWR_MAINREGULATOR_ON, PWR_STOPENTRY_WFI)
-          and goes to CStop mode.
+          On reception of this message, CM4 backs up PLL3/PLL4 and MCU clock
+          configuration. Finally MCU calls HAL_PWR_EnterSTOPMode(PWR_MAINREGULATOR_ON,
+          PWR_STOPENTRY_WFI) and goes into CStop mode.
           LED4 stops toggling as CM4 subsystem peripherals clock is stalled and therefore
           ADC conversions are stopped
 
     4.2 - Move CA7 in CStop mode
-          > echo mem > /sys/power/state
+          > systemctl suspend
 
-          In that case, this command moves CA7 in CStop mode  and we enter in System Stop Mode
+          In that case, this command moves CA7 in CStop mode and we enter in System Stop Mode
           as CM4 is in CStop.
           LED5 stops toggling (Linux heartbeat)
 
     4.3 - Move CM4 in CRun mode using User push button (PA14)
 
           CM4 firmware re-configures oscillators PLL3/PLL4 (if allocated to CM4),
-          MCU Clock Mux and MCU DIV prescaller
+          MCU Clock Mux and MCU DIV prescaller.
           Thus, LED4 toggles quickly and therefore ADC conversions are resumed
-          if PLL restores was not done, LED4 would toggle slowly as timer  clock will be 
+          If PLL3 restore was not done, LED4 would toggle slowly as timer clock will be
           slower as before (based on HSI instead of PLL3)
 
-    4.4 - Move CA7 in CRun mode using  Wake up button which raises Exti line WKUP1 (PIN PA0)
+    4.4 - Move CA7 in CRun mode using Wake up button which raises Exti line WKUP1 (PIN PA0)
 
-          LED5 toggles (Linux heartbeat)         
+          LED5 toggles (Linux heartbeat)
 
     Note: you can check CM4 logs :
           > cat /sys/kernel/debug/remoteproc/remoteproc0/trace0
 
-    Note: As system was on system STOP mode CA7 will try to restore PLL3/PLL4, MCU
+    Note: As system was on System STOP mode, CA7 will try to restore PLL3/PLL4, MCU
           Clock Mux and MCU DIV prescaller after waking up. This reconfiguration
           doesn't disturb previous CM4 configuration.
 
@@ -240,17 +244,17 @@ In this example:
           > echo "*standby" >/dev/ttyRPMSG0
 
           On reception of this message, CM4 calls HAL_PWR_EnterSTANDBYMode()
-          and goes to CStop mode allowing System Standby Mode.
+          and goes into CStop mode allowing System Standby Mode.
           LED4 stops toggling as CM4 subsystem peripherals clock is stalled and therefore
           ADC conversions are stopped
 
     5.2 - Move CA7 in CStop mode allowing Standby System Mode
-          > echo mem > /sys/power/state
+          > systemctl suspend
 
           In that case, this command moves CA7 in CStop mode allowing System
           Standby Mode.
           LED5 stops toggling (Linux heartbeat).
-          System enters into Standby System Mode.
+          System enters into System Standby Mode.
           VDD is off
 
     5.3 - Move CA7 in CRun mode using Wake up button WKUP1 pin (PIN PA0)
@@ -259,7 +263,7 @@ In this example:
           restarts from scratch.
 
     Note: After reset on console you'll see "Reset reason (0x810)" and "System
-          exits from STANDBY" messages, showing system was on Standby mode.
+          exits from STANDBY" messages, showing system was on System Standby mode.
 
 
 Connection needed:
@@ -298,29 +302,35 @@ STM32MP157C-EV1 board LED4 is be used to monitor the program execution status:
 
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate
-      delay (in milliseconds) based on variable incremented in HAL time base ISR.
+      delay (in milliseconds) based on a variable incremented in SysTick ISR.
       This implies that if HAL_Delay() is called from a peripheral ISR process, then
       the HAL time base interrupt must have higher priority (numerically lower) than
       the peripheral interrupt. Otherwise the caller ISR process will be blocked.
       To change the HAL time base interrupt priority you have to use HAL_NVIC_SetPriority()
       function.
+      In STM32Cube firmware packages, the SysTick timer is used as default time base,
+      but it can be changed by user by utilizing other time base IPs such as a
+      general-purpose timer, keeping in mind that the time base duration must be
+      kept at 1/10/100 ms since all PPP_TIMEOUT_VALUEs are defined and handled
+      in milliseconds. Functions affecting time base configurations are declared
+      as __Weak to allow different implementations in the user file.
 
 @note The application needs to ensure that the HAL time base is always set to 1 millisecond
       to have correct HAL operation.
 
 
 @par Directory contents
-    - OpenAMP/OpenAMP_TTY_echo_wakeup/Inc/main.h                      Main program header file
-    - OpenAMP/OpenAMP_TTY_echo_wakeup/Inc/mbox_ipcc.h                 mailbox_ipcc_if.c MiddleWare configuration header file
-    - OpenAMP/OpenAMP_TTY_echo_wakeup/Inc/openamp.h                   User OpenAMP init header file
-    - OpenAMP/OpenAMP_TTY_echo_wakeup/Inc/openamp_conf.h              Configuration file for OpenAMP MW
-    - OpenAMP/OpenAMP_TTY_echo_wakeup/Inc/rsc_table.h                 Resource_table for OpenAMP header file
+    - OpenAMP/OpenAMP_TTY_echo_wakeup/Inc/main.h                 Main program header file
+    - OpenAMP/OpenAMP_TTY_echo_wakeup/Inc/mbox_ipcc.h            mailbox_ipcc_if.c MiddleWare configuration header file
+    - OpenAMP/OpenAMP_TTY_echo_wakeup/Inc/openamp.h              User OpenAMP init header file
+    - OpenAMP/OpenAMP_TTY_echo_wakeup/Inc/openamp_conf.h         Configuration file for OpenAMP MW
+    - OpenAMP/OpenAMP_TTY_echo_wakeup/Inc/rsc_table.h            Resource_table for OpenAMP header file
     - OpenAMP/OpenAMP_TTY_echo_wakeup/Inc/stm32mp1xx_hal_conf.h  HAL Library Configuration file
     - OpenAMP/OpenAMP_TTY_echo_wakeup/Inc/stm32mp1xx_it.h        Interrupt handlers header file
-    - OpenAMP/OpenAMP_TTY_echo_wakeup/Src/main.c                      Main program
-    - OpenAMP/OpenAMP_TTY_echo_wakeup/Src/mbox_ipcc.c                 mailbox_ipcc_if.c MiddleWare configuration
-    - OpenAMP/OpenAMP_TTY_echo_wakeup/Src/openamp.c                   User OpenAMP init
-    - OpenAMP/OpenAMP_TTY_echo_wakeup/Src/rsc_table.c                 Resource_table for OpenAMP
+    - OpenAMP/OpenAMP_TTY_echo_wakeup/Src/main.c                 Main program
+    - OpenAMP/OpenAMP_TTY_echo_wakeup/Src/mbox_ipcc.c            mailbox_ipcc_if.c MiddleWare configuration
+    - OpenAMP/OpenAMP_TTY_echo_wakeup/Src/openamp.c              User OpenAMP init
+    - OpenAMP/OpenAMP_TTY_echo_wakeup/Src/rsc_table.c            Resource_table for OpenAMP
     - OpenAMP/OpenAMP_TTY_echo_wakeup/Src/stm32mp1xx_it.c        Interrupt handlers
     - OpenAMP/OpenAMP_TTY_echo_wakeup/Src/system_stm32mp1xx.c    STM32MP1xx system clock configuration file
 

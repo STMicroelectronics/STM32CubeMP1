@@ -15,7 +15,7 @@
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under BSD 3-Clause license,
-  * the License; You may not use this fileexcept in compliance with the 
+  * the "License"; You may not use this file except in compliance with the 
   * License. You may obtain a copy of the License at:
   *                       opensource.org/licenses/BSD-3-Clause
   *
@@ -136,7 +136,7 @@ enum
   RESMGR_ID_TIM6                            ,
   RESMGR_ID_TIM7                            ,
   RESMGR_ID_TIM8                            ,
-  RESMGR_ID_TMPSENS                         ,
+  RESMGR_ID_DTS                             ,
   RESMGR_ID_UART4                           ,
   RESMGR_ID_UART5                           ,
   RESMGR_ID_UART7                           ,

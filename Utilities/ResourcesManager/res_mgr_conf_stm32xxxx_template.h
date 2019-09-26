@@ -169,7 +169,7 @@ enum
   RESMGR_ID_TIM6                            ,
   RESMGR_ID_TIM7                            ,
   RESMGR_ID_TIM8                            ,
-  RESMGR_ID_TMPSENS                         ,
+  RESMGR_ID_DTS                             ,
   RESMGR_ID_UART4                           ,
   RESMGR_ID_UART5                           ,
   RESMGR_ID_UART7                           ,

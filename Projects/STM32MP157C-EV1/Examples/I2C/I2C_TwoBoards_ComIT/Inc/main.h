@@ -23,6 +23,7 @@
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
+#include "stm32mp1xx_hal.h"
 #include "lock_resource.h"
 
 /* USER CODE BEGIN Includes */
@@ -51,6 +52,8 @@
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define DEFAULT_IRQ_PRIO      1U
+
 #define I2C_ADDRESS 0x30F
 
 

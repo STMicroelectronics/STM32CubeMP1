@@ -21,7 +21,7 @@ extern "C" {
 #endif
 
 /**
- * @brief      default interrupt handler 
+ * @brief      default interrupt handler
  * @param[in]  vector interrupt vector
  */
 void metal_irq_isr(unsigned int vector);

@@ -16,7 +16,7 @@
 #ifndef __METAL_ZEPHYR_CONDITION__H__
 #define __METAL_ZEPHYR_CONDITION__H__
 
-#include <errno.h>
+#include <metal/errno.h>
 #include <metal/atomic.h>
 #include <stddef.h>
 #include <stdint.h>

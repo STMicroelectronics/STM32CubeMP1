@@ -19,14 +19,17 @@
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __MAIN_H
 #define __MAIN_H
-  /* Includes ------------------------------------------------------------------*/
+
+/* Includes ------------------------------------------------------------------*/
+#include "stm32mp1xx_hal.h"
 #include "lock_resource.h"
   
 /* USER CODE BEGIN Includes */
-
+#include "stm32mp15xx_disco.h"
 /* USER CODE END Includes */
 
-/* Private define ------------------------------------------------------------*/
+/* Private defines -----------------------------------------------------------*/
+#define DEFAULT_IRQ_PRIO      1U
 
 /* USER CODE BEGIN Private defines */
 

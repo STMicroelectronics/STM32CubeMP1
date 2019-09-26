@@ -86,7 +86,7 @@ static int OPENAMP_shmem_init(int RPMsgRole)
   }
 
   metal_io_init(&device->regions[1], rsc_table,
-               (metal_phys_addr_t *)rsc_table, rsc_size, -1, 0, NULL);
+               (metal_phys_addr_t *)rsc_table, rsc_size, -1U, 0, NULL);
 
   rsc_io = metal_device_io_region(device, 1);
   if (rsc_io == NULL) {

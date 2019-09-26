@@ -102,11 +102,6 @@
 			<locationURI>PARENT-5-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_hsem.c</locationURI>
 		</link>
 		<link>
-			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_mdma.c</name>
-			<type>1</type>
-			<locationURI>PARENT-5-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_mdma.c</locationURI>
-		</link>
-		<link>
 			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_pwr.c</name>
 			<type>1</type>
 			<locationURI>PARENT-5-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_pwr.c</locationURI>

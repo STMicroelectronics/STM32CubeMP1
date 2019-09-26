@@ -30,7 +30,8 @@
 #include "stm32mp15xx_eval.h"
 /* USER CODE END Includes */
 
-/* Private define ------------------------------------------------------------*/
+/* Private defines -----------------------------------------------------------*/
+#define DEFAULT_IRQ_PRIO      1U
 
 /* ########################## Assert Selection ############################## */
 /**

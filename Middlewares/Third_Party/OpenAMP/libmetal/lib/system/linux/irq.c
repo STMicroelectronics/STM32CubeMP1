@@ -21,7 +21,7 @@
 #include <sys/time.h>
 #include <sys/eventfd.h>
 #include <stdint.h>
-#include <errno.h>
+#include <metal/errno.h>
 #include <unistd.h>
 #include <string.h>
 #include <poll.h>

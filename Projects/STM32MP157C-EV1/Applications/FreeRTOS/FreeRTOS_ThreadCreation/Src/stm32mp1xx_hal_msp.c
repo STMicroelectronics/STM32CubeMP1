@@ -73,15 +73,67 @@ void HAL_MspInit(void)
 
   /* System interrupt init*/
   /* SVC_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(SVCall_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(SVCall_IRQn, DEFAULT_IRQ_PRIO, 0);
   /* PendSV_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(PendSV_IRQn, 3, 0);
+  HAL_NVIC_SetPriority(PendSV_IRQn, (DEFAULT_IRQ_PRIO + 3U), 0);
   /* SysTick_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(SysTick_IRQn, 3, 0);
+  HAL_NVIC_SetPriority(SysTick_IRQn, (DEFAULT_IRQ_PRIO + 3U), 0);
 
   /* USER CODE BEGIN MspInit 1 */
 
   /* USER CODE END MspInit 1 */
+}
+
+/**
+  * DeInitializes the Global MSP.
+  */
+void HAL_MspDeInit()
+{
+  /* Disable IRQ */
+  HAL_NVIC_DisableIRQ(TIM2_IRQn);
+
+  /* Disable SYSCFG clock */
+  __HAL_RCC_SYSCFG_CLK_DISABLE();
+
+  /* Disable TIM2 clock */
+  __HAL_RCC_TIM2_CLK_DISABLE();
+}
+
+void HAL_IPCC_MspInit(IPCC_HandleTypeDef* hipcc)
+{
+
+  if(hipcc->Instance==IPCC)
+  {
+  /* USER CODE BEGIN IPCC_MspInit 0 */
+
+  /* USER CODE END IPCC_MspInit 0 */
+  /* Peripheral clock enable */
+  __HAL_RCC_IPCC_CLK_ENABLE();
+  HAL_NVIC_SetPriority(IPCC_RX1_IRQn, DEFAULT_IRQ_PRIO, 1);
+  HAL_NVIC_EnableIRQ(IPCC_RX1_IRQn);
+  /* USER CODE BEGIN IPCC_MspInit 1 */
+
+  /* USER CODE END IPCC_MspInit 1 */
+  }
+
+}
+
+void HAL_IPCC_MspDeInit(IPCC_HandleTypeDef* hipcc)
+{
+
+  if(hipcc->Instance==IPCC)
+  {
+  /* USER CODE BEGIN IPCC_MspDeInit 0 */
+
+  /* USER CODE END IPCC_MspDeInit 0 */
+  /* Peripheral clock disable */
+  __HAL_RCC_IPCC_CLK_DISABLE();
+  HAL_NVIC_DisableIRQ(IPCC_RX1_IRQn);
+  /* USER CODE BEGIN IPCC_MspDeInit 1 */
+
+  /* USER CODE END IPCC_MspDeInit 1 */
+  }
+
 }
 
 /* USER CODE BEGIN 1 */

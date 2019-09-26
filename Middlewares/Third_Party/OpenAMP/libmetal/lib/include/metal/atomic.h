@@ -14,9 +14,15 @@
 
 #include <metal/config.h>
 
-#if defined(HAVE_STDATOMIC_H) && !defined(__STDC_NO_ATOMICS__) && \
-	!defined(__cplusplus)
+#if defined(HAVE_STDATOMIC_H) && !defined (__CC_ARM) && \
+    !defined(__STDC_NO_ATOMICS__) && !defined(__cplusplus)
+
 # include <stdatomic.h>
+
+#ifndef atomic_thread_fence
+#define atomic_thread_fence(order)
+#endif
+
 #elif defined(__GNUC__)
 # include <metal/compiler/gcc/atomic.h>
 #else

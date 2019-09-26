@@ -31,6 +31,7 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32mp1xx_hal.h"
 #include "lock_resource.h"
+#include "copro_sync.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -59,6 +60,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define DEFAULT_IRQ_PRIO      1U
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

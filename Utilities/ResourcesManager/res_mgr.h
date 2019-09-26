@@ -87,8 +87,8 @@
 
 #define RESMGR_FLAGS_OWNER_POS            0x03U
 #define RESMGR_FLAGS_OWNER_MSK            (0x03U << RESMGR_FLAGS_OWNER_POS)
-#define RESMGR_FLAGS_CPU_SLAVE            (0x01U << RESMGR_FLAGS_OWNER_POS)
-#define RESMGR_FLAGS_CPU_MASTER           (0x02U << RESMGR_FLAGS_OWNER_POS)
+#define RESMGR_FLAGS_CPU1                 (0x01U << RESMGR_FLAGS_OWNER_POS)
+#define RESMGR_FLAGS_CPU2                 (0x02U << RESMGR_FLAGS_OWNER_POS)
 
 /******** Resource States *****************************************************/
 
@@ -176,7 +176,7 @@ ResMgr_Status_t ResMgr_Init(ResMgrSendMsg_t SendFunct, ResMgrCallback_t Callback
 ResMgr_Status_t ResMgr_DeInit(void);
 ResMgr_Status_t ResMgr_Request(uint32_t id, uint32_t flags, uint32_t prio, void *phandle);
 ResMgr_Status_t ResMgr_GetResContext(uint32_t id, ResMgr_Ctx_t  *ctx);
-ResMgr_Status_t ResMgr_Release(uint32_t id);
+ResMgr_Status_t ResMgr_Release(uint32_t id, uint32_t flags);
 
 ResMgr_Status_t ResMgr_SetConfig(uint32_t id, char *id_name, ResSystem_t res_type, ResConfig_t *config_in, ResConfig_t *config_out);
 ResMgr_Status_t ResMgr_GetConfig(uint32_t id, char *id_name, ResSystem_t res_type, ResConfig_t *config_in, ResConfig_t *config_out);

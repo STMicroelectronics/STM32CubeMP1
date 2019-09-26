@@ -92,7 +92,7 @@ void HAL_IPCC_MspInit(IPCC_HandleTypeDef* hipcc)
     /* Peripheral clock enable */
     __HAL_RCC_IPCC_CLK_ENABLE();
   /* IPCC interrupt Init */
-    HAL_NVIC_SetPriority(IPCC_RX1_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(IPCC_RX1_IRQn, DEFAULT_IRQ_PRIO, 0);
     HAL_NVIC_EnableIRQ(IPCC_RX1_IRQn);
   /* USER CODE BEGIN IPCC_MspInit 1 */
 

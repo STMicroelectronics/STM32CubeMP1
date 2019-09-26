@@ -9,7 +9,7 @@
  * @brief	Generic libmetal shared memory handling.
  */
 
-#include <errno.h>
+#include <metal/errno.h>
 #include <metal/assert.h>
 #include <metal/shmem.h>
 #include <metal/sys.h>

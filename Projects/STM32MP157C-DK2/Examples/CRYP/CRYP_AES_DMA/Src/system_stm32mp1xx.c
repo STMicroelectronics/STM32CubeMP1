@@ -152,7 +152,6 @@ void SystemInit (void)
 #else
 #error Please #define CORE_CM4
 #endif	                         
-  SystemCoreClockUpdate();
 }
 
 /**
@@ -224,30 +223,30 @@ void SystemCoreClockUpdate (void)
     pllsource = (RCC->RCK3SELR & RCC_RCK3SELR_PLL3SRC);
     pll3m = ((RCC->PLL3CFGR1 & RCC_PLL3CFGR1_DIVM3) >> RCC_PLL3CFGR1_DIVM3_Pos) + 1U;
     pll3fracen = (RCC->PLL3FRACR & RCC_PLL3FRACR_FRACLE) >> 16U;
-    fracn1 = (pll3fracen * ((RCC->PLL3FRACR & RCC_PLL3FRACR_FRACV) >> 3U));
-    pll3vco = (((RCC->PLL3CFGR1 & RCC_PLL3CFGR1_DIVN) + 1U) + (fracn1/0x1FFFU));
+    fracn1 = (float)(pll3fracen * ((RCC->PLL3FRACR & RCC_PLL3FRACR_FRACV) >> 3U));
+    pll3vco = (float)((float)((RCC->PLL3CFGR1 & RCC_PLL3CFGR1_DIVN) + 1U) + (fracn1/(float) 0x1FFFU));
 
     if (pll3m != 0U)
     {
       switch (pllsource)
       {
         case 0x00:  /* HSI used as PLL clock source */
-          pll3vco *= ((HSI_VALUE >> (RCC->HSICFGR & RCC_HSICFGR_HSIDIV)) / pll3m);
+          pll3vco *= (float)((HSI_VALUE >> (RCC->HSICFGR & RCC_HSICFGR_HSIDIV)) / pll3m);
           break;
 
         case 0x01:  /* HSE used as PLL clock source */
-          pll3vco *= (HSE_VALUE / pll3m);
+          pll3vco *= (float)(HSE_VALUE / pll3m);
           break;
 
         case 0x02:  /* CSI used as PLL clock source */
-          pll3vco *= (CSI_VALUE / pll3m);
+          pll3vco *= (float)(CSI_VALUE / pll3m);
           break;
 
         case 0x03:  /* No clock source for PLL */
-          pll3vco = 0U;
+          pll3vco = 0;
           break;
        }
-      SystemCoreClock = (uint32_t)(pll3vco/((RCC->PLL3CFGR2 & RCC_PLL3CFGR2_DIVP) + 1U));
+      SystemCoreClock = (uint32_t)(pll3vco/ ((float)((RCC->PLL3CFGR2 & RCC_PLL3CFGR2_DIVP) + 1U)));
     }
     else
     {

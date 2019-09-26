@@ -457,6 +457,14 @@ static void rpmsg_virtio_rx_callback(struct virtqueue *vq)
  *
  * @return - rpmag endpoint callback handled
  */
+
+#if defined (__GNUC__) && ! defined (__CC_ARM)
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
+#elif defined (__CC_ARM)
+#pragma push
+#pragma O0
+#endif
 static int rpmsg_virtio_ns_callback(struct rpmsg_endpoint *ept, void *data,
 				    size_t len, uint32_t src, void *priv)
 {
@@ -509,6 +517,11 @@ static int rpmsg_virtio_ns_callback(struct rpmsg_endpoint *ept, void *data,
 
 	return RPMSG_SUCCESS;
 }
+#if defined (__GNUC__) && ! defined (__CC_ARM)
+#pragma GCC pop_options
+#elif defined (__CC_ARM)
+#pragma pop
+#endif
 
 int rpmsg_virtio_get_buffer_size(struct rpmsg_device *rdev)
 {

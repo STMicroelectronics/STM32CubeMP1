@@ -34,10 +34,12 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "log.h"
+#include "openamp_log.h"
 #include "stm32mp15xx_disco.h"
-#include "stm32mp15xx_disco_stpmu1.h"
+#include "stm32mp15xx_disco_stpmic1.h"
 #include "stm32mp1xx_ll_rcc.h"
+#include "stm32mp1xx_ll_system.h"
+#include "stm32mp1xx_ll_pwr.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -53,6 +55,25 @@ extern "C" {
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
 
+/** @brief  Wait until the condition becomes true or timeout expires
+  * @param  __CONDITION__ Condition to be tested
+  * @param  __TIMEOUT_VAL__ Time out value in ms
+  * @note   Use polling mode as code could be used on critical section (IRQs disabled)
+  * @retval HAL_TIMEOUT if time out
+  */
+#define __WAIT_EVENT_TIMEOUT(__CONDITION__, __TIMEOUT_VAL__)                 \
+  do {                                                                       \
+    __IO uint32_t count = __TIMEOUT_VAL__ * (SystemCoreClock / 20U / 1000U); \
+    do                                                                       \
+    {                                                                        \
+      if (count-- == 0U)                                                     \
+      {                                                                      \
+        return  HAL_TIMEOUT;                                                 \
+      }                                                                      \
+    }                                                                        \
+    while (__CONDITION__ == 0U);                                             \
+  } while(0)
+
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
@@ -63,7 +84,11 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define RCC_WAKEUP_IRQ_PRIO 0U
+#define DEFAULT_IRQ_PRIO    1U
+
 /* USER CODE BEGIN Private defines */
+
 /* ## Definition of ADC related resources ################################### */
 /* Definition of ADCx clock resources */
 #define ADCx                            ADC2

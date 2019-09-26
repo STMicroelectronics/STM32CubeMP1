@@ -245,7 +245,7 @@ void SystemClock_Config(void)
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSE
                 |RCC_OSCILLATORTYPE_LSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS_DIG;
   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = 16;
@@ -448,7 +448,7 @@ static void EXTI14_IRQHandler_Config(void)
   HAL_EXTI_RegisterCallback(&hexti, HAL_EXTI_FALLING_CB_ID, Exti14FallingCb);
 
   /* Enable and set line 14 Interrupt to the lowest priority */
-  HAL_NVIC_SetPriority(EXTI14_IRQn, 2, 0);
+  HAL_NVIC_SetPriority(EXTI14_IRQn, (DEFAULT_IRQ_PRIO + 2U), 0);
   HAL_NVIC_EnableIRQ(EXTI14_IRQn);
 }
 

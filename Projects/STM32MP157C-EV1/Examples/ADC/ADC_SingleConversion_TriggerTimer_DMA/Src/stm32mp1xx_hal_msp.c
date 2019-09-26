@@ -103,7 +103,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
     __HAL_RCC_TIM2_CLK_ENABLE();
 
     /* TIM2 interrupt Init */
-    HAL_NVIC_SetPriority(TIM2_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(TIM2_IRQn, DEFAULT_IRQ_PRIO, 0);
     HAL_NVIC_EnableIRQ(TIM2_IRQn);
   /* USER CODE BEGIN TIM2_MspInit 1 */
 
@@ -205,12 +205,12 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef *hadc)
   /*##-4- Configure the NVIC #################################################*/
   /* NVIC configuration for ADC interrupt */
   /* Priority: high-priority */
-  HAL_NVIC_SetPriority(ADCx_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(ADCx_IRQn, DEFAULT_IRQ_PRIO, 0);
   HAL_NVIC_EnableIRQ(ADCx_IRQn);
   
   /* NVIC configuration for DMA interrupt (transfer completion or error) */
   /* Priority: high-priority */
-  HAL_NVIC_SetPriority(ADCx_DMA_IRQn, 1, 0);
+  HAL_NVIC_SetPriority(ADCx_DMA_IRQn, (DEFAULT_IRQ_PRIO + 1U), 0);
   HAL_NVIC_EnableIRQ(ADCx_DMA_IRQn);
 }
 

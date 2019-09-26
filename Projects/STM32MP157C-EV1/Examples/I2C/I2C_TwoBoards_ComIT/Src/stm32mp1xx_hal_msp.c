@@ -70,9 +70,9 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
     /* Peripheral clock enable */
     __HAL_RCC_I2C5_CLK_ENABLE();
     /* I2C5 interrupt Init */
-    HAL_NVIC_SetPriority(I2C5_EV_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(I2C5_EV_IRQn, DEFAULT_IRQ_PRIO, 0);
     HAL_NVIC_EnableIRQ(I2C5_EV_IRQn);
-    HAL_NVIC_SetPriority(I2C5_ER_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(I2C5_ER_IRQn, DEFAULT_IRQ_PRIO, 0);
     HAL_NVIC_EnableIRQ(I2C5_ER_IRQn);
   /* USER CODE BEGIN I2C5_MspInit 1 */
 

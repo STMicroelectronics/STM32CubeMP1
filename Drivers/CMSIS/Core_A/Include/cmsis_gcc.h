@@ -1,11 +1,11 @@
 /**************************************************************************//**
  * @file     cmsis_gcc.h
  * @brief    CMSIS compiler specific macros, functions, instructions
- * @version  V1.0.1
- * @date     07. Sep 2017
+ * @version  V1.0.2
+ * @date     09. April 2018
  ******************************************************************************/
 /*
- * Copyright (c) 2009-2017 ARM Limited. All rights reserved.
+ * Copyright (c) 2009-2018 Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -43,17 +43,20 @@
 #ifndef   __INLINE
   #define __INLINE                               inline
 #endif
-#ifndef   __FORCEINLINE                              
+#ifndef   __FORCEINLINE
   #define __FORCEINLINE                          __attribute__((always_inline))
-#endif                                          
+#endif
 #ifndef   __STATIC_INLINE
   #define __STATIC_INLINE                        static inline
 #endif
-#ifndef   __STATIC_FORCEINLINE                 
+#ifndef   __STATIC_FORCEINLINE
   #define __STATIC_FORCEINLINE                   __attribute__((always_inline)) static inline
-#endif                                           
+#endif
 #ifndef   __NO_RETURN
   #define __NO_RETURN                            __attribute__((__noreturn__))
+#endif
+#ifndef   CMSIS_DEPRECATED
+ #define  CMSIS_DEPRECATED                       __attribute__((deprecated))
 #endif
 #ifndef   __USED
   #define __USED                                 __attribute__((used))
@@ -264,7 +267,7 @@ __STATIC_FORCEINLINE  uint32_t __RBIT(uint32_t value)
   \param [in]  value  Value to count the leading zeros
   \return             number of leading zeros in value
  */
-#define __CLZ                             __builtin_clz
+#define __CLZ                             (uint8_t)__builtin_clz
 
 /**
   \brief   LDR Exclusive (8 bit)
@@ -447,7 +450,9 @@ __STATIC_FORCEINLINE  uint32_t __get_FPSCR(void)
 {
   #if ((defined (__FPU_PRESENT) && (__FPU_PRESENT == 1U)) && \
        (defined (__FPU_USED   ) && (__FPU_USED    == 1U))     )
-  #if __has_builtin(__builtin_arm_get_fpscr) || (__GNUC__ > 7) || (__GNUC__ == 7 && __GNUC_MINOR__ >= 2)
+  #if __has_builtin(__builtin_arm_get_fpscr) 
+  // Re-enable using built-in when GCC has been fixed
+  // || (__GNUC__ > 7) || (__GNUC__ == 7 && __GNUC_MINOR__ >= 2)
     /* see https://gcc.gnu.org/ml/gcc-patches/2017-04/msg00443.html */
     return __builtin_arm_get_fpscr();
   #else
@@ -470,7 +475,9 @@ __STATIC_FORCEINLINE void __set_FPSCR(uint32_t fpscr)
 {
   #if ((defined (__FPU_PRESENT) && (__FPU_PRESENT == 1U)) && \
        (defined (__FPU_USED   ) && (__FPU_USED    == 1U))     )
-  #if __has_builtin(__builtin_arm_set_fpscr) || (__GNUC__ > 7) || (__GNUC__ == 7 && __GNUC_MINOR__ >= 2)
+  #if __has_builtin(__builtin_arm_set_fpscr)
+  // Re-enable using built-in when GCC has been fixed
+  // || (__GNUC__ > 7) || (__GNUC__ == 7 && __GNUC_MINOR__ >= 2)
     /* see https://gcc.gnu.org/ml/gcc-patches/2017-04/msg00443.html */
     __builtin_arm_set_fpscr(fpscr);
   #else
@@ -598,84 +605,6 @@ __STATIC_FORCEINLINE void __set_FPEXC(uint32_t fpexc)
 
 #include "cmsis_cp15.h"
 
-__STATIC_FORCEINLINE int32_t log2_up(uint32_t n)
-{
-  int32_t log = -1;
-  uint32_t t = n;
-  while(t)
-  {
-    log++; t >>=1;
-  }
-  /* if n not power of 2 -> round up*/
-  if ( n & (n - 1) ) log++;
-  return log;
-}
-
-__STATIC_INLINE void __L1C_MaintainDCacheSetWay(uint32_t level, uint32_t maint)
-{
-  register volatile uint32_t Dummy;
-  register volatile uint32_t ccsidr;
-  uint32_t num_sets;
-  uint32_t num_ways;
-  uint32_t shift_way;
-  uint32_t log2_linesize;
-  uint32_t log2_num_ways;
-
-  Dummy = level << 1;
-  /* set csselr, select ccsidr register */
-  __set_CCSIDR(Dummy);
-  /* get current ccsidr register */
-  ccsidr = __get_CCSIDR();
-  num_sets = ((ccsidr & 0x0FFFE000) >> 13) + 1;
-  num_ways = ((ccsidr & 0x00001FF8) >> 3) + 1;
-  log2_linesize = (ccsidr & 0x00000007) + 2 + 2;
-  log2_num_ways = log2_up(num_ways);
-  shift_way = 32 - log2_num_ways;
-  for(int way = num_ways-1; way >= 0; way--)
-  {
-    for(int set = num_sets-1; set >= 0; set--)
-    {
-      Dummy = (level << 1) | (set << log2_linesize) | (way << shift_way);
-      switch (maint)
-      {
-        case 0:
-          __ASM volatile("MCR p15, 0, %0, c7, c6, 2" : : "r"(Dummy) : "memory"); // DCISW. Invalidate by Set/Way
-          break;
-
-        case 1:
-          __ASM volatile("MCR p15, 0, %0, c7, c10, 2" : : "r"(Dummy) : "memory"); // DCCSW. Clean by Set/Way
-          break;
-
-        default:
-          __ASM volatile("MCR p15, 0, %0, c7, c14, 2" : : "r"(Dummy) : "memory"); // DCCISW. Clean and Invalidate by Set/Way
-          break;
-
-      }
-    }
-  }
-  __DMB();
-}
-
-/** \brief  Clean and Invalidate the entire data or unified cache
-
-  Generic mechanism for cleaning/invalidating the entire data or unified cache to the point of coherency
- */
-__STATIC_INLINE void __L1C_CleanInvalidateCache(uint32_t op)
-{
-  register volatile uint32_t clidr;
-  uint32_t cache_type;
-  clidr =  __get_CLIDR();
-  for(uint32_t i = 0; i<7; i++)
-  {
-    cache_type = (clidr >> i*3) & 0x7UL;
-    if ((cache_type >= 2) && (cache_type <= 4))
-    {
-      __L1C_MaintainDCacheSetWay(i, op);
-    }
-  }
-
-}
-
 /** \brief  Enable Floating Point Unit
 
   Critical section, called from undef handler, so systick is disabled
@@ -717,7 +646,7 @@ __STATIC_INLINE void __FPU_Enable(void)
     "        VMOV    D14,R2,R2         \n"
     "        VMOV    D15,R2,R2         \n"
 
-#if __ARM_NEON == 1
+#if (defined(__ARM_NEON) && (__ARM_NEON == 1))
     //Initialise D32 registers to 0
     "        VMOV    D16,R2,R2         \n"
     "        VMOV    D17,R2,R2         \n"

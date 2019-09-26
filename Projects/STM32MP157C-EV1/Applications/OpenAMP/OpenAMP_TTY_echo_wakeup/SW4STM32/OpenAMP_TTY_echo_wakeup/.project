@@ -57,9 +57,9 @@
 			<locationURI>PARENT-2-PROJECT_LOC/Src/lock_resource.c</locationURI>
 		</link>
 		<link>
-			<name>Application/User/log.c</name>
+			<name>Application/User/openamp_log.c</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Src/log.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/Src/openamp_log.c</locationURI>
 		</link>
 		<link>
 			<name>Application/User/main.c</name>
@@ -102,9 +102,9 @@
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/BSP/STM32MP15xx_EVAL/stm32mp15xx_eval_bus.c</locationURI>
 		</link>
 		<link>
-			<name>Drivers/BSP/stm32mp15xx_eval_stpmu1.c</name>
+			<name>Drivers/BSP/stm32mp15xx_eval_stpmic1.c</name>
 			<type>1</type>
-			<locationURI>PARENT-7-PROJECT_LOC/Drivers/BSP/STM32MP15xx_EVAL/stm32mp15xx_eval_stpmu1.c</locationURI>
+			<locationURI>PARENT-7-PROJECT_LOC/Drivers/BSP/STM32MP15xx_EVAL/stm32mp15xx_eval_stpmic1.c</locationURI>
 		</link>
 		<link>
 			<name>Drivers/CMSIS/system_stm32mp1xx.c</name>
@@ -182,11 +182,6 @@
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_ipcc.c</locationURI>
 		</link>
 		<link>
-			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_mdma.c</name>
-			<type>1</type>
-			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_mdma.c</locationURI>
-		</link>
-		<link>
 			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_pwr.c</name>
 			<type>1</type>
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_pwr.c</locationURI>
@@ -252,24 +247,24 @@
 			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/OpenAMP/libmetal/lib/system/generic/condition.c</locationURI>
 		</link>
 		<link>
-			<name>Middlewares/OpenAMP/libmetal/generic/device.c</name>
+			<name>Middlewares/OpenAMP/libmetal/generic/generic_device.c</name>
 			<type>1</type>
-			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/OpenAMP/libmetal/lib/system/generic/device.c</locationURI>
+			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/OpenAMP/libmetal/lib/system/generic/generic_device.c</locationURI>
 		</link>
 		<link>
-			<name>Middlewares/OpenAMP/libmetal/generic/init.c</name>
+			<name>Middlewares/OpenAMP/libmetal/generic/generic_init.c</name>
 			<type>1</type>
-			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/OpenAMP/libmetal/lib/system/generic/init.c</locationURI>
+			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/OpenAMP/libmetal/lib/system/generic/generic_init.c</locationURI>
 		</link>
 		<link>
-			<name>Middlewares/OpenAMP/libmetal/generic/io.c</name>
+			<name>Middlewares/OpenAMP/libmetal/generic/generic_io.c</name>
 			<type>1</type>
-			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/OpenAMP/libmetal/lib/system/generic/io.c</locationURI>
+			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/OpenAMP/libmetal/lib/system/generic/generic_io.c</locationURI>
 		</link>
 		<link>
-			<name>Middlewares/OpenAMP/libmetal/generic/shmem.c</name>
+			<name>Middlewares/OpenAMP/libmetal/generic/generic_shmem.c</name>
 			<type>1</type>
-			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/OpenAMP/libmetal/lib/system/generic/shmem.c</locationURI>
+			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/OpenAMP/libmetal/lib/system/generic/generic_shmem.c</locationURI>
 		</link>
 		<link>
 			<name>Middlewares/OpenAMP/libmetal/generic/time.c</name>

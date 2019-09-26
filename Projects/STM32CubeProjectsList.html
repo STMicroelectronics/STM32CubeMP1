@@ -10,11 +10,8 @@ body{font-family: Verdana;font-size: 10pt; color: black;margin-left: 40px;}
 .picture{text-align: center}
 .copyright{text-align: center}
 h1{text-align: center;font-size: 20pt; font-family: Verdana; color: rgb(51, 102, 255);}
-</style>
-</head>
-
-
-  <body>
+</style></head>
+<body>
 <h1>STM32CubeMP1 Firmware Examples for STM32MP1xx Series</h1>
 <p class="copyright">Copyright 2019 STMicroelectronics</p>
 <div class="picture"> <img alt="" id="_x0000_i1025" src="../_htmresc/st_logo.png" style="border: 0px solid ; width: 104px; height: 77px;"> </div>
@@ -52,13 +49,16 @@ same structure:</p>
 <li>\Inc folder that contains all header files.</li>
 <li>\Src folder for the sources code.</li>
 <li>\SW4STM32 folders contain the preconfigured project for
-the toolchain.</li><li>\Remoteproc folder that contains specific files related to the use of Linux<sup>®</sup> remote processor framework to load STM32Cube Cortex-M firmware</li>
+the toolchain.</li><ul><li><span style="font-weight: bold;">(note) : By default the IDE is SW4STM32</span>. Step by step the examples will be ported on other IDEs (IAR,&nbsp;KEIL and STM32CubeIDE)</li></ul>
+<li>\Remoteproc folder that contains specific files related to
+the use of Linux<sup>®</sup> remote processor framework to
+load STM32Cube Cortex-M firmware</li>
 <li>readme.txt describing the example behavior and the
 environment required to run the example.</li>
 </ul>
 <p>To run the example, you have to do the following:</p>
 <ul>
-<li>Open the example using your preferred IDE (SW4STM32).</li>
+<li>Open the example using your preferred IDE (Today = SW4STM32 by default).</li>
 <li>Rebuild all files and load the image into target memory.</li>
 <li>Run the example by following the readme.txt instructions.</li>
 <li><i><u>Note</u>: refer to section
@@ -113,7 +113,7 @@ specific needs as to test a Firmware directly on coprocessor</li>
 <p id="-">-</p>
 </td>
 <td style="width: 229px;" align="left">
-<p id="Starter project">Starter project</p>
+<p id="Starter project">Starter project <span style="font-weight: bold;">(*)</span></p>
 </td>
 <td style="width: 266px;" align="left">This
 projects provides a reference template that can be used to build any
@@ -133,7 +133,7 @@ number of templates: 2</b></td>
 <td style="width: 130px;"></td>
 </tr>
 <tr align="center">
-<td style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" rowspan="22">
+<td style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" rowspan="24">
 <p id="Examples">Examples</p>
 </td>
 <td rowspan="1" align="left">
@@ -269,7 +269,7 @@ configure the FDCAN to operate in loopback mode.
 <p id="GPIO">GPIO</p>
 </td>
 <td style="width: 229px;" align="left">
-<p id="GPIO_EXTI">GPIO_EXTI</p>
+<p id="GPIO_EXTI">GPIO_EXTI&nbsp; <span style="font-weight: bold;">(**)</span></p>
 </td>
 <td style="width: 266px;" align="left">How to
 configure external interrupt lines.
@@ -351,6 +351,17 @@ DK2</span>)<br>
 &amp;<br>
 Engineering (EV1 and DK2)</td>
 <td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr>
+<td>PWR</td>
+<td>PWR_STOP_CoPro</td>
+<td>How to enter the CSTOP and STOP modes using CM4 core<br>
+(aka Co-processor) and wake up from this mode by using external wakeup
+interrupt.</td>
+<td style="text-align: center;"><font color="green" size="5">x</font></td>
+<td style="text-align: center;"><font color="green" size="5">x</font></td>
+<td style="text-align: center;">Production <span style="font-weight: bold;">Only</span></td>
+<td style="text-align: center;">Cortex-M4</td>
 </tr>
 <tr align="center">
 <td rowspan="1" align="left">
@@ -450,7 +461,7 @@ Engineering</td>
 <td style="width: 130px;">Cortex-M4 </td>
 </tr>
 <tr align="center">
-<td rowspan="2" align="left">
+<td colspan="1" rowspan="3" align="left">
 <p id="UART">UART</p>
 </td>
 <td style="width: 229px;" align="left">
@@ -480,7 +491,9 @@ transmission (transmit/receive) in Interrupt mode between two boards.
 Engineering</td>
 <td style="width: 130px;">Cortex-M4 </td>
 </tr>
-<tr align="center">
+<tr><td>UART_Receive_Transmit_Console</td><td>UART transmission (printf/getchar) via console with user interaction.</td><td style="text-align: center;"><font color="green" size="5">x</font></td><td style="text-align: center;"><font color="green" size="5">x</font></td><td style="text-align: center;">Production<br>
+&amp;<br>
+Engineering</td><td style="text-align: center;">Cortex-M4</td></tr><tr align="center">
 <td rowspan="1" align="left">
 <p id="WWDG">WWDG</p>
 </td>
@@ -501,14 +514,14 @@ Engineering</td>
 </tr>
 <tr style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" align="center">
 <td style="width: 266px;" colspan="3"><b>Total
-number of examples: 36</b></td>
-<td style="width: 130px;">18</td>
-<td style="width: 130px;">18</td>
+number of examples: 40</b></td>
+<td style="width: 130px;">20</td>
+<td style="width: 130px;">20</td>
 <td style="width: 130px;"></td>
 <td style="width: 130px;"></td>
 </tr>
 <tr align="center">
-<td style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" rowspan="6">
+<td style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" rowspan="7">
 <p id="Applications">Applications</p>
 </td>
 <td rowspan="1" align="left">
@@ -517,12 +530,13 @@ number of examples: 36</b></td>
 <td style="width: 229px;" align="left">
 <p id="CoproSync_ShutDown">CoproSync_ShutDown</p>
 </td>
-<td style="width: 266px;" align="left">Send of shutdown information
+<td style="width: 266px;" align="left">Send
+of shutdown information
 to Cortex-M4 so that it is able to take necessary actions before going
 to reset state.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;">-</td>
+<td style="width: 130px;"><font color="green" size="5">x</font></td>
 <td style="width: 130px;">Production<br>
 </td>
 <td style="width: 130px;">Cortex-M4 </td>
@@ -532,10 +546,11 @@ to reset state.
 <p id="FreeRTOS">FreeRTOS</p>
 </td>
 <td style="width: 229px;" align="left">
-<p id="FreeRTOS_ThreadCreation">FreeRTOS_ThreadCreation</p>
+<p id="FreeRTOS_ThreadCreation">FreeRTOS_ThreadCreation&nbsp;<span style="font-weight: bold;">(*)</span></p>
 </td>
 <td style="width: 266px;" align="left">How to
-implement thread creation using CMSIS RTOS API. </td>
+use the DAC peripheral and its reference regulator to do a simple
+conversion. </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
 <td style="width: 130px;">Production<br>
@@ -544,19 +559,31 @@ Engineering</td>
 <td style="width: 130px;">Cortex-M4 </td>
 </tr>
 <tr align="center">
-<td rowspan="3">OpenAMP</td>
+<td rowspan="4">OpenAMP</td>
 <td style="width: 229px;" align="left">
-<p id="OpenAMP_TTY_echo">OpenAMP_TTY_echo</p>
+<p id="OpenAMP_TTY_echo">OpenAMP_Dynamic_ResMgr</p>
 </td>
 <td style="width: 266px;" align="left">How to
 use OpenAMP MW + Virtual UART to create an Inter-Processor
 Communication channel seen as TTY device in Linux OS.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;">-</td>
 <td style="width: 130px;">Production<br>
 </td>
 <td style="width: 130px;">Cortex-M4 </td>
+</tr>
+<tr>
+<td>
+<p id="OpenAMP_TTY_echo">OpenAMP_TTY_echo</p>
+</td>
+<td>How to
+use OpenAMP MW + Virtual UART to create an Inter-Processor
+Communication channel seen as TTY device in Linux OS.</td>
+<td style="text-align: center;"><font color="green" size="5">x</font></td>
+<td style="text-align: center;"><font color="green" size="5">x</font></td>
+<td style="text-align: center;">Production</td>
+<td style="text-align: center;">Cortex-M4</td>
 </tr>
 <tr align="center">
 <td style="width: 229px;" align="left">
@@ -573,7 +600,7 @@ enter different PWR system operating mode (Run, Stop and Standby).
 </tr>
 <tr align="center">
 <td style="width: 229px;" align="left">
-<p id="OpenAMP_raw">OpenAMP_raw</p>
+<p id="OpenAMP_raw">OpenAMP_raw&nbsp;<span style="font-weight: bold;">(*)</span></p>
 </td>
 <td style="width: 266px;" align="left">How to
 use OpenAMP MW to create an Inter-Processor Communication channel.
@@ -586,9 +613,9 @@ use OpenAMP MW to create an Inter-Processor Communication channel.
 </tr>
 <tr style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" align="center">
 <td style="width: 266px;" colspan="3"><b>Total
-number of applications: 9</b></td>
+number of applications: 11</b></td>
+<td style="width: 130px;">6</td>
 <td style="width: 130px;">5</td>
-<td style="width: 130px;">4</td>
 <td style="width: 130px;"></td>
 <td style="width: 130px;"></td>
 </tr>
@@ -622,12 +649,13 @@ number of demonstrations: 2</b></td>
 </tr>
 <tr style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" align="center">
 <td style="width: 266px;" colspan="4"><b>Total
-number of projects: 49</b></td>
-<td style="width: 130px;">25</td>
-<td style="width: 130px;">24</td>
+number of projects: 55</b></td>
+<td style="width: 130px;">28</td>
+<td style="width: 130px;">27</td>
 <td style="width: 130px;"></td>
 <td style="width: 130px;"></td>
 </tr>
 </tbody>
 </table>
+<p><span style="font-weight: bold;">(*) </span>list of STM32MP157C-EV1 examples available with 4 IDEs ( SW4STM32, IAR,&nbsp;KEIL and STM32CubeIDE).</p><p><span style="font-weight: bold;">(**) GPIO_EXTI&nbsp;</span>projects are ported on STM32CubeIDE for&nbsp;STM32MP157C-EV1 and&nbsp;STM32MP157C-DK2.</p>
 </body></html>

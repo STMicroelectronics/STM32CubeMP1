@@ -62,6 +62,8 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
+extern TIM_HandleTypeDef htim2;
+extern IPCC_HandleTypeDef hipcc;
 
 /* USER CODE BEGIN EV */
 /* USER CODE END EV */
@@ -119,7 +121,36 @@ void SysTick_Handler(void)
 /*  file (startup_stm32mp1xx.s).                                               */
 /******************************************************************************/
 
+/**
+  * @brief This function handles TIM2 global interrupt.
+  */
+void TIM2_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM2_IRQn 0 */
+
+  /* USER CODE END TIM2_IRQn 0 */
+  if (htim2.Instance != NULL) {
+	  HAL_TIM_IRQHandler(&htim2);
+  }
+  else {
+	  /* Disable the TIM2 global Interrupt */
+	  HAL_NVIC_DisableIRQ(TIM2_IRQn);
+  }
+  /* USER CODE BEGIN TIM2_IRQn 1 */
+
+  /* USER CODE END TIM2_IRQn 1 */
+}
+
 /* USER CODE BEGIN 1 */
+void IPCC_RX1_IRQHandler(void)
+{
+  HAL_IPCC_RX_IRQHandler(&hipcc);
+}
+
+void IPCC_TX1_IRQHandler(void)
+{
+  HAL_IPCC_TX_IRQHandler(&hipcc);
+}
 
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

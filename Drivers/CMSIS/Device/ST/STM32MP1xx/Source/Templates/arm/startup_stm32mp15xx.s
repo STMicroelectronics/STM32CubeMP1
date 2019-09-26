@@ -204,6 +204,7 @@ __Vectors       DCD      __initial_sp                        ;     Top of Stack
                 DCD     SDMMC2_IRQHandler                    ;
                 DCD     HSEM_IT2_IRQHandler                  ;
                 DCD     DFSDM1_FLT5_IRQHandler               ;
+                DCD     EXTI15_IRQHandler                    ;
                 DCD     nCTIIRQ1_IRQHandler                  ;
                 DCD     nCTIIRQ2_IRQHandler                  ;
                 DCD     TIM13_IRQHandler                     ;
@@ -290,7 +291,7 @@ $Handler_Name   PROC
                 Set_Default_Handler  DMA1_Stream4_IRQHandler           ; DMA1 Stream 4                                                 
                 Set_Default_Handler  DMA1_Stream5_IRQHandler           ; DMA1 Stream 5              
                 Set_Default_Handler  DMA1_Stream6_IRQHandler           ; DMA1 Stream 6               
-                Set_Default_Handler  ADC1_IRQHandler                    ; ADC1, ADC2                                           
+                Set_Default_Handler  ADC1_IRQHandler                   ; ADC1                                          
                 Set_Default_Handler  FDCAN1_IT0_IRQHandler             ; FDCAN1 Interrupt line 0              
                 Set_Default_Handler  FDCAN2_IT0_IRQHandler             ; FDCAN2 Interrupt line 0
                 Set_Default_Handler  FDCAN1_IT1_IRQHandler             ; FDCAN1 Interrupt line 1
@@ -362,7 +363,7 @@ $Handler_Name   PROC
                 Set_Default_Handler  SAI1_IRQHandler                   ; SAI1
                 Set_Default_Handler  LTDC_IRQHandler                   ; LTDC
                 Set_Default_Handler  LTDC_ER_IRQHandler                ; LTDC error
-                Set_Default_Handler  ADC2_IRQHandler                   ; Reserved
+                Set_Default_Handler  ADC2_IRQHandler                   ; ADC2
                 Set_Default_Handler  SAI2_IRQHandler                   ; SAI2
                 Set_Default_Handler  QUADSPI_IRQHandler                ; QUADSPI
                 Set_Default_Handler  LPTIM1_IRQHandler                 ; LPTIM1 global interrupt
@@ -422,8 +423,6 @@ $Handler_Name   PROC
                 Set_Default_Handler  DTS_IRQHandler                    ; Temperature sensor interrupt
                 Set_Default_Handler  RESERVED148_IRQHandler            ; Reserved
                 Set_Default_Handler  WAKEUP_PIN_IRQHandler             ; Interrupt for all 6 wake-up pins
-                Set_Default_Handler  IWDG1_IRQHandler                  ; IWDG1 Interrupt
-                Set_Default_Handler  IWDG2_IRQHandler                  ; IWDG2 Interrupt
 
                 ALIGN
 

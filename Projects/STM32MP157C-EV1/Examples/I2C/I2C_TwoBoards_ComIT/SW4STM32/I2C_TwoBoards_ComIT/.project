@@ -107,11 +107,6 @@
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_i2c_ex.c</locationURI>
 		</link>
 		<link>
-			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_mdma.c</name>
-			<type>1</type>
-			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_mdma.c</locationURI>
-		</link>
-		<link>
 			<name>Drivers/STM32MP1xx_HAL_Driver/stm32mp1xx_hal_pwr.c</name>
 			<type>1</type>
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_pwr.c</locationURI>
@@ -141,7 +136,6 @@
 			<type>1</type>
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32MP1xx_HAL_Driver/Src/stm32mp1xx_hal_exti.c</locationURI>
 		</link>
-
 		<link>
 			<name>Drivers/BSP/STM32MP15xx_EVAL/stm32mp15xx_eval.c</name>
 			<type>1</type>
