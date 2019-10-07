@@ -261,13 +261,7 @@ TIMEx_BreakInputConfigTypeDef;
 #define IS_TIM_BREAKINPUT(__BREAKINPUT__)  (((__BREAKINPUT__) == TIM_BREAKINPUT_BRK)  || \
                                             ((__BREAKINPUT__) == TIM_BREAKINPUT_BRK2))
 
-#if defined(COMP1) && defined(COMP2)
-#define IS_TIM_BREAKINPUTSOURCE(__SOURCE__)  (((__SOURCE__) == TIM_BREAKINPUTSOURCE_BKIN)  || \
-                                              ((__SOURCE__) == TIM_BREAKINPUTSOURCE_COMP1) || \
-                                              ((__SOURCE__) == TIM_BREAKINPUTSOURCE_COMP2))
-#else
 #define IS_TIM_BREAKINPUTSOURCE(__SOURCE__)  ((__SOURCE__) == TIM_BREAKINPUTSOURCE_BKIN)
-#endif /* COMP1 && COMP2 */
 
 #define IS_TIM_BREAKINPUTSOURCE_STATE(__STATE__)  (((__STATE__) == TIM_BREAKINPUTSOURCE_DISABLE)  || \
                                                    ((__STATE__) == TIM_BREAKINPUTSOURCE_ENABLE))

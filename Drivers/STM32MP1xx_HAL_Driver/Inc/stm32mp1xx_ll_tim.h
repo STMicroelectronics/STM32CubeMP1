@@ -122,13 +122,13 @@ static const uint8_t SHIFT_TAB_OISx[] =
 /* Generic bit definitions for TIMx_AF1 register */
 #define TIMx_AF1_BKINE          TIM1_AF1_BKINE       /*!< BRK BKINE input enable */
 #if defined(DFSDM1_Channel0)
-#define TIMx_AF1_BKDFBKE        TIM1_AF1_BKDFBKE     /*!< BRK DFSDM1_BREAK[0] enable */
+#define TIMx_AF1_BKDFBKE        TIM1_AF1_BKDF1BK0E     /*!< BRK DFSDM1_BREAK[0] enable */
 #endif /* DFSDM1_Channel0 */
 #define TIMx_AF1_BKINP        TIM1_AF1_BKINP       /*!< BRK BKIN input polarity */
 /* Generic bit definitions for TIMx_AF2 register */
 #define TIMx_AF2_BK2INE         TIM1_AF2_BK2INE      /*!< BRK B2KINE input enable */
 #if defined(DFSDM1_Channel0)
-#define TIMx_AF2_BK2DFBKE       TIM1_AF2_BK2DFBKE    /*!< BRK DFSDM_BREAK[0] enable */
+#define TIMx_AF2_BK2DFBKE       TIM1_AF2_BK2DF1BK1E    /*!< BRK DFSDM_BREAK[0] enable */
 #endif /* DFSDM1_Channel0 */
 #define TIMx_AF2_BK2INP       TIM1_AF2_BK2INP      /*!< BRK BK2IN input polarity */
 #define TIMx_AF1_ETRSEL    TIM1_AF1_ETRSEL    /*!< TIMx ETR source selection */
@@ -1058,8 +1058,6 @@ typedef struct
   * @{
   */
 #define LL_TIM_BKIN_SOURCE_BKIN                TIM1_AF1_BKINE      /*!< BKIN input from AF controller */
-#define LL_TIM_BKIN_SOURCE_BKCOMP1             TIM1_AF1_BKCMP1E    /*!< internal signal: COMP1 output */
-#define LL_TIM_BKIN_SOURCE_BKCOMP2             TIM1_AF1_BKCMP2E    /*!< internal signal: COMP2 output */
 #define LL_TIM_BKIN_SOURCE_DF1BK               TIM1_AF1_BKDF1BK0E  /*!< internal signal: DFSDM1 break output */
 /**
   * @}
@@ -3733,12 +3731,8 @@ __STATIC_INLINE uint32_t LL_TIM_IsEnabledAllOutputs(TIM_TypeDef *TIMx)
   * @note Macro IS_TIM_BREAKSOURCE_INSTANCE(TIMx) can be used to check whether
   *       or not a timer instance allows for break input selection.
   * @rmtoll AF1          BKINE         LL_TIM_EnableBreakInputSource\n
-  *         AF1          BKCMP1E       LL_TIM_EnableBreakInputSource\n
-  *         AF1          BKCMP2E       LL_TIM_EnableBreakInputSource\n
   *         AF1          BKDF1BK0E     LL_TIM_EnableBreakInputSource\n
   *         AF2          BK2INE        LL_TIM_EnableBreakInputSource\n
-  *         AF2          BK2CMP1E      LL_TIM_EnableBreakInputSource\n
-  *         AF2          BK2CMP2E      LL_TIM_EnableBreakInputSource\n
   *         AF2          BK2DF1BK1E    LL_TIM_EnableBreakInputSource
   * @param  TIMx Timer instance
   * @param  BreakInput This parameter can be one of the following values:
@@ -3746,8 +3740,6 @@ __STATIC_INLINE uint32_t LL_TIM_IsEnabledAllOutputs(TIM_TypeDef *TIMx)
   *         @arg @ref LL_TIM_BREAK_INPUT_BKIN2
   * @param  Source This parameter can be one of the following values:
   *         @arg @ref LL_TIM_BKIN_SOURCE_BKIN
-  *         @arg @ref LL_TIM_BKIN_SOURCE_BKCOMP1
-  *         @arg @ref LL_TIM_BKIN_SOURCE_BKCOMP2
   *         @arg @ref LL_TIM_BKIN_SOURCE_DF1BK
   * @retval None
   */
@@ -3762,12 +3754,8 @@ __STATIC_INLINE void LL_TIM_EnableBreakInputSource(TIM_TypeDef *TIMx, uint32_t B
   * @note Macro IS_TIM_BREAKSOURCE_INSTANCE(TIMx) can be used to check whether
   *       or not a timer instance allows for break input selection.
   * @rmtoll AF1          BKINE         LL_TIM_DisableBreakInputSource\n
-  *         AF1          BKCMP1E       LL_TIM_DisableBreakInputSource\n
-  *         AF1          BKCMP2E       LL_TIM_DisableBreakInputSource\n
   *         AF1          BKDF1BK0E     LL_TIM_DisableBreakInputSource\n
   *         AF2          BK2INE        LL_TIM_DisableBreakInputSource\n
-  *         AF2          BK2CMP1E      LL_TIM_DisableBreakInputSource\n
-  *         AF2          BK2CMP2E      LL_TIM_DisableBreakInputSource\n
   *         AF2          BK2DF1BK1E    LL_TIM_DisableBreakInputSource
   * @param  TIMx Timer instance
   * @param  BreakInput This parameter can be one of the following values:
@@ -3775,8 +3763,6 @@ __STATIC_INLINE void LL_TIM_EnableBreakInputSource(TIM_TypeDef *TIMx, uint32_t B
   *         @arg @ref LL_TIM_BREAK_INPUT_BKIN2
   * @param  Source This parameter can be one of the following values:
   *         @arg @ref LL_TIM_BKIN_SOURCE_BKIN
-  *         @arg @ref LL_TIM_BKIN_SOURCE_BKCOMP1
-  *         @arg @ref LL_TIM_BKIN_SOURCE_BKCOMP2
   *         @arg @ref LL_TIM_BKIN_SOURCE_DF1BK
   * @retval None
   */
@@ -3791,19 +3777,14 @@ __STATIC_INLINE void LL_TIM_DisableBreakInputSource(TIM_TypeDef *TIMx, uint32_t 
   * @note Macro IS_TIM_BREAKSOURCE_INSTANCE(TIMx) can be used to check whether
   *       or not a timer instance allows for break input selection.
   * @rmtoll AF1          BKINP         LL_TIM_SetBreakInputSourcePolarity\n
-  *         AF1          BKCMP1P       LL_TIM_SetBreakInputSourcePolarity\n
-  *         AF1          BKCMP2P       LL_TIM_SetBreakInputSourcePolarity\n
   *         AF2          BK2INP        LL_TIM_SetBreakInputSourcePolarity\n
-  *         AF2          BK2CMP1P      LL_TIM_SetBreakInputSourcePolarity\n
-  *         AF2          BK2CMP2P      LL_TIM_SetBreakInputSourcePolarity
   * @param  TIMx Timer instance
   * @param  BreakInput This parameter can be one of the following values:
   *         @arg @ref LL_TIM_BREAK_INPUT_BKIN
   *         @arg @ref LL_TIM_BREAK_INPUT_BKIN2
   * @param  Source This parameter can be one of the following values:
   *         @arg @ref LL_TIM_BKIN_SOURCE_BKIN
-  *         @arg @ref LL_TIM_BKIN_SOURCE_BKCOMP1
-  *         @arg @ref LL_TIM_BKIN_SOURCE_BKCOMP2
+  *         @arg @ref LL_TIM_BKIN_SOURCE_DF1BK
   * @param  Polarity This parameter can be one of the following values:
   *         @arg @ref LL_TIM_BKIN_POLARITY_LOW
   *         @arg @ref LL_TIM_BKIN_POLARITY_HIGH
