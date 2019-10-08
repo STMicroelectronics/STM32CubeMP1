@@ -19,12 +19,15 @@ define region text_region   = mem:[from __ICFEDIT_region_text_start__   to __ICF
 define region data_region   = mem:[from __ICFEDIT_region_data_start__   to __ICFEDIT_region_data_end__];
 
 keep { section .resource_table };
-".resource_table" :  place in data_region  { section .resource_table};
+".resource_table" :  place in data_region {section .resource_table};
 
+/* !!! To uncomment these 4 lines if OPENAMP used !!!*/
+/* Create region for OPENAMP */
 define symbol __OPENAMP_region_start__ = 0x10040000;
 define symbol __OPENAMP_region_size__   = 0x8000;
 export symbol __OPENAMP_region_start__;
 export symbol __OPENAMP_region_size__;
+
 
 define block CSTACK    with alignment = 8, size = __ICFEDIT_size_cstack__   { };
 define block HEAP      with alignment = 8, size = __ICFEDIT_size_heap__     { };
