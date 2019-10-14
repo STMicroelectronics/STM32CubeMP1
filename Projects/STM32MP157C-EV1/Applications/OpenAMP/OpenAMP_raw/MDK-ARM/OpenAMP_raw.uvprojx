@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32MP157Cxx,CORE_CM4,METAL_INTERNAL,METAL_MAX_DEVICE_REGIONS=2,VIRTIO_SLAVE_ONLY,__LOG_TRACE_IO_,NO_ATOMIC_64_SUPPORT</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../../../../../../Drivers/STM32MP1xx_HAL_Driver/Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32MP1xx/Include;../../../../../../Drivers/CMSIS/Include;../../../../../../Drivers/BSP/STM32MP15xx_EVAL;../../../../../../Middlewares/Third_Party/OpenAMP/open-amp/lib/include;../../../../../../Middlewares/Third_Party/OpenAMP/libmetal/lib/include;../../../../../../Middlewares/Third_Party/OpenAMP/virtual_driver;../Common/Inc/openamp</IncludePath>
+              <IncludePath>../Inc;../../../../../../Drivers/STM32MP1xx_HAL_Driver/Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32MP1xx/Include;../../../../../../Drivers/CMSIS/Include;../../../../../../Drivers/BSP/STM32MP15xx_EVAL;../../../../../../Middlewares/Third_Party/OpenAMP/open-amp/lib/include;../../../../../../Middlewares/Third_Party/OpenAMP/libmetal/lib/include;../../../../../../Middlewares/Third_Party/OpenAMP/virtual_driver</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
