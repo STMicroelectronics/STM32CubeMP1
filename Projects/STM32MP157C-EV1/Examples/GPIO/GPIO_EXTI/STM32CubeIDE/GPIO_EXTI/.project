@@ -8,7 +8,7 @@
        </buildSpec>
        <natures>
               <nature>com.st.stm32cube.ide.mcu.MCUProjectNature</nature>
-              <nature>com.st.stm32cube.ide.mcu.MCUEndUserApplicationProjectNature</nature>
+              <nature>com.st.stm32cube.ide.mcu.MCURootProjectNature</nature>
               <nature>com.st.stm32cube.ide.mcu.MCUCubeIdeServicesRevAProjectNature</nature>
               <nature>com.st.stm32cube.ide.mcu.MCUManagedMakefileProjectNature</nature>
 			  <nature>com.st.stm32cube.ide.mcu.MCUEndUserDisabledTrustZoneProjectNature</nature>

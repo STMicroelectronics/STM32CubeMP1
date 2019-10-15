@@ -37,12 +37,12 @@
 			<locationURI>PARENT-3-PROJECT_LOC/readme.txt</locationURI>
 		</link>
 		<link>
-			<name>Application/SW4STM32/startup_stm32mp15xx.s</name>
+			<name>Application/STM32CubeIDE/startup_stm32mp15xx.s</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/startup_stm32mp15xx.s</locationURI>
 		</link>
 		<link>
-			<name>Application/SW4STM32/syscalls.c</name>
+			<name>Application/STM32CubeIDE/syscalls.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/syscalls.c</locationURI>
 		</link>
