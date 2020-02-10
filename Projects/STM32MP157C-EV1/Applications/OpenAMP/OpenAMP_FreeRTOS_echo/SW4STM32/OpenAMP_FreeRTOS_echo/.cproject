@@ -48,10 +48,12 @@
 									<listOptionValue builtIn="false" value="../../../../../../../../Middlewares/Third_Party/FreeRTOS/Source/include"/>
 									<listOptionValue builtIn="false" value="../../../../../../../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"/>
 									<listOptionValue builtIn="false" value="../../../../../../../../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"/>
-									<listOptionValue builtIn="false" value="../../../../../../../../Drivers/BSP/STM32MP15xx_EVAL"/>
+									<listOptionValue builtIn="false" value="&quot;../../../../../../../../Drivers/BSP/STM32MP15xx_EVAL&quot;"/>
 								</option>
 								<option id="gnu.c.compiler.option.preprocessor.def.symbols.232033392" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="CORE_CM4"/>
+									<listOptionValue builtIn="false" value="__weak=__attribute__((weak))"/>
+									<listOptionValue builtIn="false" value="__packed=__attribute__((__packed__))"/>
 									<listOptionValue builtIn="false" value="METAL_INTERNAL"/>
 									<listOptionValue builtIn="false" value="METAL_MAX_DEVICE_REGIONS=2"/>
 									<listOptionValue builtIn="false" value="VIRTIO_SLAVE_ONLY"/>
@@ -61,7 +63,6 @@
 									<listOptionValue builtIn="false" value="STM32MP157Axx"/>
 								</option>
 								<option id="fr.ac6.managedbuild.gnu.c.compiler.option.misc.other.1250472598" superClass="fr.ac6.managedbuild.gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-fmessage-length=0" valueType="string"/>
-								<option id="gnu.c.compiler.option.preprocessor.undef.symbol.896145960" name="Undefined symbols (-U)" superClass="gnu.c.compiler.option.preprocessor.undef.symbol" useByScannerDiscovery="false" valueType="undefDefinedSymbols"/>
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.c.1081218625" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.c"/>
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.s.1975553656" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.s"/>
 							</tool>
@@ -83,6 +84,8 @@
 								</option>
 								<option id="gnu.cpp.compiler.option.preprocessor.def.1043642835" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="CORE_CM4"/>
+									<listOptionValue builtIn="false" value="__weak=__attribute__((weak))"/>
+									<listOptionValue builtIn="false" value="__packed=__attribute__((__packed__))"/>
 									<listOptionValue builtIn="false" value="METAL_INTERNAL"/>
 									<listOptionValue builtIn="false" value="METAL_MAX_DEVICE_REGIONS=2"/>
 									<listOptionValue builtIn="false" value="VIRTIO_SLAVE_ONLY"/>

@@ -50,7 +50,7 @@ typedef void (* BSP_EXTI_LineCallback)(void);
 /** @brief STM32MP15XX DISCO BSP Driver version number V2.0.0
   */
 #define STM32MP15XX_DISCO_BSP_VERSION_MAIN   (0x01U) /*!< [31:24] main version */
-#define STM32MP15XX_DISCO_BSP_VERSION_SUB1   (0x01U) /*!< [23:16] sub1 version */
+#define STM32MP15XX_DISCO_BSP_VERSION_SUB1   (0x02U) /*!< [23:16] sub1 version */
 #define STM32MP15XX_DISCO_BSP_VERSION_SUB2   (0x00U) /*!< [15:8]  sub2 version */
 #define STM32MP15XX_DISCO_BSP_VERSION_RC     (0x00U) /*!< [7:0]  release candidate */
 #define STM32MP15XX_DISCO_BSP_VERSION         ((STM32MP15XX_DISCO_BSP_VERSION_MAIN << 24)\

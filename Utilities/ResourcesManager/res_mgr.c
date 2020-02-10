@@ -149,7 +149,7 @@ device_config_t mp1_device_config[] = {
   { RESMGR_ID_I2C4,         I2C4_BASE,      0x05 },
   { RESMGR_ID_RNG1,         RNG1_BASE,      0x07 },
   { RESMGR_ID_HASH1,        HASH1_BASE,     0x08 },
-#if defined (STM32MP157Cxx) || defined (STM32MP153Cxx) || defined (STM32MP151Cxx)
+#if defined (CRYP1)
   { RESMGR_ID_CRYP1,        CRYP1_BASE,     0x09 },
 #endif
   { RESMGR_ID_I2C6,         I2C6_BASE,      0x0C },
@@ -191,9 +191,13 @@ device_config_t mp1_device_config[] = {
   { RESMGR_ID_SAI2,         SAI2_BASE,      0x3B },
   { RESMGR_ID_SAI3,         SAI3_BASE,      0x3C },
   { RESMGR_ID_DFSDM1,       DFSDM1_BASE,    0x3D },
-#if defined (STM32MP157Cxx) || defined (STM32MP157Axx) || defined (STM32MP153Cxx) || defined (STM32MP153Axx)
+#if defined (FDCAN1)
   { RESMGR_ID_FDCAN1,       FDCAN1_BASE,    0x3E }, /* same decprot for all FDCAN */
+#endif
+#if defined (FDCAN2)
   { RESMGR_ID_FDCAN2,       FDCAN2_BASE,    0x3E }, /* same decprot for all FDCAN */
+#endif
+#if defined (FDCAN_CCU)
   { RESMGR_ID_FDCAN_CCU,    FDCAN_CCU_BASE, 0x3E }, /* same decprot for all FDCAN */
 #endif
   { RESMGR_ID_LPTIM2,       LPTIM2_BASE,    0x40 },
@@ -208,7 +212,7 @@ device_config_t mp1_device_config[] = {
   { RESMGR_ID_ADC2,         ADC2_BASE,      0x48 }, /* same decprot for both ADC */
   { RESMGR_ID_HASH2,        HASH2_BASE,     0x49 },
   { RESMGR_ID_RNG2,         RNG2_BASE,      0x4A },
-#if defined (STM32MP157Cxx) || defined (STM32MP153Cxx) || defined (STM32MP151Cxx)
+#if defined (CRYP2)
   { RESMGR_ID_CRYP2,        CRYP2_BASE,     0x4B },
 #endif
   { RESMGR_ID_USB1_OTG_HS,  USBOTG_BASE,    0x55 },
@@ -225,8 +229,10 @@ device_config_t mp1_device_config[] = {
   { RESMGR_ID_CRC1,         CRC1_BASE,      ETZPC_NO_INDEX },
   { RESMGR_ID_DLYB_SDMMC1,  DLYB_SDMMC1_BASE,   ETZPC_NO_INDEX },
   { RESMGR_ID_DLYB_SDMMC2,  DLYB_SDMMC2_BASE,   ETZPC_NO_INDEX },
-#if defined (STM32MP157Cxx) || defined (STM32MP157Axx)
+#if defined (DSI)
   { RESMGR_ID_DSI,          DSI_BASE,       ETZPC_NO_INDEX },
+#endif
+#if defined (GPU)
   { RESMGR_ID_GPU,          GPU_BASE,       ETZPC_NO_INDEX },
 #endif
   { RESMGR_ID_IPCC,         IPCC_BASE,      ETZPC_NO_INDEX },
@@ -743,6 +749,68 @@ ResMgr_Status_t ResMgr_GetConfig(uint32_t id, char *id_name, ResSystem_t res_typ
 #endif
 }
 
+#if (RESMGR_USE_HARDWARE_LOCK_FEATURE == 1)
+/**
+  * @brief  Hw lock resource.
+  * @param  id: Resource identifier
+  * @retval Status
+  */
+ResMgr_Status_t  ResMgr_HwLock(uint32_t id)
+{
+  ResMgr_Status_t ret = RESMGR_OK;
+
+  if(id < RESMGR_ENTRY_NBR)
+  {
+    if (ResHwLockTbl[id] != RES_HW_LOCK_NOT_USED)
+    {
+       RESMGR_HW_LOCK(ResHwLockTbl[id]);
+    }
+    else
+    {
+      /* No HW lock id set for this resource */
+       ret = RESMGR_ERROR;
+    }
+  }
+  else
+  {
+    ret = RESMGR_ERROR;
+  }
+  return ret;
+}
+
+
+/**
+  * @}
+  */
+
+/**
+  * @brief  Hw unlock resource.
+  * @param  id: Resource identifier.
+  * @retval Status
+  */
+ResMgr_Status_t  ResMgr_HwUnLock(uint32_t id)
+{
+  ResMgr_Status_t ret = RESMGR_OK;
+
+  if(id < RESMGR_ENTRY_NBR)
+  {
+    if (ResHwLockTbl[id] != RES_HW_LOCK_NOT_USED)
+    {
+       RESMGR_HW_UNLOCK(ResHwLockTbl[id]);
+    }
+    else
+    {
+      /* No HW lock id set for thisb resource */
+       ret = RESMGR_ERROR;
+    }
+  }
+  else
+  {
+    ret = RESMGR_ERROR;
+  }
+  return ret;
+}
+#endif /* RESMGR_USE_HARDWARE_LOCK_FEATURE */
 /**
   * @}
   */

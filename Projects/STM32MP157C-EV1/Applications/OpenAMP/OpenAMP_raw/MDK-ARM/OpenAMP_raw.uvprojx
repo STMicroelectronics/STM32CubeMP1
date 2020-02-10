@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>STM32MP157CAAx:Cortex-M4</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32MP1xx_DFP.0.0.1-dev5</PackID>
+          <PackID>Keil.STM32MP1xx_DFP.1.1.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x10020000,0x00020000) IRAM2(0x10040000,0x00020000) IROM(0x10000000,0x00020000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000)</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -759,7 +759,7 @@
         <TargetCommonOption>
           <Device>STM32MP157CAAx:Cortex-M4</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32MP1xx_DFP.0.0.1-dev5</PackID>
+          <PackID>Keil.STM32MP1xx_DFP.1.1.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x10020000,0x00020000) IRAM2(0x10040000,0x00020000) IROM(0x10000000,0x00020000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000)</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -797,7 +797,7 @@
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
-          <BrowseInformation>1</BrowseInformation>
+          <BrowseInformation>0</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -1529,7 +1529,7 @@
       <file attr="config" category="utility" name="Tools\production.config" version="1.0.0">
         <instance index="0">RTE\Device\STM32MP157CAAx_Cortex-M4\production.config</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP157 M4 CMSIS"/>
-        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="0.0.1-dev5"/>
+        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.0"/>
         <targetInfos>
           <targetInfo excluded="1" name="Engineering"/>
           <targetInfo excluded="1" name="Production"/>
@@ -1538,7 +1538,7 @@
       <file attr="config" category="source" condition="ARMCC" name="MDK\Device\Source\ARM\startup_stm32mp15xx.s" version="1.0.0">
         <instance index="0">RTE\Device\STM32MP157CAAx_Cortex-M4\startup_stm32mp15xx.s</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP157 M4 CMSIS"/>
-        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="0.0.1-dev5"/>
+        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.0"/>
         <targetInfos>
           <targetInfo excluded="1" name="Engineering"/>
           <targetInfo excluded="1" name="Production"/>
@@ -1547,16 +1547,16 @@
       <file attr="config" category="linkerScript" condition="ARMCC" name="MDK\Device\Source\ARM\linker\stm32mp15xx_m4_sram.sct" version="1.0.0">
         <instance index="0">RTE\Device\STM32MP157CAAx_Cortex-M4\stm32mp15xx_m4_sram.sct</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP157 M4 CMSIS"/>
-        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="0.0.1-dev5"/>
+        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.0"/>
         <targetInfos>
           <targetInfo excluded="1" name="Engineering"/>
           <targetInfo excluded="1" name="Production"/>
         </targetInfos>
       </file>
-      <file attr="config" category="header" name="Drivers\Conf\stm32mp1xx_hal_conf.h" version="1.0.0">
+      <file attr="config" category="header" name="MDK\Templates\stm32mp1xx_hal_conf.h" version="1.0.0">
         <instance index="0">RTE\Device\STM32MP157CAAx_Cortex-M4\stm32mp1xx_hal_conf.h</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP157 M4 CMSIS"/>
-        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="0.0.1-dev5"/>
+        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.0"/>
         <targetInfos>
           <targetInfo excluded="1" name="Engineering"/>
           <targetInfo excluded="1" name="Production"/>
@@ -1565,7 +1565,7 @@
       <file attr="config" category="source" name="Drivers\CMSIS\Device\ST\STM32MP1xx\Source\Templates\system_stm32mp1xx.c" version="1.0.0">
         <instance index="0">RTE\Device\STM32MP157CAAx_Cortex-M4\system_stm32mp1xx.c</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP157 M4 CMSIS"/>
-        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="0.0.1-dev5"/>
+        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.0"/>
         <targetInfos>
           <targetInfo excluded="1" name="Engineering"/>
           <targetInfo excluded="1" name="Production"/>

@@ -163,7 +163,7 @@ int main(void)
   {
     .name = "idle",
     .priority = (osPriority_t) osPriorityNormal,
-    .stack_size = 128
+    .stack_size = 512
   };
   idleTaskHandle = osThreadNew(IdleTask, NULL, &idleTask_attributes);
 
@@ -171,7 +171,7 @@ int main(void)
   {
     .name = "T0",
     .priority = (osPriority_t) osPriorityHigh,
-    .stack_size = 128
+    .stack_size = 512
   };
   t0_TaskHandle = osThreadNew(t0Task, NULL, &t0_attr);
   /* USER CODE END RTOS_THREADS */

@@ -180,6 +180,10 @@ ResMgr_Status_t ResMgr_Release(uint32_t id, uint32_t flags);
 
 ResMgr_Status_t ResMgr_SetConfig(uint32_t id, char *id_name, ResSystem_t res_type, ResConfig_t *config_in, ResConfig_t *config_out);
 ResMgr_Status_t ResMgr_GetConfig(uint32_t id, char *id_name, ResSystem_t res_type, ResConfig_t *config_in, ResConfig_t *config_out);
+#if (RESMGR_USE_HARDWARE_LOCK_FEATURE == 1)
+ResMgr_Status_t ResMgr_HwLock  (uint32_t id);
+ResMgr_Status_t ResMgr_HwUnLock (uint32_t id);
+#endif /* RESMGR_USE_HARDWARE_LOCK_FEATURE */
 
 /**
   * @}

@@ -32,16 +32,6 @@
 			<locationURI>PARENT-2-PROJECT_LOC/readme.txt</locationURI>
 		</link>
 		<link>
-			<name>Remoteproc/README</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Remoteproc/README</locationURI>
-		</link>
-		<link>
-			<name>Remoteproc/fw_cortex_m4.sh</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Remoteproc/fw_cortex_m4.sh</locationURI>
-		</link>
-		<link>
 			<name>Application/SW4STM32/startup_stm32mp15xx.s</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/startup_stm32mp15xx.s</locationURI>

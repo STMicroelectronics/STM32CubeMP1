@@ -54,6 +54,7 @@ __IO   uint8_t ubUserButtonClickEvent = RESET;  /* Event detection: Set after Us
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+void PeriphCommonClock_Config(void);
 void Error_Handler(void);
 static void MX_GPIO_Init(void);
 static void MX_DAC1_Init(void);
@@ -89,13 +90,22 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  if(IS_ENGINEERING_BOOT_MODE())
-  {
-    /* Configure the system clock */
-    SystemClock_Config();
-  }
+
   /* USER CODE END Init */
 
+  /* Configure the system clock */
+
+  if(IS_ENGINEERING_BOOT_MODE())
+  {
+    SystemClock_Config();
+  }
+  /* Configure the peripherals common clocks */
+
+  if(IS_ENGINEERING_BOOT_MODE())
+  {
+  PeriphCommonClock_Config();
+  }
+  
   /*HW semaphore Clock enable*/
   __HAL_RCC_HSEM_CLK_ENABLE();
 
@@ -321,6 +331,24 @@ void SystemClock_Config(void)
   /**Set the HSE division factor for RTC clock
   */
   __HAL_RCC_RTC_HSEDIV(24);
+}
+
+/**
+  * @brief Peripherals Common Clock Configuration
+  * @retval None
+  */
+void PeriphCommonClock_Config(void)
+{
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+
+  /** Initializes the common periph clock 
+  */
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_CKPER;
+  PeriphClkInit.CkperClockSelection = RCC_CKPERCLKSOURCE_HSE;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+  {
+    Error_Handler();
+  }
 }
 
 /* DAC1 init function */

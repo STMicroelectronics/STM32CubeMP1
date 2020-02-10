@@ -52,6 +52,8 @@
 								</option>
 								<option id="gnu.c.compiler.option.preprocessor.def.symbols.2028477777" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="CORE_CM4"/>
+									<listOptionValue builtIn="false" value="__weak=__attribute__((weak))"/>
+									<listOptionValue builtIn="false" value="__packed=__attribute__((__packed__))"/>
 									<listOptionValue builtIn="false" value="METAL_INTERNAL"/>
 									<listOptionValue builtIn="false" value="METAL_MAX_DEVICE_REGIONS=2"/>
 									<listOptionValue builtIn="false" value="VIRTIO_SLAVE_ONLY"/>
@@ -82,6 +84,8 @@
 								</option>
 								<option id="gnu.cpp.compiler.option.preprocessor.def.1604535552" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="CORE_CM4"/>
+									<listOptionValue builtIn="false" value="__weak=__attribute__((weak))"/>
+									<listOptionValue builtIn="false" value="__packed=__attribute__((__packed__))"/>
 									<listOptionValue builtIn="false" value="METAL_INTERNAL"/>
 									<listOptionValue builtIn="false" value="METAL_MAX_DEVICE_REGIONS=2"/>
 									<listOptionValue builtIn="false" value="VIRTIO_SLAVE_ONLY"/>

@@ -586,8 +586,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>../Src/user_log.c</PathWithFileName>
-      <FilenameWithoutPath>user_log.c</FilenameWithoutPath>
+      <PathWithFileName>../Src/openamp_log.c</PathWithFileName>
+      <FilenameWithoutPath>openamp_log.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

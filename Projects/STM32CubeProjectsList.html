@@ -49,8 +49,8 @@ same structure:</p>
 <li>\Inc folder that contains all header files.</li>
 <li>\Src folder for the sources code.</li>
 <li>\SW4STM32 folders contain the preconfigured project for
-the toolchain.</li><ul><li><span style="font-weight: bold;">(note) : By default the IDE is SW4STM32</span>. Step by step the examples will be ported on other IDEs (IAR,&nbsp;KEIL and STM32CubeIDE)</li></ul>
-<li>\Remoteproc folder that contains specific files related to
+the toolchain.</li><ul><li><span style="font-weight: bold;">(note) : By default the IDE was SW4STM32</span>, but this is&nbsp;now <span style="font-weight: bold;">STM32CubeIDE</span> = Step by step the examples are ported on this IDE.</li></ul>
+<li>\EWARM and \MDK-ARM folders contain the preconfigured project for each toolchain.</li><ul><li>The portage for this IDE is mainly done for STM32MP157C-DK2</li></ul><li>\Remoteproc folder that contains specific files related to
 the use of Linux<sup>®</sup> remote processor framework to
 load STM32Cube Cortex-M firmware</li>
 <li>readme.txt describing the example behavior and the
@@ -58,7 +58,7 @@ environment required to run the example.</li>
 </ul>
 <p>To run the example, you have to do the following:</p>
 <ul>
-<li>Open the example using your preferred IDE (Today = SW4STM32 by default).</li>
+<li>Open the example using your preferred IDE (&nbsp;<span style="font-weight: bold;">STM32CubeIDE</span> is&nbsp;promoted by ST).</li>
 <li>Rebuild all files and load the image into target memory.</li>
 <li>Run the example by following the readme.txt instructions.</li>
 <li><i><u>Note</u>: refer to section
@@ -92,7 +92,10 @@ specific needs as to test a Firmware directly on coprocessor</li>
 <li><a href="https://wiki.st.com/stm32mpu" target="_blank">Wiki</a>: Wiki STM32 MP1 Main Page.</li>
 <li><a href="https://wiki.st.com/stm32mpu/index.php/Category:STM32CubeMP1" target="_blank">Wiki</a>: Wiki STM32CubeMP1.</li>
 </ul>
-<br>
+<br><p><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span> </span>list
+of STM32MP157C-DK2 examples available with 4 IDEs ( SW4STM32,
+STM32CubeIDE, IAR,&nbsp;KEIL&nbsp;), the others are only available with
+SW4STM32 for the moment.</p><p><span style="font-weight: bold;">(**)</span> Few projects are ported on STM32CubeIDE for&nbsp;STM32MP157C-EV1&nbsp;.</p><br>
 <table style="background-color: rgb(240, 240, 255); width: 1282px;" border="1">
 <tbody>
 <tr style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" align="center">
@@ -113,14 +116,14 @@ specific needs as to test a Firmware directly on coprocessor</li>
 <p id="-">-</p>
 </td>
 <td style="width: 229px;" align="left">
-<p id="Starter project">Starter project <span style="font-weight: bold;">(*)</span></p>
+<p id="Starter project">Starter project&nbsp;<span style="font-weight: bold;"></span></p>
 </td>
 <td style="width: 266px;" align="left">This
 projects provides a reference template that can be used to build any
 firmware application.
 </td>
-<td style="text-align: center; vertical-align: middle; width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="text-align: center; vertical-align: middle; width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;">(**)</span></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span><span style="font-weight: bold;"></span></td>
 <td style="width: 130px;">Engineering</td>
 <td style="width: 130px;">Cortex-M4 </td>
 </tr>
@@ -148,7 +151,7 @@ data are transferred by DMA into an array, indefinitely (circular
 mode).
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -169,7 +172,7 @@ buffer of 32-bit data words, based on a user-defined generating
 polynomial.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -188,7 +191,7 @@ peripheral to encrypt and decrypt data using AES-128 Algorithm with ECB
 chaining mode.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -207,7 +210,7 @@ read-only, and attempts to perform read and write operations in
 different modes.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -243,7 +246,7 @@ data buffer from Flash memory to embedded SRAM with FIFO mode
 enabled through the HAL API.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -260,7 +263,7 @@ Engineering</td>
 configure the FDCAN to operate in loopback mode.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span><span style="font-weight: bold;"></span></td>
 <td style="width: 130px;"><span style="font-weight: bold;"></span>Engineering <span style="font-weight: bold;">Only</span></td>
 <td style="width: 130px;">Cortex-M4 </td>
 </tr>
@@ -269,13 +272,13 @@ configure the FDCAN to operate in loopback mode.
 <p id="GPIO">GPIO</p>
 </td>
 <td style="width: 229px;" align="left">
-<p id="GPIO_EXTI">GPIO_EXTI&nbsp; <span style="font-weight: bold;">(**)</span></p>
+<p id="GPIO_EXTI">GPIO_EXTI&nbsp;&nbsp;<span style="font-weight: bold;"></span></p>
 </td>
 <td style="width: 266px;" align="left">How to
 configure external interrupt lines.
 </td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;">(**)</span></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span><span style="font-weight: bold;"></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -293,7 +296,7 @@ example provides a short description of how to use the HASH peripheral
 to hash data using SHA224 and SHA256 Algorithms.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -326,7 +329,7 @@ handle I2C data buffer transmission/reception between two boards, using
 an interrupt.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span><span style="font-weight: bold;"></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -345,7 +348,7 @@ through
 the LPTIM HAL API.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production (<span style="font-weight: bold;">only for
 DK2</span>)<br>
 &amp;<br>
@@ -359,7 +362,7 @@ Engineering (EV1 and DK2)</td>
 (aka Co-processor) and wake up from this mode by using external wakeup
 interrupt.</td>
 <td style="text-align: center;"><font color="green" size="5">x</font></td>
-<td style="text-align: center;"><font color="green" size="5">x</font></td>
+<td style="text-align: center;"><font color="green" size="5">x</font><span style="font-weight: bold;">&nbsp;</span><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="text-align: center;">Production <span style="font-weight: bold;">Only</span></td>
 <td style="text-align: center;">Cortex-M4</td>
 </tr>
@@ -392,7 +395,7 @@ Engineering</td>
 buffer transmission/reception between two boards via SPI in Polling.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -406,7 +409,7 @@ Engineering</td>
 buffer transmission/reception between two boards via SPI using DMA.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -421,7 +424,7 @@ buffer transmission/reception between two boards via SPI using
 Interrupt mode.
 </td>
 <td style="width: 130px;">-</td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span><span style="font-weight: bold;"></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -436,7 +439,7 @@ buffer transmission/reception between two boards via SPI using
 Interrupt mode.
 </td>
 <td style="width: 130px;">-</td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -454,7 +457,7 @@ example shows how to update the TIMER TIM2_CH4 period and the duty
 cycle using the TIMER DMA burst feature.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -471,7 +474,7 @@ Engineering</td>
 transmission (transmit/receive) in DMA mode between two boards.
 </td>
 <td style="width: 130px;">-</td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -485,13 +488,13 @@ Engineering</td>
 transmission (transmit/receive) in Interrupt mode between two boards.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
 <td style="width: 130px;">Cortex-M4 </td>
 </tr>
-<tr><td>UART_Receive_Transmit_Console</td><td>UART transmission (printf/getchar) via console with user interaction.</td><td style="text-align: center;"><font color="green" size="5">x</font></td><td style="text-align: center;"><font color="green" size="5">x</font></td><td style="text-align: center;">Production<br>
+<tr><td>UART_Receive_Transmit_Console</td><td>UART transmission (printf/getchar) via console with user interaction.</td><td style="text-align: center;"><font color="green" size="5">x</font></td><td style="text-align: center;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td><td style="text-align: center;">Production<br>
 &amp;<br>
 Engineering</td><td style="text-align: center;">Cortex-M4</td></tr><tr align="center">
 <td rowspan="1" align="left">
@@ -506,7 +509,7 @@ software fault that generates an MCU WWDG reset when a predefined time
 period has elapsed.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -536,7 +539,7 @@ to Cortex-M4 so that it is able to take necessary actions before going
 to reset state.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 </td>
 <td style="width: 130px;">Cortex-M4 </td>
@@ -546,13 +549,13 @@ to reset state.
 <p id="FreeRTOS">FreeRTOS</p>
 </td>
 <td style="width: 229px;" align="left">
-<p id="FreeRTOS_ThreadCreation">FreeRTOS_ThreadCreation&nbsp;<span style="font-weight: bold;">(*)</span></p>
+<p id="FreeRTOS_ThreadCreation">FreeRTOS_ThreadCreation<span style="font-weight: bold;"></span></p>
 </td>
 <td style="width: 266px;" align="left">How to
 use the DAC peripheral and its reference regulator to do a simple
 conversion. </td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
-<td style="width: 130px;"><font color="green" size="5">x</font></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;">(**)</span></td>
+<td style="width: 130px;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="width: 130px;">Production<br>
 &amp;<br>
 Engineering</td>
@@ -573,7 +576,7 @@ Communication channel seen as TTY device in Linux OS.
 </td>
 <td style="width: 130px;">Cortex-M4 </td>
 </tr>
-<tr><td><span style="color: rgb(51, 204, 0);">OpenAMP_FreeRTOS_echo</span>&nbsp;<span style="font-weight: bold;">(**)</span></td><td>How to use OpenAMP MW with FreeRTOS.</td><td style="text-align: center;"><font color="green" size="5">x</font></td><td style="text-align: center;"><font color="green" size="5">x</font></td><td style="text-align: center;">Production</td><td style="text-align: center;">Cortex-M4</td></tr><tr>
+<tr>
 <td>
 <p id="OpenAMP_TTY_echo">OpenAMP_TTY_echo</p>
 </td>
@@ -581,7 +584,7 @@ Communication channel seen as TTY device in Linux OS.
 use OpenAMP MW + Virtual UART to create an Inter-Processor
 Communication channel seen as TTY device in Linux OS.</td>
 <td style="text-align: center;"><font color="green" size="5">x</font></td>
-<td style="text-align: center;"><font color="green" size="5">x</font></td>
+<td style="text-align: center;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td>
 <td style="text-align: center;">Production</td>
 <td style="text-align: center;">Cortex-M4</td>
 </tr>
@@ -598,12 +601,13 @@ enter different PWR system operating mode (Run, Stop and Standby).
 </td>
 <td style="width: 130px;">Cortex-M4 </td>
 </tr>
-<tr align="center">
+<tr><td><p id="OpenAMP_raw">OpenAMP_raw&nbsp;<span style="font-weight: bold;"></span></p></td><td>How to
+use OpenAMP MW to create an Inter-Processor Communication channel.</td><td style="width: 130px; text-align: center;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;">(**)</span></td><td style="width: 130px; text-align: center;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></td><td style="width: 130px; text-align: center;">Production<br>
+</td><td style="width: 130px; text-align: center;">Cortex-M4 </td></tr><tr align="center">
 <td style="width: 229px;" align="left">
-<p id="OpenAMP_raw">OpenAMP_raw&nbsp;<span style="font-weight: bold;">(*)</span></p>
+<p id="OpenAMP_raw"><span style="font-weight: bold;">OpenAMP_FreeRTOS_echo</span></p>
 </td>
-<td style="width: 266px;" align="left">How to
-use OpenAMP MW to create an Inter-Processor Communication channel.
+<td style="width: 266px;" align="left">How to use OpenAMP MW with FreeRTOS.
 </td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
 <td style="width: 130px;"><font color="green" size="5">x</font></td>
@@ -656,6 +660,4 @@ number of projects: 57</b></td>
 <td style="width: 130px;"></td>
 </tr>
 </tbody>
-</table>
-<p><span style="font-weight: bold;">(*) </span>list of STM32MP157C-EV1 examples available with 4 IDEs ( SW4STM32, IAR,&nbsp;KEIL and STM32CubeIDE).</p><p><span style="font-weight: bold;">(**) GPIO_EXTI&nbsp;</span>projects are ported on STM32CubeIDE for&nbsp;STM32MP157C-EV1 and&nbsp;STM32MP157C-DK2.</p><p><span style="color: rgb(51, 204, 0);">OpenAMP_FreeRTOS_echo - New example added in v1.1.1</span></p>
-</body></html>
+</table><br></body></html>

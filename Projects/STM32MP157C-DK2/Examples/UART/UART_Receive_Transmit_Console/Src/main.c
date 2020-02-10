@@ -345,7 +345,7 @@ int Serial_Scanf(char *ptr, int len)
 #else
     thechar = fgetc(NULL);
 #endif
-  if ( thechar  > 0xFF)
+  if ( thechar  >= 0xFF)
   {
     printf("\n\r  !!! Please enter a valid ASCII character \n");
     return 0xFF;
