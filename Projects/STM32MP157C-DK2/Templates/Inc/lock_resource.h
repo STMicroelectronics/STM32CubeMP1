@@ -20,6 +20,10 @@
 #ifndef __LOCK_RESOURCE_H__
 #define __LOCK_RESOURCE_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Includes ------------------------------------------------------------------*/
 #include "stm32mp1xx_hal.h"
 
@@ -43,7 +47,9 @@ typedef enum
 LockResource_Status_t Periph_Lock(void* Peripheral, uint32_t Timeout);
 void Periph_Unlock(void* Peripheral);
 
-
+#ifdef __cplusplus
+}
+#endif
 
 
 #endif /* __LOCK_RESOURCE_H__ */
