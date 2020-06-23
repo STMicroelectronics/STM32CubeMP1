@@ -80,8 +80,8 @@
    HypervisorTimer_IRQn             = 26,     /*!< Hypervisor Timer Interrupt                                           */
    VirtualTimer_IRQn                = 27,     /*!< Virtual Timer Interrupt                                              */
    Legacy_nFIQ_IRQn                 = 28,     /*!< Legacy nFIQ Interrupt                                                */
-   SecurePhysicalTimer_IRQn         = 29,     /*!< Secure Physical Timer Interrupt                                      */
-   NonSecurePhysicalTimer_IRQn      = 30,     /*!< Non-Secure Physical Timer Interrupt                                  */
+   SecurePhyTimer_IRQn              = 29,     /*!< Secure Physical Timer Interrupt                                      */
+   NonSecurePhyTimer_IRQn           = 30,     /*!< Non-Secure Physical Timer Interrupt                                  */
    Legacy_nIRQ_IRQn                 = 31,     /*!< Legacy nIRQ Interrupt                                                */
    /******  STM32 specific Interrupt Numbers ****************************************************************************/    
    WWDG1_IRQn                       = 32,     /*!< Window WatchDog Interrupt                                            */
