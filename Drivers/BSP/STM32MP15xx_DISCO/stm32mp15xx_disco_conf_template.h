@@ -54,7 +54,11 @@
 #define BSP_BUTTON_WAKEUP_IT_PRIORITY          0x0FUL
 #define BSP_BUTTON_USER_IT_PRIORITY            0x0FUL
 #define BSP_BUTTON_USER2_IT_PRIORITY           0x0FUL
-   
+
+#ifdef __cplusplus
+}
+#endif
+  
 #endif /* __STM32MP15XX_DISCO_CONFIG_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -530,7 +530,7 @@ __STATIC_INLINE void Configure_ADC(void)
   /* Note: On this STM32 serie, ADC group regular sequencer is                */
   /*       fully configurable: sequencer length and each rank                 */
   /*       affectation to a channel are configurable.                         */
-  hadc2.Init.ClockPrescaler        = ADC_CLOCK_SYNC_PCLK_DIV2;
+  hadc2.Init.ClockPrescaler        = ADC_CLOCK_ASYNC_DIV2;
   hadc2.Init.Resolution            = ADC_RESOLUTION_12B;
   hadc2.Init.ScanConvMode          = ADC_SCAN_DISABLE;              /* Sequencer disabled (ADC conversion on only 1 channel: channel set on rank 1) */
   hadc2.Init.EOCSelection          = ADC_EOC_SINGLE_CONV;

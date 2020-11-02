@@ -32,6 +32,7 @@
 
 #include "stm32mp15xx_eval_conf.h"
 #include "stm32mp15xx_eval_errno.h"
+
    
 /** @addtogroup BSP
   * @{
