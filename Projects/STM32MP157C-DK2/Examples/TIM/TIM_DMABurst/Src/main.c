@@ -82,6 +82,7 @@ int main(void)
   if(IS_ENGINEERING_BOOT_MODE())
   {
     /* Configure the system clock */
+    HAL_RCC_DeInit();
     SystemClock_Config();
   }
   /* USER CODE END Init */

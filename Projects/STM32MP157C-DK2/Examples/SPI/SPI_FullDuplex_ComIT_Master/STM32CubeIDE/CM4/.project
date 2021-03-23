@@ -42,6 +42,11 @@
 			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/Src/lock_resource.c</locationURI>
 		</link>
 		<link>
+			<name>Application/Startup/startup_stm32mp157caax.s</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-0-PROJECT_LOC%7D/Application/Startup/startup_stm32mp157caax.s</locationURI>
+		</link>
+		<link>
 			<name>Application/User/main.c</name>
 			<type>1</type>
 			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/Src/main.c</locationURI>

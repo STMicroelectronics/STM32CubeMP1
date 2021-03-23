@@ -1,0 +1,68 @@
+# SPDX-License-Identifier: BSD-3-Clause
+# Copyright (c) 2020 STMicroelectronics
+
+name: libmetal Continuous Integration
+
+on:
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - docs/**
+      - cmake/**
+      - scripts/**
+  pull_request:
+    branches: [ master ]
+    paths-ignore:
+      - docs/**
+      - cmake/**
+      - scripts/**
+
+jobs:
+  platform_builds:
+    name: check builds on different platforms
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build for Linux
+      id: build_linux
+      uses: ./.github/actions/build_ci
+      with:
+        target: linux
+    - name: build for generic arm
+      id: build_generic
+      uses: ./.github/actions/build_ci
+      with:
+        target: generic
+    - name: build for FreeRTOS
+      id: build_freertos
+      uses: ./.github/actions/build_ci
+      with:
+        target: freertos
+    - name: build for Zephyr
+      id: build_Zephyr
+      uses: ./.github/actions/build_ci
+      with:
+        target: zephyr
+
+  nr_tests:
+    name: nonreg tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: configure
+      run: |
+        sudo apt-get update && sudo apt-get install libsysfs-dev
+        cmake . -Bbuild
+    - name: build
+      run: |
+        cd build
+        make
+    - name: execute test
+      run: |
+        cd build
+        make test
+    - name: test logs
+      if: failure()
+      run: |
+        cat build/Testing/Temporary/LastTest.log
+        exit 1

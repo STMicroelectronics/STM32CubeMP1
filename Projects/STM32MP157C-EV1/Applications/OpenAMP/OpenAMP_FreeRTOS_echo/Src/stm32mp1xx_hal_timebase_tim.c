@@ -1,18 +1,40 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    stm32mp1xx_hal_timebase_TIM.c
+  * @file    stm32mp1xx_hal_timebase_tim.c
+  * @author  MCD Application Team
   * @brief   HAL time base based on the hardware TIM.
+  *
+  *          This file overrides the native HAL time base functions (defined as weak)
+  *          the TIM time base:
+  *           + Intializes the TIM peripheral to generate a Period elapsed Event each 1ms
+  *           + HAL_IncTick is called inside HAL_TIM_PeriodElapsedCallback ie each 1ms
+  *
+ @verbatim
+  ==============================================================================
+                        ##### How to use this driver #####
+  ==============================================================================
+    [..]
+    This file must be copied to the application folder and modified as follows:
+    (#) Rename it to 'stm32mp1xx_hal_timebase_tim.c'
+    (#) Add this file and the TIM HAL driver files to your project and make sure
+       HAL_TIM_MODULE_ENABLED is defined in stm32mp1xx_hal_conf.h
+
+    [..]
+    (@) The application needs to ensure that the time base is always set to 1 millisecond
+       to have correct HAL operation.
+
+  @endverbatim
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software component is licensed by ST under BSD 3-Clause license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                        opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
   */
@@ -27,6 +49,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 TIM_HandleTypeDef        htim2;
+
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -41,22 +64,14 @@ TIM_HandleTypeDef        htim2;
   */
 HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
 {
-  //RCC_ClkInitTypeDef    clkconfig;
   uint32_t              uwTimclock = 0;
   uint32_t              uwPrescalerValue = 0;
-  //uint32_t              pFLatency;
-
+  
   /*Configure the TIM2 IRQ priority */
   HAL_NVIC_SetPriority(TIM2_IRQn, TickPriority, 0);
 
-  /* Enable the TIM2 global Interrupt */
-  HAL_NVIC_EnableIRQ(TIM2_IRQn);
-
   /* Enable TIM2 clock */
   __HAL_RCC_TIM2_CLK_ENABLE();
-
-  /* Get clock configuration */
-  //HAL_RCC_GetClockConfig(&clkconfig, &pFLatency);
   __HAL_RCC_TIM2_FORCE_RESET();
   __HAL_RCC_TIM2_RELEASE_RESET();
 
@@ -81,6 +96,9 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   if (HAL_TIM_Base_Init(&htim2) == HAL_OK)
   {
+    /* Enable the TIM2 global Interrupt */
+    HAL_NVIC_EnableIRQ(TIM2_IRQn);
+
     /* Start the TIM time Base generation in interrupt mode */
     return HAL_TIM_Base_Start_IT(&htim2);
   }

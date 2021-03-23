@@ -29,9 +29,6 @@
 
 #define IPI_DEV_NAME         "ipi_dev"
 #define IPI_BUS_NAME         "generic"
-#define IPI_BASE_ADDR        XPAR_XIPIPSU_0_BASE_ADDRESS /* IPI base address*/
-#define IPI_CHN_BITMASK      0x01000000 /* IPI channel bit mask for IPI from/to
-					   APU */
 
 /* Cortex R5 memory attributes */
 #define DEVICE_SHARED		0x00000001U /* device, shareable */
@@ -40,9 +37,14 @@
 #define NORM_SHARED_NCACHE	0x0000000CU /* Non cacheable shareable */
 #define	PRIV_RW_USER_RW		(0x00000003U<<8U) /* Full Access */
 
+#if XPAR_CPU_ID == 0
 #define SHARED_MEM_PA  0x3ED40000UL
+#else
+#define SHARED_MEM_PA  0x3EF40000UL
+#endif /* XPAR_CPU_ID */
 #define SHARED_MEM_SIZE 0x100000UL
 #define SHARED_BUF_OFFSET 0x8000UL
+
 
 #define _rproc_wait() asm volatile("wfi")
 
@@ -143,7 +145,7 @@ int platform_init(int argc, char *argv[], void **platform)
 
 	if (!platform) {
 		xil_printf("Failed to initialize platform,"
-			   "NULL pointer to store platform data.\n");
+			   "NULL pointer to store platform data.\r\n");
 		return -EINVAL;
 	}
 	/* Initialize HW system components */
@@ -159,7 +161,7 @@ int platform_init(int argc, char *argv[], void **platform)
 
 	rproc = platform_create_proc(proc_id, rsc_id);
 	if (!rproc) {
-		xil_printf("Failed to create remoteproc device.\n");
+		xil_printf("Failed to create remoteproc device.\r\n");
 		return -EINVAL;
 	}
 	*platform = rproc;

@@ -50,12 +50,15 @@ OpenAMP MW uses the following HW resources
             It is defined in platform_info.c file
 
 In this example:
-    - CPU2(CM4) initialize OPenAMP MW which initializes/configures IPCC peripheral through HAL
-    and setup openamp-rpmsg framwork infrastructure
-    - CPU2(CM4) creates 2 rpmsg channels for 2 virtual UART instance UART0 and UART1
-    - CPU2(CM4) is waiting for messages from CPU1(CA7) on these both channels
+    - CPU2(CM4) turns on the LED4. the LED4 is fixed ON until OpenAMP middleware is initialized.
+    - CPU2(CM4) initializes OpenAMP MW which initializes/configures IPCC peripheral through HAL
+    and setup openamp-rpmsg framwork infrastructure.
+    - CPU2(CM4) creates 2 RPMsg channels for 2 virtual UART instance UART0 and UART1
+    - CPU2(CM4) is waiting for messages from CPU1(CA7) on these both channels.
+    - LED4 toggles when the RPMsg communication is initialised.
     - When CPU2(CM4) receives a message on 1 Virtual UART instance/rpmsg channel,
-      it sends the message back to CPU1(CA7) on the same Virtual UART instance
+      it sends the message back to CPU1(CA7) on the same Virtual UART instance.
+    - LED4 is turned OFF if any error occurs.
 
     Notes:
     - It requires Linux console to run example.

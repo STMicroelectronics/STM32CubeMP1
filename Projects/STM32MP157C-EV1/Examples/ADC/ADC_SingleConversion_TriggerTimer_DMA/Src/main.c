@@ -94,13 +94,13 @@ int main(void)
   /* USER CODE END Init */
 
   /* Configure the system clock */
-
   if(IS_ENGINEERING_BOOT_MODE())
   {
+    HAL_RCC_DeInit();
     SystemClock_Config();
   }
-  /* Configure the peripherals common clocks */
 
+  /* Configure the peripherals common clocks */
   if(IS_ENGINEERING_BOOT_MODE())
   {
   PeriphCommonClock_Config();

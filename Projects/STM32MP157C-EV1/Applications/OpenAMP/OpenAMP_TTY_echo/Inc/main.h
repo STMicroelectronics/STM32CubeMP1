@@ -34,6 +34,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "stm32mp15xx_eval.h"
 #include "openamp_log.h"
 /* USER CODE END Includes */
 

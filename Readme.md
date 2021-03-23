@@ -1,5 +1,7 @@
 # STM32CubeMP1 MPU Firmware Package
 
+![latest tag](https://img.shields.io/github/v/tag/STMicroelectronics/STM32CubeMP1.svg?color=brightgreen)
+
 **STM32Cube** is an STMicroelectronics original initiative to ease the developers life by reducing efforts, time and cost.
 
 **STM32Cube** covers the overall STM32 products portfolio. It includes a comprehensive embedded software platform (this repo), delivered for each series (such as the STM32CubeMP1 for the STM32MP1 series).

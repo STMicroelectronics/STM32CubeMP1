@@ -106,6 +106,7 @@ int main(void)
   if(IS_ENGINEERING_BOOT_MODE())
   {
     /* Configure the system clock */
+    HAL_RCC_DeInit();
     SystemClock_Config();
   }
   /* USER CODE END Init */
@@ -397,7 +398,7 @@ void Error_Handler(void)
    * @param line: assert_param error line source number
    * @retval None
    */
-void assert_failed(char* file, uint32_t line)
+void assert_failed(uint8_t* file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,

@@ -16,9 +16,9 @@
   ==============================================================================
     [..]
     This file must be copied to the application folder and modified as follows:
-    (#) Rename it to 'stm32g0xx_hal_timebase_tim.c'
+    (#) Rename it to 'stm32mp1xx_hal_timebase_tim.c'
     (#) Add this file and the TIM HAL driver files to your project and make sure
-       HAL_TIM_MODULE_ENABLED is defined in stm32l4xx_hal_conf.h
+       HAL_TIM_MODULE_ENABLED is defined in stm32mp1xx_hal_conf.h
 
     [..]
     (@) The application needs to ensure that the time base is always set to 1 millisecond
@@ -54,11 +54,11 @@ TIM_HandleTypeDef        htim2;
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief  This function configures the TIM2 as a time base source. 
-  *         The time source is configured  to have 1ms time base with a dedicated 
-  *         Tick interrupt priority. 
+  * @brief  This function configures the TIM2 as a time base source.
+  *         The time source is configured  to have 1ms time base with a dedicated
+  *         Tick interrupt priority.
   * @note   This function is called  automatically at the beginning of program after
-  *         reset by HAL_Init() or at any time when clock is configured, by HAL_RCC_ClockConfig(). 
+  *         reset by HAL_Init() or at any time when clock is configured, by HAL_RCC_ClockConfig().
   * @param  TickPriority: Tick interrupt priority.
   * @retval HAL status
   */
@@ -68,10 +68,7 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
   uint32_t              uwPrescalerValue = 0;
   
   /*Configure the TIM2 IRQ priority */
-  HAL_NVIC_SetPriority(TIM2_IRQn, TickPriority ,0);
-  
-  /* Enable the TIM2 global Interrupt */
-  HAL_NVIC_EnableIRQ(TIM2_IRQn);
+  HAL_NVIC_SetPriority(TIM2_IRQn, TickPriority, 0);
 
   /* Enable TIM2 clock */
   __HAL_RCC_TIM2_CLK_ENABLE();
@@ -86,7 +83,7 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
   
   /* Initialize TIM2 */
   htim2.Instance = TIM2;
-  
+
   /* Initialize TIMx peripheral as follow:
   + Period = [(TIM2CLK/1000) - 1]. to have a (1/1000) s time base.
   + Prescaler = (uwTimclock/1000000 - 1) to have a 1MHz counter clock.
@@ -97,12 +94,15 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
   htim2.Init.Prescaler = uwPrescalerValue;
   htim2.Init.ClockDivision = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  if(HAL_TIM_Base_Init(&htim2) == HAL_OK)
+  if (HAL_TIM_Base_Init(&htim2) == HAL_OK)
   {
+    /* Enable the TIM2 global Interrupt */
+    HAL_NVIC_EnableIRQ(TIM2_IRQn);
+
     /* Start the TIM time Base generation in interrupt mode */
     return HAL_TIM_Base_Start_IT(&htim2);
   }
-  
+
   /* Return function status */
   return HAL_ERROR;
 }
@@ -116,7 +116,7 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
 void HAL_SuspendTick(void)
 {
   /* Disable TIM2 update Interrupt */
-  __HAL_TIM_DISABLE_IT(&htim2, TIM_IT_UPDATE);                                                  
+  __HAL_TIM_DISABLE_IT(&htim2, TIM_IT_UPDATE);
 }
 
 /**

@@ -205,10 +205,12 @@ started with the STM32CubeMP1 firmware package</span> :</p>
 <ul><li><a href="https://wiki.st.com/stm32mpu" target="_blank">Wiki</a>: Wiki STM32 MP1 Main Page.</li><li><a href="https://wiki.st.com/stm32mpu/index.php/Category:STM32CubeMP1" target="_blank">Wiki</a>: Wiki STM32CubeMP1.</li><li>Reference materials available on <a href="http://www.st.com/stm32cubefw" target="_blank">www.st.com/stm32cubefw</a></li></ul><br></div>
 <div id="release_container" class="topic1">
 <div class="topic2" id="identification">
-<h3 style="width: 230px;">V1.3.0 / 20-Oct-2020</h3>
+<h3 style="width: 230px;">V1.4.0 / 26-Feb-2021</h3>
 </div>
 <div class="topic3" id="changes">
-<h4>Main changes</h4><span style="font-weight: bold;">Maintenance release</span> <span style="font-weight: normal;">of STM32CubeMP1 (STM32Cube for STM32MP1 Series) supporting STM32MP15xx devices</span><br><span style="font-family: Verdana,sans-serif; font-size: 10pt;"><br></span><ul style="font-weight: bold;"><li>\HAL and LL:</li><ul style="font-weight: normal;"><li><span style="font-family: Verdana,sans-serif; font-size: 10pt;">General updates  to fix known defects and enhancements implementation</span></li><li><span style="font-weight: bold;">Major update</span> of drivers for STM32MP15xx devices:</li><ul><li>ADC: No API change</li></ul><ul><ul><li>Typo corrections in HAL &amp; LL drivers</li><li>LL - assert_param should check constraint between modes continuous and discontinuous</li><li>HAL - Fix IRQ handler in case of injected conversion + IT mode + trigger timer</li></ul></ul><ul><li>CRYP:</li><ul><li>Support several call to decrypt API without initialize Key and IVR:</li><ul><li>Add init parameters&nbsp;KeyIVConfigSkip : CRYP_KEYIVCONFIG_ONCE or CRYP_KEYIVCONFIG_ALWAYS</li></ul><ul><li>Add SizesSum &amp; KeyIVConfig in handle</li></ul></ul><li>DFSDM: No API change</li><ul><li>MISRA update</li><li>rework "Callback registration" section</li></ul><li>EXTI: No API change</li><ul><li>Define missing EXTI_REG3</li></ul><li>GENERIC: No API change</li><ul><li>HAL configuration file : add SMARTCARD and SRAM in template file</li></ul><li>RCC: No API change</li></ul><ul><ul><li>HAL - Important define update to be compliant with Header file update ( CMSIS device)</li><li>LL - Fix compilation issue ( to be compliant with Header file update on CMSIS device)</li></ul></ul><ul><li>SAI:&nbsp;</li><ul><li>HAL:&nbsp;Alignment&nbsp;for inter STM32 families portability.</li><ul><li><span style="font-weight: bold;">some API's change </span>to take in consideration</li></ul></ul><li>SDMMC: No API change</li><ul><li>HAL - Fix loop increment in SD_HighSpeed and SD_UltraHighSpeed function</li></ul><li>SMARTCARD:&nbsp;</li></ul><ul><ul><li>HAL: Implement SMARTCARD Driver: <span style="font-weight: bold;">New API</span></li></ul></ul></ul></ul><br><ul style="font-weight: bold;"><li>\CMSIS:</li><ul style="font-weight: normal;"><li>Rename&nbsp;&nbsp;RCC bit definition&nbsp;to be more compliant with the name from RCC spec</li><li>Update STGEN register structure</li><li>Fix typo in MDMA register definition</li></ul></ul><br><ul><li style="font-weight: bold;">Cortex-M CMSIS Core:</li><ul><li>No Update<strong></strong></li></ul></ul><br><ul style="font-weight: bold;"><li>\BSP:</li><ul style="font-weight: normal;"><li>Fix unterminated extern "C" definitions:</li></ul></ul><span style="font-family: Verdana,sans-serif; font-size: 10pt;"><br></span><ul style="font-weight: bold;"><li>\Projects:</li><ul style="font-weight: normal;"><li>Fix ADC resolution&nbsp;( ADC specification indicates clock speed &nbsp;range)</li></ul></ul><br><ul style="font-weight: bold;"><li>\Middlewares:</li><ul style="font-weight: normal;"><li><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;">No update ( <span style="font-weight: bold;">FreeRTOS</span>&nbsp;</span>V10.0.1 <span style="font-family: Verdana; font-size: 10pt;">ST&nbsp;modified&nbsp;</span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold; color: rgb(51, 102, 255);">20190719</span></span>)<span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;"></span></li><li><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;">No update ( <span style="font-weight: bold;"></span></span><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;"><span style="font-weight: bold;">OpenAMP</span></span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif;"> v2018.10&nbsp;</span> <span style="font-family: Verdana; font-size: 10pt;">ST&nbsp;modified&nbsp;</span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold; color: rgb(51, 102, 255);">20200110</span></span>)</li></ul></ul><br><ul><li style="font-weight: bold;">\Utilities:</li><ul><li>No update</li></ul></ul><br></div>
+<h4>Main changes</h4><span style="font-weight: bold;">Maintenance release</span> <span style="font-weight: normal;">of STM32CubeMP1 (STM32Cube for STM32MP1 Series) supporting STM32MP15xx devices</span><br><span style="font-family: Verdana,sans-serif; font-size: 10pt;"><br></span><ul style="font-weight: bold;"><li>\HAL and LL:</li><ul style="font-weight: normal;"><li><span style="font-family: Verdana,sans-serif; font-size: 10pt;">General updates  to fix known defects and enhancements implementation</span></li><li><span style="font-weight: bold;">Major update</span> of drivers for STM32MP15xx devices:</li><ul><li>DTS (TMPSENS)</li><ul><li>Add Register Callback feature</li></ul><li style="color: black;">EXTI:</li><ul style="color: black;"><li>Remove management of C1EMRx registers which does not exist on the silicon</li><li>Fix typo issue with EXTI_LINE_20</li></ul><li style="color: black;">GENERIC:</li><ul style="color: black;"><li>Fix issue on the HAL_SYSCFG_DisableIOCompensation function</li><li>Replace SET_BIT usage in some condition (set/clear register pairs)</li></ul><li>RCC:&nbsp;</li><ul><li>LL - Fix compilation issue ( Align CMSIS Device
+and LL definitions removing LL_APB3_GRP1_PERIPH_PMBCTRL and
+LL_AHB5_GRP1_PERIPH_AXIMC)</li></ul><li>SMARTCARD:&nbsp;</li><ul><li>Alignment with other&nbsp;STM32 families (<span style="font-weight: bold;">some</span> API Change)</li></ul><li>USART:&nbsp;</li><ul><li>Alignment with other&nbsp;STM32 families (No API Change)</li></ul></ul></ul></ul><br><ul style="font-weight: bold;"><li>\CMSIS:</li><ul style="font-weight: normal;"><li>Update RNG register structure</li><li style="color: black;">Remove C1EMRx registers&nbsp;which does not exist on the silicon</li></ul></ul><br><ul><li style="font-weight: bold;">Cortex-M CMSIS Core:</li><ul><li>No Update<strong></strong></li></ul></ul><br><ul style="font-weight: bold;"><li>\BSP:</li><ul style="font-weight: normal;"><li>No Update:</li></ul></ul><span style="font-family: Verdana,sans-serif; font-size: 10pt;"><br></span><ul style="font-weight: bold;"><li>\Projects:</li><ul style="font-weight: normal;"><li>Port all EV1 projects on STM32CubeIDE</li><li style="color: black;">Port AI_Character_Recognition on STM32CubeIDE</li><li style="color: black;">Port OpenAMP_FreeRTOS_echo project on STM32CubeIDE for DK2</li><li style="color: black;">Align OpenAMP projects with v2020.10_20201215 and fix compilation warnings</li><li style="color: black;">Add HAL_RCC_DeInit() in projects to improve successive debug session</li><li style="color: black;">Fix TIM2 IRQ management for FreeRTOS projects in case of successive debug session</li></ul></ul><br><ul style="font-weight: bold;"><li>\Middlewares:</li><ul style="font-weight: normal;"><li><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;">No update ( <span style="font-weight: bold;">FreeRTOS</span>&nbsp;</span>V10.0.1 <span style="font-family: Verdana; font-size: 10pt;">ST&nbsp;modified&nbsp;</span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold; color: rgb(51, 102, 255);">20190719</span></span>)<span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;"></span></li><li><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;">update ( <span style="font-weight: bold;"></span></span><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;"><span style="font-weight: bold;">OpenAMP</span></span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif;"> v2020.10&nbsp;</span> <span style="font-family: Verdana; font-size: 10pt;">ST&nbsp;modified&nbsp;</span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold; color: rgb(51, 102, 255);">20201215</span></span>)</li></ul></ul><br><ul><li style="font-weight: bold;">\Utilities:</li><ul><li>No update</li></ul></ul><br></div>
 <div class="topic3" id="contents">
 <h4>Contents</h4>
 <ul>
@@ -245,7 +247,143 @@ exhaustive list of projects is provided in this table (<a href="Projects/STM32Cu
 <th>Release note</th>
 </tr>
 <tr>
-<td style="width: 268px;">Cortex-M CMSIS V5.2.0</td>
+<td style="width: 268px;">Cortex-M CMSIS V5.4.0</td>
+<td style="text-align: center; width: 99px; font-weight: bold; color: rgb(51, 102, 255);">V5.4.0</td>
+<td style="text-align: center;"><a href="Drivers/CMSIS/docs/index.html" target="_blank">release
+notes</a></td>
+</tr>
+<tr>
+<td style="background-color: white; width: 268px;">STM32MP1xx
+CMSIS</td>
+<td style="text-align: center; background-color: white; width: 99px; font-weight: bold; color: rgb(51, 102, 255);">V1.4.0</td>
+<td style="text-align: center; background-color: white;"><a href="Drivers/CMSIS/Device/ST/STM32MP1xx/Release_Notes.html" target="_blank">release notes</a></td>
+</tr>
+<tr>
+<td style="width: 268px;">STM32MP1xx HAL</td>
+<td style="text-align: center; width: 99px; font-weight: bold; color: rgb(51, 102, 255);">V1.4.0</td>
+<td style="text-align: center;"><a href="Drivers/STM32MP1xx_HAL_Driver/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr>
+<td style="width: 268px;">BSP STM32MP15xx_EVAL</td>
+<td style="text-align: center; width: 99px; font-weight: bold; color: rgb(51, 102, 255);">V1.4.0</td>
+<td style="text-align: center;"><a href="Drivers/BSP/STM32MP15xx_EVAL/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr>
+<td>BSP STM32MP15xx_DISCO</td>
+<td style="text-align: center; font-weight: bold; color: rgb(51, 102, 255);">V1.4.0</td>
+<td style="text-align: center;"><a href="Drivers/BSP/STM32MP15xx_DISCO/Release_Notes.html">release
+notes</a></td>
+</tr>
+
+
+
+
+
+
+
+
+</tbody>
+</table>
+<table style="width: 90%; height: 89px; text-align: left; margin-left: auto; margin-right: auto;" class="tickets" cellpadding="5" cellspacing="0">
+<caption>Released Middlewares components</caption><tbody>
+<tr>
+<th style="width: 268px;">Component</th>
+<th style="width: 99px;">Version</th>
+<th>Release note</th>
+</tr>
+<tr>
+<td style="width: 268px;">FreeRTOS<br>
+</td>
+<td style="text-align: center; width: 99px;"><span style="font-weight: bold; color: rgb(51, 102, 255);">V10.2.1</span><br>
+<span style="font-family: Verdana; font-size: 10pt;">ST&nbsp;modified </span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold; color: rgb(51, 102, 255);"><br>20190719</span></span></td>
+<td style="text-align: center;"><a style="background-color: white;" href="Middlewares/Third_Party/FreeRTOS/Source/readme.txt" target="_blank">release notes</a><br>
+<br>
+<a href="Middlewares/Third_Party/FreeRTOS/Source/st_readme.txt">release
+notes</a></td>
+</tr>
+<tr>
+<td style="width: 268px;"><span style="background-color: yellow;"></span>OpenAMP</td>
+<td style="text-align: center; width: 99px;"><span style="font-family: Verdana; font-size: 10pt;">v2020.10</span><span style="font-family: Verdana; font-size: 10pt;"><br>
+ST&nbsp;modified <br><span style="font-weight: bold; color: rgb(51, 102, 255);">20201215<br></span></span><span style="font-family: Verdana; font-size: 10pt;">
+ST interface <br><span style="font-weight: bold; color: rgb(51, 102, 255);"></span></span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold; color: rgb(51, 102, 255);">20201215</span></span><br><span style="background-color: yellow;"></span></td>
+<td style="text-align: center;"><a style="background-color: white;" href="Middlewares/Third_Party/OpenAMP/libmetal/st_readme.txt" target="_blank">release notes</a><br>
+<br style="background-color: white;">
+<a style="background-color: white;" href="Middlewares/Third_Party/OpenAMP/open-amp/st_readme.txt" target="_blank">release notes</a><br><br><a style="background-color: white;" href="Middlewares/Third_Party/OpenAMP/mw_if/st_readme.txt" target="_blank">release notes</a></td>
+</tr>
+
+
+</tbody>
+</table>
+<table style="width: 90%; height: 89px; text-align: left; margin-left: auto; margin-right: auto;" class="tickets" cellpadding="5" cellspacing="0">
+<caption>Released Utilities components</caption><tbody>
+<tr>
+<th style="width: 268px;">Component</th>
+<th style="width: 99px;">Version</th>
+<th>Release note</th>
+</tr>
+
+
+
+<tr>
+<td style="width: 268px;"><span style="font-size: 10pt; font-family: Verdana;">Resourcemanager</span></td>
+<td style="text-align: center; width: 99px; color: rgb(51, 102, 255); font-weight: bold;">mp1/V1.11.0</td>
+<td style="text-align: center;"><a href="Utilities/ResourcesManager/Release_Notes.html">release
+notes</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="topic3" id="tools">
+<h4>Development Toolchains and Compilers</h4>
+<ul style="background-color: white;"><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold;">The current default IDE:</span>&nbsp;&nbsp;</span></li><ul><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">All-in-one multi-OS development tool STM32CubeIDE<span style="font-weight: bold;"></span>:&nbsp;<span style="font-weight: bold;">v1.6.0 -</span></span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold;"> <a href="https://www.st.com/en/development-tools/stm32cubeide.html">link</a></span></span></li></ul><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold;">Other IDE's </span>supporting STM32MP1 devices (portage for all projects not completed):</span></li><ul><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">IAR Embedded Workbench for ARM (EWARM) toolchain: <span style="font-weight: bold;">v8.40.1 - <a href="https://www.iar.com/iar-embedded-workbench/">link</a></span></span></li><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">RealView Microcontroller Development Kit (MDK-ARM)&nbsp;toolchain: <span style="font-weight: bold;">v5.27 - <a href="http://www.keil.com/appnotes/docs/apnt_319.asp">link</a></span></span></li></ul>
+</ul>
+</div>
+<div class="topic3" id="boards">
+<h4>Supported Devices and HW boards&nbsp;</h4>
+<ul>
+<li><span style="font-family: Arial,Helvetica,sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255); display: inline ! important; float: none; color: black;">The delivery provided&nbsp;support the following devices&nbsp;:</span><span style="font-size: 11pt; font-family: &quot;Calibri&quot;,sans-serif; color: rgb(31, 73, 125);" lang="EN-US"></span></li><ul style="color: black;"><li><span style="font-size: 11pt; font-family: &quot;Calibri&quot;,sans-serif;" lang="EN-US">STM32MP157Cxx, STM32MP157Axx, STM32MP157Dxx, STM32MP157Fxx</span></li><li><span style="font-size: 11pt; font-family: &quot;Calibri&quot;,sans-serif;" lang="EN-US">STM32MP153Cxx, STM32MP153Axx, STM32MP153Dxx, STM32MP153Fxx</span></li><li><span style="font-size: 11pt; font-family: &quot;Calibri&quot;,sans-serif;" lang="EN-US">STM32MP151Cxx, STM32MP151Axx, STM32MP151Dxx, STM32MP151Fxx</span></li></ul><li>&nbsp;Boards supported;</li><ul><li>STM32MP157C-EV1,&nbsp;STM32MP157A-EV1,&nbsp;STM32MP157F-EV1,&nbsp;STM32MP157D-EV1</li><li>STM32MP157C-DK2,&nbsp;STM32MP157F-DK2</li><li>STM32MP157A-DK1,&nbsp;STM32MP157D-DK1</li></ul>
+</ul>
+</div>
+<div class="topic3" id="limitations">
+<h4>Known limitations</h4><ul><li><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="EN-US">OpenAMP
+compilation issue with MDK-ARM when code generated through CubeMx :<o:p></o:p></span>&nbsp;</li></ul><ul><ul><li><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="EN-US">To avoid
+compiling errors in OpenAMP when compiling in MDK-ARM IDE, you have to disable
+the « Use MicroLIB » in « Target » tab.<o:p></o:p></span>&nbsp;</li></ul></ul><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="EN-US"><br></span><ul><li><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="EN-US">Deprecated
+IDE:<o:p></o:p></span>
+
+</li></ul><ul><ul><li><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="EN-US">For
+projects examples still in SW4STM32 format ( deprecated), you can easily import
+them in STM32CubeIDE.</span></li></ul></ul><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="EN-US"><br></span></div>
+</div>
+<div style="margin-left: 40px;"><button id="filter_hist" onclick="toggle_history()">Show
+History</button><br>
+</div>
+<div id="history" class="topic1" hidden="">
+<h2>Update History</h2>
+<div id="release_container" class="topic1"><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.3.0
+/ 20-Oct-2020</span></h3><div class="topic3" id="changes">
+<h4>Main changes</h4><div style="margin-left: 40px;"><span style="font-weight: bold;">Maintenance release</span> <span style="font-weight: normal;">of STM32CubeMP1 (STM32Cube for STM32MP1 Series) supporting STM32MP15xx devices</span><br><span style="font-family: Verdana,sans-serif; font-size: 10pt;"><br></span><ul style="font-weight: bold;"><li>\HAL and LL:</li><ul style="font-weight: normal;"><li><span style="font-family: Verdana,sans-serif; font-size: 10pt;">General updates  to fix known defects and enhancements implementation</span></li><li><span style="font-weight: bold;">Major update</span> of drivers for STM32MP15xx devices:</li><ul><li>ADC: No API change</li></ul><ul><ul><li>Typo corrections in HAL &amp; LL drivers</li><li>LL - assert_param should check constraint between modes continuous and discontinuous</li><li>HAL - Fix IRQ handler in case of injected conversion + IT mode + trigger timer</li></ul></ul><ul><li>CRYP:</li><ul><li>Support several call to decrypt API without initialize Key and IVR:</li><ul><li>Add init parameters&nbsp;KeyIVConfigSkip : CRYP_KEYIVCONFIG_ONCE or CRYP_KEYIVCONFIG_ALWAYS</li></ul><ul><li>Add SizesSum &amp; KeyIVConfig in handle</li></ul></ul><li>DFSDM: No API change</li><ul><li>MISRA update</li><li>rework "Callback registration" section</li></ul><li>EXTI: No API change</li><ul><li>Define missing EXTI_REG3</li></ul><li>GENERIC: No API change</li><ul><li>HAL configuration file : add SMARTCARD and SRAM in template file</li></ul><li>RCC: No API change</li></ul><ul><ul><li>HAL - Important define update to be compliant with Header file update ( CMSIS device)</li><li>LL - Fix compilation issue ( to be compliant with Header file update on CMSIS device)</li></ul></ul><ul><li>SAI:&nbsp;</li><ul><li>HAL:&nbsp;Alignment&nbsp;for inter STM32 families portability.</li><ul><li><span style="font-weight: bold;">some API's change </span>to take in consideration</li></ul></ul><li>SDMMC: No API change</li><ul><li>HAL - Fix loop increment in SD_HighSpeed and SD_UltraHighSpeed function</li></ul><li>SMARTCARD:&nbsp;</li></ul><ul><ul><li>HAL: Implement SMARTCARD Driver: <span style="font-weight: bold;">New API</span></li></ul></ul></ul></ul><br><ul style="font-weight: bold;"><li>\CMSIS:</li><ul style="font-weight: normal;"><li>Rename&nbsp;&nbsp;RCC bit definition&nbsp;to be more compliant with the name from RCC spec</li><li>Update STGEN register structure</li><li>Fix typo in MDMA register definition</li></ul></ul><br><ul><li style="font-weight: bold;">Cortex-M CMSIS Core:</li><ul><li>No Update<strong></strong></li></ul></ul><br><ul style="font-weight: bold;"><li>\BSP:</li><ul style="font-weight: normal;"><li>Fix unterminated extern "C" definitions:</li></ul></ul><span style="font-family: Verdana,sans-serif; font-size: 10pt;"><br></span><ul style="font-weight: bold;"><li>\Projects:</li><ul style="font-weight: normal;"><li>Fix ADC resolution&nbsp;( ADC specification indicates clock speed &nbsp;range)</li></ul></ul><br><ul style="font-weight: bold;"><li>\Middlewares:</li><ul style="font-weight: normal;"><li><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;">No update ( <span style="font-weight: bold;">FreeRTOS</span>&nbsp;</span>V10.0.1 <span style="font-family: Verdana; font-size: 10pt;">ST&nbsp;modified&nbsp;</span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold; color: rgb(51, 102, 255);">20190719</span></span>)<span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;"></span></li><li><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;">No update ( <span style="font-weight: bold;"></span></span><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;"><span style="font-weight: bold;">OpenAMP</span></span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif;"> v2018.10&nbsp;</span> <span style="font-family: Verdana; font-size: 10pt;">ST&nbsp;modified&nbsp;</span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold; color: rgb(51, 102, 255);">20200110</span></span>)</li></ul></ul><br><ul><li style="font-weight: bold;">\Utilities:</li><ul><li>No update</li></ul></ul><br><br><span style="background-color: white;"></span><span lang="fr"></span><span style="background-color: white;"></span></div>
+</div>
+
+<div class="topic3" id="changes">
+<h4>Contents</h4><div style="margin-left: 40px;"><ul><li>Projects</li></ul>
+<ul><ul><li>The STM32CubeMP1
+Firmware package comes with a rich set of examples running on
+STMicroelectronics boards, organized by board and provided with
+preconfigured projects for the main supported toolchains. The
+exhaustive list of projects is provided in this table (<a href="Projects/STM32CubeProjectsList.html">STM32CubeProjectsList.html</a>).&nbsp;</li><li>Projects release notes (Updates in bold): </li></ul></ul>
+<ul><ul><li>STM32MP157C-EV1</li><ul><li>Applications</li><li>Demonstrations</li><li>HAL Examples</li><li>Templates</li></ul><li>STM32MP157C-DK2</li><ul><li>Applications</li><li>Demonstrations</li><li>HAL Examples</li><li>Templates</li></ul></ul></ul>
+<table style="width: 90%; height: 89px; text-align: left; margin-left: auto; margin-right: auto;" class="tickets" cellpadding="5" cellspacing="0">
+<caption>Released drivers components</caption><tbody>
+<tr>
+<th style="width: 268px;">Component</th>
+<th style="width: 99px;">Version</th>
+<th>Release note</th>
+</tr>
+<tr>
+<td style="width: 268px;">Cortex-M CMSIS V5.4.0</td>
 <td style="text-align: center; width: 99px; font-weight: bold; color: rgb(51, 102, 255);">V5.4.0</td>
 <td style="text-align: center;"><a href="Drivers/CMSIS/docs/index.html" target="_blank">release
 notes</a></td>
@@ -314,8 +452,8 @@ ST interface <br><span style="font-weight: bold; color: rgb(51, 102, 255);"></sp
 
 </tbody>
 </table>
-<table style="width: 90%; height: 89px; text-align: left; margin-left: auto; margin-right: auto;" class="tickets" cellpadding="5" cellspacing="0">
-<caption>Released Utilities components</caption><tbody>
+
+<table style="width: 90%; height: 89px; text-align: left; margin-left: auto; margin-right: auto;" class="tickets" cellpadding="5" cellspacing="0"><caption>Released Utilities components</caption><tbody>
 <tr>
 <th style="width: 268px;">Component</th>
 <th style="width: 99px;">Version</th>
@@ -328,35 +466,30 @@ ST interface <br><span style="font-weight: bold; color: rgb(51, 102, 255);"></sp
 <td style="width: 268px;"><span style="font-size: 10pt; font-family: Verdana;">Resourcemanager</span></td>
 <td style="text-align: center; width: 99px; color: rgb(51, 102, 255); font-weight: bold;">mp1/V1.11.0</td>
 <td style="text-align: center;"><a href="Utilities/ResourcesManager/Release_Notes.html">release
-notes</a></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="topic3" id="tools">
+notes</a></td></tr></tbody></table><br><span style="background-color: white;"></span><span lang="fr"></span><span style="background-color: white;"></span></div>
+</div><div class="topic3" id="tools">
 <h4>Development Toolchains and Compilers</h4>
-<ul style="background-color: white;"><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold;">The current default IDE:</span>&nbsp;&nbsp;</span></li><ul><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">All-in-one multi-OS development tool STM32CubeIDE<span style="font-weight: bold;"></span>:&nbsp;<span style="font-weight: bold;">v1.5.0 -</span></span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold;"> <a href="https://www.st.com/en/development-tools/stm32cubeide.html">link</a></span></span></li></ul><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold;">Other IDE's </span>supporting STM32MP1 devices (portage for all projects not completed):</span></li><ul><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">IAR Embedded Workbench for ARM (EWARM) toolchain: <span style="font-weight: bold;">v8.40.1 - <a href="https://www.iar.com/iar-embedded-workbench/">link</a></span></span></li><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">RealView Microcontroller Development Kit (MDK-ARM)&nbsp;toolchain: <span style="font-weight: bold;">v5.27 - <a href="http://www.keil.com/appnotes/docs/apnt_319.asp">link</a></span></span></li><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">System
-                              Workbench for STM32 (SW4STM32)</span><span style="font-family: Verdana; font-size: 10pt;"> toolchain: <span style="font-weight: bold;">v2.9</span></span></li></ul>
-</ul>
-</div>
-<div class="topic3" id="boards">
+<span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold;"></span></span><ul style="background-color: white;"><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold;">The current default IDE:</span>&nbsp;&nbsp;</span></li><ul><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">All-in-one multi-OS development tool STM32CubeIDE<span style="font-weight: bold;"></span>:&nbsp;<span style="font-weight: bold;">v1.5.0 -</span></span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold;"> <a href="https://www.st.com/en/development-tools/stm32cubeide.html">link</a></span></span></li></ul><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold;">Other IDE's </span>supporting STM32MP1 devices (portage for all projects not completed):</span></li><ul><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">IAR Embedded Workbench for ARM (EWARM) toolchain: <span style="font-weight: bold;">v8.40.1 - <a href="https://www.iar.com/iar-embedded-workbench/">link</a></span></span></li><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">RealView Microcontroller Development Kit (MDK-ARM)&nbsp;toolchain: <span style="font-weight: bold;">v5.27 - <a href="http://www.keil.com/appnotes/docs/apnt_319.asp">link</a></span></span></li><li style="margin: 4.5pt 0in; font-family: 'Times New Roman'; color: black; font-size: 12pt;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">System
+                              Workbench for STM32 (SW4STM32)</span><span style="font-family: Verdana; font-size: 10pt;"> toolchain: <span style="font-weight: bold;">v2.9</span></span></li></ul></ul>
+</div><div class="topic3" id="boards">
 <h4>Supported Devices and HW boards</h4>
-<ul>
-<li>&nbsp;STM32MP157C-EV1 RevC</li>
-<li>&nbsp;STM32MP157C-DK2 RevC</li></ul>
-</div>
-<div class="topic3" id="limitations">
+<ul><li>&nbsp;STM32MP157C-EV1 RevC</li><li>&nbsp;STM32MP157C-DK2 RevC</li></ul>
+</div><div class="topic3" id="limitations">
 <h4>Known limitations</h4>
-<ul>
-<li>NA</li></ul>
-</div>
-</div>
-<div style="margin-left: 40px;"><button id="filter_hist" onclick="toggle_history()">Show
-History</button><br>
-</div>
-<div id="history" class="topic1" hidden="">
-<h2>Update History</h2>
-<div id="release_container" class="topic1"><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.2.0
+<ul><li>
+
+<span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="EN-US">OpenAMP
+compilation issue with MDK-ARM when code generated through CubeMx :<o:p></o:p></span>&nbsp;<span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="EN-US"></span></li><ul><li><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="EN-US">To avoid
+compiling errors in OpenAMP when compiling in MDK-ARM IDE, you have to disable
+the « Use MicroLIB » in « Target » tab.<o:p></o:p></span>&nbsp;</li></ul></ul><ul><li><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="EN-US">Deprecated
+IDE:<o:p></o:p></span>
+
+<br><ul><li><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="EN-US">For
+projects examples still in SW4STM32 format ( deprecated), you can easily import
+them in STM32CubeIDE.</span></li></ul><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="EN-US"><br></span>
+</li></ul>
+</div></div>
+<br><div id="release_container" class="topic1"><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.2.0
 / 03-Feb-2020</span></h3><div class="topic3" id="changes">
 <h4>Main changes</h4><div style="margin-left: 40px;"><span style="font-weight: bold;">Maintenance release</span> <span style="font-weight: normal;">of STM32CubeMP1 (STM32Cube for STM32MP1 Series) supporting STM32MP15xx devices</span><br><span style="font-family: Verdana,sans-serif; font-size: 10pt;"><br></span><ul style="font-weight: bold;"><li>\HAL and LL:</li><ul style="font-weight: normal;"><li><span style="font-family: Verdana,sans-serif; font-size: 10pt;">General updates  to fix known defects and enhancements implementation</span></li><li><span style="font-weight: bold;">Major update</span> of drivers for STM32MP15xx devices:</li><ul><li>ADC:</li></ul><ul><ul><li>Update HAL_ADC_Start_DMA() API to enable DMA mode</li><li>LL : new function to add or remove paths.</li><ul><li>LL_ADC_SetCommonPathInternalChAdd and LL_ADC_SetCommonPathInternalChAdd : <span style="font-weight: bold;">New API</span></li></ul></ul></ul><ul><li>CORTEX:</li><ul><li>Implement LL Driver</li></ul><li>FMC:</li><ul><li>Implement PSRAM Driver: <span style="font-weight: bold;">New API</span></li></ul></ul><ul><li>GENERIC:</li><ul><li>Add EXTERNAL_CLOCK_VALUE in conf_template file.</li></ul><li>TIM:</li></ul><ul><ul><li>HAL&amp;LL: Remove reference to COMP1 and COMP2</li><li>LL:&nbsp;</li><ul><li>Fix TIM Break source definition</li><li>RepetitionCounter value depends on GP or Advanced tmers</li></ul></ul></ul><ul><li>UART:</li><ul><li>HAL:&nbsp;Alignment with&nbsp;&nbsp;STM32F0/F3/H7 (for inter STM32 families portability)</li><ul><li><span style="font-weight: bold;">some API's change </span>to take in consideration</li></ul></ul></ul></ul></ul><ul style="margin-left: 80px;"><li>UTILS:</li><ul><li>LL: Add new Part Number defines&nbsp;related to LL_GetDevicePartNumber()</li></ul></ul><ul style="font-weight: bold;"><li>\CMSIS:</li><ul style="font-weight: normal;"><li>Header files:&nbsp;</li><ul><li>Add new Part Number for 800MHz</li><li>Update license with BSD 3-Clause template</li><li>Rework CMSIS for RTC/TAMP, GPIO and TIM</li><li>Rename TIM Break source bit definition</li></ul><li>Update Linker Template&nbsp;file for KEIL and IAR:</li><ul><li>Add OpenAMP region ( region present by default, to comment if needed )</li></ul></ul></ul><br><ul><li style="font-weight: bold;">Cortex-M CMSIS Core:</li><ul><li>No Update<strong></strong></li></ul></ul><br><ul style="font-weight: bold;"><li>\BSP:</li><ul style="font-weight: normal;"><li>No Update</li></ul></ul><span style="font-family: Verdana,sans-serif; font-size: 10pt;"><br></span><ul style="font-weight: bold;"><li>\Projects:</li><ul style="font-weight: normal;"><li><span style="font-family: Verdana,sans-serif; font-size: 10pt;">General updates  to fix known defects and enhancements implementation</span></li><li>Implement new projects :</li><ul><li>"<span style="font-weight: bold;">OpenAMP_FreeRTOS_echo</span>" example for&nbsp;EVAL and DISCO boards</li><li>Stack size increased for "OpenAMP_FreeRTOS_echo"</li></ul><li>Portage&nbsp;on&nbsp;<span style="font-weight: bold;">KEIL and IAR</span>&nbsp;</li><ul><li>All DK2 examples ported (except :&nbsp;OpenAMP_TTY_echo_wakeup,&nbsp;OpenAMP_FreeRTOS_echo)<br></li><li>Replace Linker script by Template file ( adding OpenAMP region by default)</li><li>Remove empty file for "OpenAMP_raw"</li></ul><li>Portage on <span style="font-weight: bold;">STM32CubeIDE</span></li><ul><li>All DK2 examples ported (except :&nbsp;OpenAMP_TTY_echo_wakeup,&nbsp;OpenAMP_FreeRTOS_echo)</li></ul></ul></ul><br><ul style="font-weight: bold;"><li>\Middlewares:</li><ul style="font-weight: normal;"><li><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;">Update to use <span style="font-weight: bold;">FreeRTOS</span>&nbsp;</span>V10.0.1 <span style="font-family: Verdana; font-size: 10pt;">ST&nbsp;modified&nbsp;</span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold; color: rgb(51, 102, 255);">20190719</span></span></li><li><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;">Update to use <span style="font-weight: bold;">OpenAMP</span></span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif;"> v2018.10&nbsp;</span> <span style="font-family: Verdana; font-size: 10pt;">ST&nbsp;modified&nbsp;</span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold; color: rgb(51, 102, 255);">20200110</span></span></li></ul></ul><br><ul><li style="font-weight: bold;">\Utilities:</li><ul><li>Resource Manager: new version mp1/v1.11.0</li><ul><li>Replace Part Number condition by IP name</li><li>Add hardware lock facilities under RESMGR_USE_HARDWARE_LOCK_FEATURE flag</li></ul></ul></ul><br><br><span style="background-color: white;"></span><span lang="fr"></span><span style="background-color: white;"></span></div>
 </div>
@@ -471,8 +604,7 @@ notes</a></td></tr></tbody></table><br><span style="background-color: white;"></
 </div><div class="topic3" id="limitations">
 <h4>Known limitations</h4>
 <ul><li>NA</li></ul>
-</div></div>
-<br><div id="release_container" class="topic1"><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.1.0
+</div></div><br><div id="release_container" class="topic1"><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.1.0
 / 10-Sept-2019</span></h3><div class="topic3" id="changes">
 <h4>Main changes</h4><div style="margin-left: 40px;"><span style="font-weight: bold;">Maintenance release</span> <span style="font-weight: normal;">of STM32CubeMP1 (STM32Cube for STM32MP1 Series) supporting STM32MP15xx devices</span><br><span style="font-family: Verdana,sans-serif; font-size: 10pt;"><br></span><ul style="font-weight: bold;"><li>\HAL and LL:</li><ul style="font-weight: normal;"><li><span style="font-family: Verdana,sans-serif; font-size: 10pt;">General updates  to fix known defects and enhancements implementation</span></li><li style="font-weight: bold;"><span style="font-family: Verdana,sans-serif; font-size: 10pt;"><span style="font-weight: bold;">Implementation</span> of LL APIs:</span></li><ul><li>DMA / EXTI / HSEM / LPTIM / PWR / SPI / TIM / WWDG / I2C</li></ul><li><span style="font-weight: bold;">Major update</span> of drivers for STM32MP15xx devices:</li></ul></ul><ul style="margin-left: 40px;"><ul><li>Rename RCC_IPNAME_BCLK with <span style="font-weight: bold;">RCC_IPNAME_BUSNAME</span></li><ul><li>Impact HAL_RCC / HAL_LPTIM /&nbsp;HAL_UART / HAL_USART</li></ul><li>ADC:</li></ul></ul><ul><ul><ul><ul><li>HAL: Remove ADC_TWOSAMPLINGDELAY_9CYCLES definition</li></ul><ul><li>HAL: Remove ADC_OVERSAMPLING_RATIO_xxx &nbsp;defnitions</li></ul><ul><li>LL : Add ADC Internal Channel VDDCORE management ( LL_ADC_PATH_INTERNAL_VDDCORE)</li></ul><ul><li>HAL &amp; LL: Update for linear calibration and Use 'ADC_LINEAR_CALIB_REG_COUNT'</li></ul></ul></ul></ul><ul style="margin-left: 40px;"><ul><li>DMA:</li><ul><li>HAL: Use DMA_Stream_TypeDef structure for instance (<span style="font-weight: bold;">structure change</span>)</li></ul><li>Generic:</li><ul><li>HAL:&nbsp;Update the SystemCoreClock global variable ( needed&nbsp;in case of Coprocesseur use case)</li><li>HAL: Add enable/disable functions for IO Compensation mechanism&nbsp;(<span style="font-weight: bold;">new API</span>)</li><li>HAL: Align HAL_CONF template&nbsp;with HAL package</li></ul><li>GPIO:</li><ul><li>Improve HAL_GPIO_TogglePin reentrancy robustness</li><li>Improve robustness of HAL_GPIO_DeInit()&nbsp;on EXTI management</li><li>Update IS_GPIO_PIN assert macro</li></ul><li>IPCC:</li><ul><li>LL: Add service to get the number of supported channels (<span style="font-weight: bold;">new API</span>)</li></ul><li>LPTIM:</li></ul></ul><ul><ul><ul><ul><li>HAL:&nbsp;Alignment with&nbsp;STM32H7/WB (for inter STM32 families portability):</li><ul><li><span style="font-weight: bold;">some API's change </span>to take in consideration&nbsp;</li></ul></ul></ul></ul></ul><ul style="margin-left: 40px;"><ul><li>RCC:</li><ul><li>HAL: Rename __HAL_RCC_TMPSENS_CLK_xxx to&nbsp;&nbsp;__HAL_RCC_<span style="font-weight: bold;">DTS</span>_CLK_xxx</li><li>HAL: Update to not overwrite&nbsp;Tick priority</li></ul><li>SPI:</li><ul><li>HAL: Add new feature&nbsp;Reload Feature + Duplex Packet DXP (<span style="font-weight: bold;">new API)</span></li></ul><li>TIM:</li></ul></ul><ul><ul><ul><ul><li>HAL:&nbsp;Alignment with&nbsp;STM32F0/F3/H7/WB (for inter STM32 families portability):</li></ul></ul></ul></ul><ul><ul><ul><ul><ul><li>&nbsp;<span style="font-weight: bold;">some API's change </span>to take in consideration</li></ul></ul></ul></ul></ul><span style="font-family: Verdana,sans-serif; font-size: 10pt;"><br></span><ul style="font-weight: bold;"><li>\CMSIS:</li><ul style="font-weight: normal;"><li><span style="font-family: Verdana,sans-serif; font-size: 10pt;">General updates  to fix known defects and enhancements implementation</span></li><li><span style="font-weight: normal;">Update some bit definitions in header files</span></li><li><span style="font-weight: normal;">Provide A7 header files as examples<br></span></li><li><span style="font-weight: normal;"></span>Update startup file for KEIL and IAR</li></ul></ul><br><ul><li style="font-weight: bold;">Cortex-M CMSIS Core:</li><ul><li>Update to new version <strong>V5.4.0</strong></li></ul></ul><ul style="font-weight: bold;"><li>\BSP:</li><ul style="font-weight: normal;"><li><span style="font-family: Verdana,sans-serif; font-size: 10pt;">General updates  to fix known defects and enhancements implementation</span></li></ul></ul><span style="font-family: Verdana,sans-serif; font-size: 10pt;"><br></span><ul style="font-weight: bold;"><li>\Projects:</li><ul style="font-weight: normal;"><li><span style="font-family: Verdana,sans-serif; font-size: 10pt;">General updates  to fix known defects and enhancements implementation</span></li><li>Implement new projects :</li><ul><li>"OpenAMP_Dynamic_ResMgr" example for EVAL board</li><li>"PWR_STOP_CoPro" example for EVAL and DISCO boards</li><li>"UART_Receive_Transmit_Console"&nbsp;example for EVAL and DISCO boards</li><li>"CoproSync_ShutDown" for DISCO Board</li></ul><li>Add <span style="font-weight: bold;">KEIL and IAR</span> Support&nbsp;for STM32MP1-M4 Ecosystem ( few projects only)</li><ul><li>"Templates" /&nbsp;"FreeRTOS_ThreadCreation" and&nbsp;"OpenAMP_raw" examples&nbsp;(for EVAL board Only)</li></ul><li>Add <span style="font-weight: bold;">CubeIDE</span> support for STM32MP1-M4 Ecosystem ( few projects only)</li><ul><li>"GPIO_EXTI" ( for EVAL and DISCO boards)</li><li>"Templates" /&nbsp;"FreeRTOS_ThreadCreation" and&nbsp;"OpenAMP_raw" &nbsp;(for EVAL board Only)</li></ul><li>Update projects :</li><ul><li>Align IRQs priorities with RCC_WAKEUP (Higher prio)</li></ul><ul><li>OpenAMP examples : update template files related to OpenAMP middleware delivery</li></ul><ul><li>Update fw_cortex_m4 script to stop systematically fw if already running</li></ul></ul></ul><ul style="font-weight: bold;"><li>\Middlewares:</li><ul style="font-weight: normal;"><li><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;">Update to use <span style="font-weight: bold;">FreeRTOS</span>&nbsp;</span>V10.0.1 <span style="font-family: Verdana; font-size: 10pt;">ST&nbsp;modified </span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold; color: rgb(51, 102, 255);">20190329</span></span></li><li><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;">Update to use <span style="font-weight: bold;">OpenAMP</span></span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif;"> v2018.10&nbsp;</span></li><ul><li><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif;"><o:p></o:p></span>&nbsp;<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">ST&nbsp;modified&nbsp;</span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold; color: rgb(51, 102, 255);">20190329</span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (</span><span style="font-size: 11pt; font-family: &quot;Calibri&quot;,sans-serif;">libmetal / openamp)</span></li><li><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif;"><o:p></o:p></span>&nbsp;<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">ST&nbsp;modified&nbsp;</span><span style="font-family: Verdana; font-size: 10pt;"><span style="font-weight: bold; color: rgb(51, 102, 255);">20190729</span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"> (</span><span style="font-size: 11pt; font-family: &quot;Calibri&quot;,sans-serif;">ST Interface mw_if)</span></li></ul></ul></ul><br><ul><li style="font-weight: bold;">\Utilities:</li><ul><li>Resource Manager:</li><ul><li>Update RESMGR_ID according to device ID</li><li class="MsoNormal">Rename TMPSENS with DTS</li><li class="MsoNormal">Rename RESMGR_FLAGS_CPU* and update ResMgr_Release() &nbsp;- Update API</li></ul></ul></ul><br><br><span style="background-color: white;"></span><span lang="fr"></span><span style="background-color: white;"></span></div>
 </div>

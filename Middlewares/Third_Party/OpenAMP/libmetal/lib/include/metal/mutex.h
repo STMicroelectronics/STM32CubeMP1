@@ -17,7 +17,8 @@ extern "C" {
 #endif
 
 /** \defgroup mutex Mutex Interfaces
- *  @{ */
+ *  @{
+ */
 
 #include <metal/system/generic/mutex.h>
 

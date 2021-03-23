@@ -108,8 +108,6 @@ VIRT_UART_StatusTypeDef VIRT_UART_RegisterCallback(VIRT_UART_HandleTypeDef *huar
     break;
   }
   return status;
-
-  return VIRT_UART_OK;
 }
 
 VIRT_UART_StatusTypeDef VIRT_UART_Transmit(VIRT_UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)

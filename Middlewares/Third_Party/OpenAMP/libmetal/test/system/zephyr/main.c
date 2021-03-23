@@ -7,7 +7,7 @@
 #include "metal-test-internal.h"
 #include <kernel.h>
 #include <metal/log.h>
-#include <misc/printk.h>
+#include <sys/printk.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
@@ -67,7 +67,6 @@ void metal_test_add_functions()
 {
 	metal_test_add_alloc();
 	metal_test_add_atomic();
-	metal_test_add_irq();
 	metal_test_add_mutex();
 }
 

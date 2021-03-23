@@ -1,6 +1,9 @@
 collect (PROJECT_LIB_TESTS helper.c)
 
 set (_test_lib_external "xil")
+list (APPEND _test_lib_external "xilmem")
+list (APPEND _test_lib_external "xilstandalone")
+
 
 collect (PROJECT_LIB_DEPS ${_test_lib_external})
 collect (PROJECT_LIB_DEPS "c")

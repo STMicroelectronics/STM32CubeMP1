@@ -5,6 +5,8 @@ collect(PROJECT_LIB_DEPS c)
 collect(PROJECT_LIB_DEPS m)
 
 set (_lib "xil")
+list (APPEND _lib "xilmem")
+list (APPEND _lib "xilstandalone")
 find_library (_lib_path ${_lib})
 if (NOT _lib_path)
   message ( "external library ${_lib_path} not found" )

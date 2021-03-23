@@ -98,7 +98,7 @@ static int OPENAMP_shmem_init(int RPMsgRole)
 
   shm_physmap = SHM_START_ADDRESS;
   metal_io_init(&device->regions[0], (void *)SHM_START_ADDRESS, &shm_physmap,
-                SHM_SIZE, -1, 0, NULL);
+                SHM_SIZE, (unsigned int)-1, 0, NULL);
 
   /* USER CODE BEGIN PRE_SHM_IO_INIT */
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+       <name>OpenAMP_TTY_echo_wakeup</name>
+       <comment></comment>
+       <projects>
+       </projects>
+       <buildSpec>
+       </buildSpec>
+       <natures>
+              <nature>com.st.stm32cube.ide.mcu.MCUProjectNature</nature>
+              <nature>com.st.stm32cube.ide.mcu.MCURootProjectNature</nature>
+              <nature>com.st.stm32cube.ide.mcu.MCUCubeIdeServicesRevAProjectNature</nature>
+              <nature>com.st.stm32cube.ide.mcu.MCUManagedMakefileProjectNature</nature>
+			  <nature>com.st.stm32cube.ide.mcu.MCUEndUserDisabledTrustZoneProjectNature</nature>
+			  <nature>com.st.stm32cube.ide.mcu.MCUSingleCpuProjectNature</nature>
+			  <nature>com.st.stm32cube.ide.mpu.projectnatures.core.MPUEmbeddedMCUProjectNature</nature>
+       </natures>
+	   <filteredResources>
+		<filter>
+			<id>1568709163798</id>
+			<name></name>
+			<type>22</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-*.launch</arguments>
+			</matcher>
+		</filter>
+	   </filteredResources>
+</projectDescription>

@@ -17,7 +17,8 @@ extern "C" {
 #endif
 
 /** \defgroup Memory Allocation Interfaces
- *  @{ */
+ *  @{
+ */
 
 /**
  * @brief      allocate requested memory size

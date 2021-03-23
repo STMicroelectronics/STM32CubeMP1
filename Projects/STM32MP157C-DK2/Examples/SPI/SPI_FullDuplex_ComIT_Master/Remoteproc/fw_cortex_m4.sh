@@ -2,9 +2,18 @@
 
 rproc_class_dir="/sys/class/remoteproc/remoteproc0/"
 fmw_dir="/lib/firmware"
+rproc_ta="optee-ta-80a4c275-0a47-4905-8285-1486a9771a08"
 project_name=$(basename $(pwd))
 fmw_name="${project_name}.elf"
-echo "fw_cortex_m4.sh: fmw_name=${fmw_name}"
+if [ -e /sys/bus/tee/devices/${rproc_ta} ]; then
+    #The firmware is managed by OP-TEE, it must be signed.
+    if [ ! -e lib/firmware/${project_name}.sig ] && [ $1 == "start" ]; then
+        echo  "Error: only signed firmware can be loaded"
+        exit 1
+    fi
+    fmw_name="${project_name}.sig"
+fi
+echo "`basename ${0}`: fmw_name=${fmw_name}"
 rproc_state=`tr -d '\0' < $rproc_class_dir/state`
 
 error() {

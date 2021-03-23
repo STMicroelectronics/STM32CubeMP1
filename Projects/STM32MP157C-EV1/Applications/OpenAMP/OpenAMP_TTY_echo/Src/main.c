@@ -78,6 +78,7 @@ void VIRT_UART1_RxCpltCallback(VIRT_UART_HandleTypeDef *huart);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+  unsigned int counter = 0;
 
   /* USER CODE END 1 */
 
@@ -97,6 +98,8 @@ int main(void)
                                             ((HAL_GetHalVersion() >> 24) & 0x000000FF),
                                             ((HAL_GetHalVersion() >> 16) & 0x000000FF),
                                             ((HAL_GetHalVersion() >> 8) & 0x000000FF));
+  BSP_LED_Init(LED4);
+  BSP_LED_On(LED4);
   /* USER CODE END Init */
 
   /*HW semaphore Clock enable*/
@@ -157,6 +160,12 @@ int main(void)
       VirtUart1RxMsg = RESET;
       VIRT_UART_Transmit(&huart1, VirtUart1ChannelBuffRx, VirtUart1ChannelRxSize);
     }
+
+    if(counter++ == 500000) {
+        BSP_LED_Toggle(LED4);
+        counter = 0;
+    }
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -325,6 +334,7 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   log_err("Error_Handler");
+  BSP_LED_Off(LED4);
   while(1)
   {
   }

@@ -37,8 +37,8 @@ extern "C" {
 #define METAL_PROCESSOR_ARM
 
 /** Machine type (zynq, zynqmp, ...). */
-#define METAL_MACHINE		"cortexm"
-#define METAL_MACHINE_CORTEXM
+#define METAL_MACHINE		"template"
+#define METAL_MACHINE_TEMPLATE
 
 #define HAVE_STDATOMIC_H
 /* #undef HAVE_FUTEX_H */
