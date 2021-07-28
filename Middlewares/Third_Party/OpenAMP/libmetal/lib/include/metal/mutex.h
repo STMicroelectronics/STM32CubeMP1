@@ -12,6 +12,8 @@
 #ifndef __METAL_MUTEX__H__
 #define __METAL_MUTEX__H__
 
+#include <metal/system/generic/mutex.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -19,8 +21,6 @@ extern "C" {
 /** \defgroup mutex Mutex Interfaces
  *  @{
  */
-
-#include <metal/system/generic/mutex.h>
 
 /**
  * @brief	Initialize a libmetal mutex.
