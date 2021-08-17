@@ -110,7 +110,7 @@ VIRT_UART_StatusTypeDef VIRT_UART_RegisterCallback(VIRT_UART_HandleTypeDef *huar
   return status;
 }
 
-VIRT_UART_StatusTypeDef VIRT_UART_Transmit(VIRT_UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
+VIRT_UART_StatusTypeDef VIRT_UART_Transmit(VIRT_UART_HandleTypeDef *huart, const void *pData, uint16_t Size)
 {
 	int res;
 
