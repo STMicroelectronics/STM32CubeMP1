@@ -88,6 +88,10 @@ extern void metal_default_log_handler(enum metal_log_level level,
 }
 #endif
 
+#ifdef METAL_FREERTOS
+#include <metal/system/freertos/log.h>
+#else
 #include <metal/system/generic/log.h>
+#endif
 
 #endif /* __METAL_METAL_LOG__H__ */

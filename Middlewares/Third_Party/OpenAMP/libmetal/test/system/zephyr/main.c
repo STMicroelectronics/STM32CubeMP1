@@ -12,14 +12,11 @@
 #include <stdio.h>
 #include <string.h>
 
-#define BLK_SIZE_MIN 128
 #define BLK_SIZE_MAX 1024
-#define BLK_NUM_MIN 64
 #define BLK_NUM_MAX 16
-#define BLK_ALIGN BLK_SIZE_MIN
 
-K_MEM_POOL_DEFINE(kmpool, BLK_SIZE_MIN, BLK_SIZE_MAX, BLK_NUM_MAX, BLK_ALIGN);
-struct k_mem_block block[BLK_NUM_MIN];
+K_HEAP_DEFINE(kmpool, BLK_SIZE_MAX * BLK_NUM_MAX);
+struct k_mem_block block[BLK_NUM_MAX];
 
 extern int init_system(void);
 extern void metal_generic_default_poll(void);
@@ -37,7 +34,8 @@ extern void *metal_zephyr_allocate_memory(unsigned int size)
 	for (i = 0; i < sizeof(block)/sizeof(block[0]); i++) {
 		blk = &block[i];
 		if (!blk->data) {
-			if (k_mem_pool_alloc(&kmpool, blk,size, K_NO_WAIT))
+			blk->data = k_heap_alloc(&kmpool, size, K_NO_WAIT);
+			if (!blk->data)
 				printk("Failed to alloc 0x%x memory.\n", size);
 			return blk->data;
 		}
@@ -55,7 +53,7 @@ extern void metal_zephyr_free_memory(void *ptr)
 	for (i = 0; i < sizeof(block)/sizeof(block[0]); i++) {
 		blk = &block[i];
 		if (blk->data == ptr) {
-			k_mem_pool_free(blk);
+			k_heap_free(&kmpool, blk);
 			blk->data = NULL;
 			return;
 		}

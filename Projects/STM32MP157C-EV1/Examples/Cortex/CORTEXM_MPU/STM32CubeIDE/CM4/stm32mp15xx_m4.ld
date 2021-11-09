@@ -12,7 +12,7 @@
 **
 **  Target      : STMicroelectronics STM32
 **
-**  Distribution: The file is distributed â€œas is,â€� without any warranty
+**  Distribution: The file is distributed “as is,” without any warranty
 **                of any kind.
 **
 *****************************************************************************
@@ -48,18 +48,18 @@ MEMORY
   m_ipc_shm    (RW)  : ORIGIN = 0x10040000, LENGTH = 0x00008000
   m_ro         (RW)  : ORIGIN = 0x10005000, LENGTH = 0x00000020
 }
+
  /* Symbols needed for OpenAMP to enable rpmsg */
 __OPENAMP_region_start__  = ORIGIN(m_ipc_shm);
-__OPENAMP_region_length__ = LENGTH(m_ipc_shm);
-
+__OPENAMP_region_end__ = ORIGIN(m_ipc_shm)+LENGTH(m_ipc_shm);
 
 /* Sections */
 SECTIONS
 {
   /* The startup code into ROM memory */
-  
+
   .ROarraySection : {*(.ROarraySection)} >m_ro
-  
+
   .isr_vector :
   {
     . = ALIGN(4);
@@ -95,11 +95,11 @@ SECTIONS
   } > m_text
 
   .ARM.extab   : { 
-  	. = ALIGN(4);
-  	*(.ARM.extab* .gnu.linkonce.armextab.*)
-  	. = ALIGN(4);
+    . = ALIGN(4);
+    *(.ARM.extab* .gnu.linkonce.armextab.*)
+    . = ALIGN(4);
   } > m_text
-  
+
   .ARM : {
     . = ALIGN(4);
     __exidx_start = .;
@@ -116,7 +116,7 @@ SECTIONS
     PROVIDE_HIDDEN (__preinit_array_end = .);
     . = ALIGN(4);
   } > m_text
-  
+
   .init_array :
   {
     . = ALIGN(4);
@@ -126,7 +126,7 @@ SECTIONS
     PROVIDE_HIDDEN (__init_array_end = .);
     . = ALIGN(4);
   } > m_text
-  
+
   .fini_array :
   {
     . = ALIGN(4);
@@ -163,11 +163,12 @@ SECTIONS
     KEEP (*(.resource_table*))
     . = ALIGN(4);
   } > m_data
-  
+  _eirsc = LOADADDR(.resource_table) + SIZEOF(.resource_table);
+  ASSERT(SIZEOF(.resource_table) == 0 || _eirsc <= text_end, "no room for resource_table load section in text")
 
   /* Uninitialized data section into RAM memory */
   . = ALIGN(4);
-  .bss :
+  .bss : AT (ADDR (.bss))
   {
     /* This is used by the startup in order to initialize the .bss secion */
     _sbss = .;         /* define a global symbol at bss start */
@@ -192,7 +193,6 @@ SECTIONS
     . = ALIGN(8);
   } > m_data
 
-  
 
   /* Remove information from the compiler libraries */
   /DISCARD/ :

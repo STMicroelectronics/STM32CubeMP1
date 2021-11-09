@@ -1,7 +1,7 @@
 | Component                       | License              | Copyright |
 |:---------                       |:-------              |:----------|
 | CMSIS                           | Apache License 2.0   | Copyright (c) 2009-2017 ARM Limited. All rights reserved. |
-| STM32MP1xx CMSIS                | BSD-3-Clause         | STMicroelectronics |
+| STM32MP1xx CMSIS                | Apache License 2.0   | ARM Limited - STMicroelectronics |
 | STM32MP1xx HAL                  | BSD-3-Clause         | STMicroelectronics |
 | BSP STM32MP15xx_EVAL            | BSD-3-Clause         | STMicroelectronics |
 | BSP STM32MP15xx_DISCO           | BSD-3-Clause         | STMicroelectronics |

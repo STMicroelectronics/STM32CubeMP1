@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: BSD-3-Clause
+# Copyright (c) 2020 STMicroelectronics
+
 name: open-amp lib Continuous Integration
 
 on:
@@ -15,12 +18,29 @@ on:
       - scripts/**
 
 jobs:
-  checkpatch_review:
-    name: checkpatch review
+  platform_builds:
+    name: check builds on different platforms
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Run checkpatch review
-      uses: webispy/checkpatch-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout open-amp
+      uses: actions/checkout@v2
+    - name: Checkout libmetal
+      uses: actions/checkout@v2
+      with:
+        repository: OpenAMP/libmetal
+        path: libmetal
+    - name: build for Linux
+      id: build_linux
+      uses: ./.github/actions/build_ci
+      with:
+        target: linux
+    - name: build for Zephyr
+      id: build_Zephyr
+      uses: ./.github/actions/build_ci
+      with:
+        target: zephyr
+    - name: build for generic arm
+      id: build_generic
+      uses: ./.github/actions/build_ci
+      with:
+        target: generic

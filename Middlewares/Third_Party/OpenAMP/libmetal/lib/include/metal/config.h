@@ -17,20 +17,25 @@ extern "C" {
 #endif
 
 /** Library major version number. */
-#define METAL_VER_MAJOR		0
+#define METAL_VER_MAJOR		1
 
 /** Library minor version number. */
-#define METAL_VER_MINOR		1
+#define METAL_VER_MINOR		0
 
 /** Library patch level. */
 #define METAL_VER_PATCH		0
 
 /** Library version string. */
-#define METAL_VER		"0.1.0"
+#define METAL_VER		"1.0.0"
 
 /** System type (linux, generic, ...). */
+#ifdef METAL_FREERTOS
+#define METAL_SYSTEM		"freertos"
+#define METAL_SYSTEM_FREERTOS
+#else
 #define METAL_SYSTEM		"generic"
 #define METAL_SYSTEM_GENERIC
+#endif
 
 /** Processor type (arm, x86_64, ...). */
 #define METAL_PROCESSOR		"arm"

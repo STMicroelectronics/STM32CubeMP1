@@ -363,7 +363,11 @@ int metal_io_block_write(struct metal_io_region *io, unsigned long offset,
 int metal_io_block_set(struct metal_io_region *io, unsigned long offset,
 		       unsigned char value, int len);
 
+#ifdef METAL_FREERTOS
+#include <metal/system/freertos/io.h>
+#else
 #include <metal/system/generic/io.h>
+#endif
 
 /** @} */
 

@@ -87,10 +87,14 @@ static int metal_uio_read_map_attr(struct linux_device *ldev,
 	if (result >= (int)sizeof(path))
 		return -EOVERFLOW;
 	attr = sysfs_open_attribute(path);
-	if (!attr || sysfs_read_attribute(attr) != 0)
+	if (!attr || sysfs_read_attribute(attr) != 0) {
+		sysfs_close_attribute(attr);
 		return -errno;
+	}
 
 	*value = strtoul(attr->value, NULL, 0);
+
+	sysfs_close_attribute(attr);
 	return 0;
 }
 
@@ -234,7 +238,7 @@ static int metal_uio_dev_open(struct linux_bus *lbus, struct linux_device *ldev)
 		result = (result ? result :
 			 metal_uio_read_map_attr(ldev, i, "size", &size));
 		result = (result ? result :
-			 metal_map(ldev->fd, offset, size, 0, 0, &virt));
+			 metal_map(ldev->fd, i * getpagesize(), size, 0, 0, &virt));
 		if (!result) {
 			io = &ldev->device.regions[ldev->device.num_regions];
 			metal_io_init(io, virt, phys, size, -1, 0, NULL);

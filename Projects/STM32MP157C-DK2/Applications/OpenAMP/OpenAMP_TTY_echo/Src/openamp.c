@@ -230,19 +230,6 @@ void OPENAMP_DeInit()
   /* USER CODE END POST_OPENAMP_DEINIT */
 }
 
-void OPENAMP_init_ept(struct rpmsg_endpoint *ept)
-{
-  /* USER CODE BEGIN PRE_EP_INIT */
-
-  /* USER CODE END PRE_EP_INIT */
-
-  rpmsg_init_ept(ept, "", RPMSG_ADDR_ANY, RPMSG_ADDR_ANY, NULL, NULL);
-
-  /* USER CODE BEGIN POST_EP_INIT */
-
-  /* USER CODE END POST_EP_INIT */
-}
-
 int OPENAMP_create_endpoint(struct rpmsg_endpoint *ept, const char *name,
                             uint32_t dest, rpmsg_ept_cb cb,
                             rpmsg_ns_unbind_cb unbind_cb)

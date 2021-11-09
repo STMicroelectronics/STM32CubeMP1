@@ -93,7 +93,11 @@ void metal_irq_enable(unsigned int vector);
  */
 void metal_irq_disable(unsigned int vector);
 
+#ifdef METAL_FREERTOS
+#include <metal/system/freertos/irq.h>
+#else
 #include <metal/system/generic/irq.h>
+#endif
 
 /** @} */
 

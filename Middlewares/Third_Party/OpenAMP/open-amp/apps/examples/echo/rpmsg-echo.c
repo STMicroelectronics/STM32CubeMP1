@@ -1,10 +1,16 @@
+/*
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
 /* This is a sample demonstration application that showcases usage of rpmsg
 This application is meant to run on the remote CPU running baremetal code.
 This application echoes back data that was sent to it by the master core. */
 
 #include <stdio.h>
 #include <openamp/open_amp.h>
+#include <openamp/version.h>
 #include <metal/alloc.h>
+#include <metal/version.h>
 #include "platform_info.h"
 #include "rpmsg-echo.h"
 
@@ -58,7 +64,8 @@ int app(struct rpmsg_device *rdev, void *priv)
 	LPRINTF("Try to create rpmsg endpoint.\r\n");
 
 	ret = rpmsg_create_ept(&lept, rdev, RPMSG_SERVICE_NAME,
-			       0, RPMSG_ADDR_ANY, rpmsg_endpoint_cb,
+			       RPMSG_ADDR_ANY, RPMSG_ADDR_ANY,
+			       rpmsg_endpoint_cb,
 			       rpmsg_service_unbind);
 	if (ret) {
 		LPERROR("Failed to create endpoint.\r\n");
@@ -87,6 +94,16 @@ int main(int argc, char *argv[])
 	struct rpmsg_device *rpdev;
 	int ret;
 
+	LPRINTF("openamp lib version: %s (", openamp_version());
+	LPRINTF("Major: %d, ", openamp_version_major());
+	LPRINTF("Minor: %d, ", openamp_version_minor());
+	LPRINTF("Patch: %d)\r\n", openamp_version_patch());
+
+	LPRINTF("libmetal lib version: %s (", metal_ver());
+	LPRINTF("Major: %d, ", metal_ver_major());
+	LPRINTF("Minor: %d, ", metal_ver_minor());
+	LPRINTF("Patch: %d)\r\n", metal_ver_patch());
+
 	LPRINTF("Starting application...\r\n");
 
 	/* Initialize platform */
@@ -103,7 +120,7 @@ int main(int argc, char *argv[])
 			ret = -1;
 		} else {
 			app(rpdev, platform);
-			platform_release_rpmsg_vdev(rpdev);
+			platform_release_rpmsg_vdev(rpdev, platform);
 			ret = 0;
 		}
 	}

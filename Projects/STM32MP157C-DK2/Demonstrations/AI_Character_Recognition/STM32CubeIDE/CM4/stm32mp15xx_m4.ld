@@ -36,15 +36,15 @@ ENTRY(Reset_Handler)
 /* Highest address of the user mode stack */
 _estack = 0x10040000;    /* end of RAM */
 
-_Min_Heap_Size = 0x200;      /* required amount of heap  */
-_Min_Stack_Size = 0x400; /* required amount of stack */
+_Min_Heap_Size = 0x200 ;  /* required amount of heap  */
+_Min_Stack_Size = 0x400 ; /* required amount of stack */
 
 /* Memories definition */
 MEMORY
 {
   m_interrupts (RX)  : ORIGIN = 0x00000000, LENGTH = 0x00000298
-  m_text       (RX)  : ORIGIN = 0x10000000, LENGTH = 0x00020000
-  m_data       (RW)  : ORIGIN = 0x10020000, LENGTH = 0x00020000
+  m_text       (RX)  : ORIGIN = 0x10000000, LENGTH = 0x00028000
+  m_data       (RW)  : ORIGIN = 0x10028000, LENGTH = 0x00020000
   m_ipc_shm    (RW)  : ORIGIN = 0x10040000, LENGTH = 0x00008000
 }
 
@@ -62,7 +62,7 @@ SECTIONS
     KEEP(*(.isr_vector)) /* Startup code */
     . = ALIGN(4);
   } > m_interrupts
- 
+
 
   /* The program code and other data into ROM memory */
   .text :
@@ -91,11 +91,11 @@ SECTIONS
   } > m_text
 
   .ARM.extab   : { 
-  	. = ALIGN(4);
-  	*(.ARM.extab* .gnu.linkonce.armextab.*)
-  	. = ALIGN(4);
+    . = ALIGN(4);
+    *(.ARM.extab* .gnu.linkonce.armextab.*)
+    . = ALIGN(4);
   } > m_text
-  
+
   .ARM : {
     . = ALIGN(4);
     __exidx_start = .;
@@ -112,7 +112,7 @@ SECTIONS
     PROVIDE_HIDDEN (__preinit_array_end = .);
     . = ALIGN(4);
   } > m_text
-  
+
   .init_array :
   {
     . = ALIGN(4);
@@ -122,7 +122,7 @@ SECTIONS
     PROVIDE_HIDDEN (__init_array_end = .);
     . = ALIGN(4);
   } > m_text
-  
+
   .fini_array :
   {
     . = ALIGN(4);
@@ -159,11 +159,12 @@ SECTIONS
     KEEP (*(.resource_table*))
     . = ALIGN(4);
   } > m_data
-  
+  _eirsc = LOADADDR(.resource_table) + SIZEOF(.resource_table);
+  ASSERT(SIZEOF(.resource_table) == 0 || _eirsc <= text_end, "no room for resource_table load section in text")
 
   /* Uninitialized data section into RAM memory */
   . = ALIGN(4);
-  .bss :
+  .bss : AT (ADDR (.bss))
   {
     /* This is used by the startup in order to initialize the .bss secion */
     _sbss = .;         /* define a global symbol at bss start */
@@ -188,7 +189,6 @@ SECTIONS
     . = ALIGN(8);
   } > m_data
 
-  
 
   /* Remove information from the compiler libraries */
   /DISCARD/ :

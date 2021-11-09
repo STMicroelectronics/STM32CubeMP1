@@ -79,7 +79,11 @@ struct metal_common_state {
 
 struct metal_state;
 
+#ifdef METAL_FREERTOS
+#include <metal/system/freertos/sys.h>
+#else
 #include <metal/system/generic/sys.h>
+#endif
 
 #ifndef METAL_INIT_DEFAULTS
 #define METAL_INIT_DEFAULTS				\
