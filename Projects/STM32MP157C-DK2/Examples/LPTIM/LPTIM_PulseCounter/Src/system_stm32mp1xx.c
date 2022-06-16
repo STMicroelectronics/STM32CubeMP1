@@ -14,7 +14,7 @@
   *                                  be used by the user application to setup
   *                                  the SysTick timer or configure other
   *                                  parameters.
-  *                                     
+  *
   *      - SystemCoreClockUpdate(): Updates the variable SystemCoreClock and must
   *                                 be called whenever the core clock is changed
   *                                 during program execution.
@@ -24,13 +24,12 @@
   *
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics. 
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2021 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the 
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   *
   ******************************************************************************
@@ -48,7 +47,7 @@
   * @{
   */
 
-#include "stm32mp1xx_hal.h"
+#include "stm32mp1xx.h"
 
 /**
   * @}
@@ -76,7 +75,7 @@
 /*!< Uncomment the following line if you need to relocate your vector Table in
      Internal SRAM. */
 /* #define VECT_TAB_SRAM */
-#define VECT_TAB_OFFSET  0x00 /*!< Vector Table base offset field. 
+#define VECT_TAB_OFFSET  0x00 /*!< Vector Table base offset field.
                                    This value must be a multiple of 0x200. */
 /******************************************************************************/
 
@@ -112,8 +111,8 @@
   * @{
   */
 
-#if defined (DATA_IN_ExtSRAM) 
-  static void SystemInit_ExtMemCtl(void); 
+#if defined (DATA_IN_ExtSRAM)
+  static void SystemInit_ExtMemCtl(void);
 #endif /* DATA_IN_ExtSRAM */
 
 /**
@@ -126,7 +125,7 @@
 
   /**
   * @brief  Setup the microcontroller system
-  *         Initialize the FPU setting, vector table location and External memory 
+  *         Initialize the FPU setting, vector table location and External memory
   *         configuration.
   * @param  None
   * @retval None
@@ -152,7 +151,7 @@ void SystemInit (void)
   CLEAR_REG(EXTI_C2->EMR3);
 #else
 #error Please #define CORE_CM4
-#endif	                         
+#endif
 }
 
 /**
@@ -166,7 +165,7 @@ void SystemInit (void)
   *         based on this variable will be incorrect.
   *
   * @note   - The system frequency computed by this function is not the real
-  *           frequency in the chip. It is calculated based on the predefined 
+  *           frequency in the chip. It is calculated based on the predefined
   *           constant and the selected clock source:
   *
   *           - If SYSCLK source is HSI, SystemCoreClock will contain the
@@ -272,13 +271,9 @@ void SystemCoreClockUpdate (void)
   */
 void SystemInit_ExtMemCtl(void)
 {
-  
+
 }
 #endif /* DATA_IN_ExtSRAM */
-  
-/**
-  * @}
-  */
 
 /**
   * @}
@@ -287,4 +282,7 @@ void SystemInit_ExtMemCtl(void)
 /**
   * @}
   */
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+/**
+  * @}
+  */

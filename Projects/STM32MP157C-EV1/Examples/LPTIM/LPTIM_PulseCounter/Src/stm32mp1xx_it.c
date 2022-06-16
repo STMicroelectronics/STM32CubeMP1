@@ -1,20 +1,17 @@
 /**
   ******************************************************************************
-  * @file    stm32mp1xx_it.c
+  * @file    Examples/LPTIM/LPTIM_PulseCounter/Src/stm32mp1xx_it.c
   * @author  MCD Application Team
   * @brief   Interrupt Service Routines.
   ******************************************************************************
-  *
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics. 
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2021 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the 
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
-  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -30,12 +27,14 @@
 extern LPTIM_HandleTypeDef hlptim2;
 
 /******************************************************************************/
-/*            Cortex Processor Interruption and Exception Handlers         */ 
+/*            Cortex-M4 Processor Exceptions Handlers                         */
 /******************************************************************************/
 
 /**
-* @brief This function handles Non maskable interrupt.
-*/
+  * @brief   This function handles NMI exception.
+  * @param  None
+  * @retval None
+  */
 void NMI_Handler(void)
 {
   /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
@@ -47,8 +46,10 @@ void NMI_Handler(void)
 }
 
 /**
-* @brief This function handles Hard fault interrupt.
-*/
+  * @brief  This function handles Hard Fault exception.
+  * @param  None
+  * @retval None
+  */
 void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
@@ -59,14 +60,13 @@ void HardFault_Handler(void)
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
     /* USER CODE END W1_HardFault_IRQn 0 */
   }
-  /* USER CODE BEGIN HardFault_IRQn 1 */
-
-  /* USER CODE END HardFault_IRQn 1 */
 }
 
 /**
-* @brief This function handles Memory management fault.
-*/
+  * @brief  This function handles Memory Manage exception.
+  * @param  None
+  * @retval None
+  */
 void MemManage_Handler(void)
 {
   /* USER CODE BEGIN MemoryManagement_IRQn 0 */
@@ -77,14 +77,13 @@ void MemManage_Handler(void)
     /* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
     /* USER CODE END W1_MemoryManagement_IRQn 0 */
   }
-  /* USER CODE BEGIN MemoryManagement_IRQn 1 */
-
-  /* USER CODE END MemoryManagement_IRQn 1 */
 }
 
 /**
-* @brief This function handles Pre-fetch fault, memory access fault.
-*/
+  * @brief  This function handles Bus Fault exception.
+  * @param  None
+  * @retval None
+  */
 void BusFault_Handler(void)
 {
   /* USER CODE BEGIN BusFault_IRQn 0 */
@@ -95,14 +94,13 @@ void BusFault_Handler(void)
     /* USER CODE BEGIN W1_BusFault_IRQn 0 */
     /* USER CODE END W1_BusFault_IRQn 0 */
   }
-  /* USER CODE BEGIN BusFault_IRQn 1 */
-
-  /* USER CODE END BusFault_IRQn 1 */
 }
 
 /**
-* @brief This function handles Undefined instruction or illegal state.
-*/
+  * @brief  This function handles Usage Fault exception.
+  * @param  None
+  * @retval None
+  */
 void UsageFault_Handler(void)
 {
   /* USER CODE BEGIN UsageFault_IRQn 0 */
@@ -113,14 +111,13 @@ void UsageFault_Handler(void)
     /* USER CODE BEGIN W1_UsageFault_IRQn 0 */
     /* USER CODE END W1_UsageFault_IRQn 0 */
   }
-  /* USER CODE BEGIN UsageFault_IRQn 1 */
-
-  /* USER CODE END UsageFault_IRQn 1 */
 }
 
 /**
-* @brief This function handles System service call via SWI instruction.
-*/
+  * @brief  This function handles SVCall exception.
+  * @param  None
+  * @retval None
+  */
 void SVC_Handler(void)
 {
   /* USER CODE BEGIN SVCall_IRQn 0 */
@@ -132,8 +129,10 @@ void SVC_Handler(void)
 }
 
 /**
-* @brief This function handles Debug monitor.
-*/
+  * @brief  This function handles Debug Monitor exception.
+  * @param  None
+  * @retval None
+  */
 void DebugMon_Handler(void)
 {
   /* USER CODE BEGIN DebugMonitor_IRQn 0 */
@@ -145,8 +144,10 @@ void DebugMon_Handler(void)
 }
 
 /**
-* @brief This function handles Pendable request for system service.
-*/
+  * @brief  This function handles PendSVC exception.
+  * @param  None
+  * @retval None
+  */
 void PendSV_Handler(void)
 {
   /* USER CODE BEGIN PendSV_IRQn 0 */
@@ -158,25 +159,26 @@ void PendSV_Handler(void)
 }
 
 /**
-* @brief This function handles System tick timer.
-*/
+  * @brief  This function handles SysTick Handler.
+  * @param  None
+  * @retval None
+  */
 void SysTick_Handler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
 
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
-  HAL_SYSTICK_IRQHandler();
   /* USER CODE BEGIN SysTick_IRQn 1 */
-
+  HAL_SYSTICK_IRQHandler();
   /* USER CODE END SysTick_IRQn 1 */
 }
 
 /******************************************************************************/
-/* STM32MP1xx Peripheral Interrupt Handlers                                    */
-/* Add here the Interrupt Handlers for the used peripherals.                  */
-/* For the available peripheral interrupt handler names,                      */
-/* please refer to the startup file (startup_stm32mp1xx.s).                    */
+/*                  STM32MP1xx Peripherals Interrupt Handlers                  */
+/*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
+/*  available peripheral interrupt handler's name please refer to the startup */
+/*  file (startup_stm32mp1xx.s).                                               */
 /******************************************************************************/
 
 /**
@@ -192,8 +194,3 @@ void LPTIM2_IRQHandler(void)
 
   /* USER CODE END LPTIM2_IRQn 1 */
 }
-
-/* USER CODE BEGIN 1 */
-
-/* USER CODE END 1 */
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -1196,7 +1196,7 @@
                     <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\Third_Party\OpenAMP\libmetal\lib\shmem.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\Third_Party\OpenAMP\libmetal\lib\system\generic\cortexm\sys.c</name>
+                    <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\Third_Party\OpenAMP\libmetal\lib\system\generic\template\sys.c</name>
                 </file>
             </group>
             <group>

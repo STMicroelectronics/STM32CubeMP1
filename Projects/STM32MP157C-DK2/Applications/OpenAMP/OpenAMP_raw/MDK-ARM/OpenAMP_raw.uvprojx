@@ -600,12 +600,12 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Middlewares/OpenAMP/libmetal/generic/cortexm</GroupName>
+          <GroupName>Middlewares/OpenAMP/libmetal/generic/template</GroupName>
           <Files>
             <File>
               <FileName>sys.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Middlewares/Third_Party/OpenAMP/libmetal/lib/system/generic/cortexm/sys.c</FilePath>
+              <FilePath>../../../../../../Middlewares/Third_Party/OpenAMP/libmetal/lib/system/generic/template/sys.c</FilePath>
             </File>
           </Files>
         </Group>

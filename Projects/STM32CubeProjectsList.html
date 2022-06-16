@@ -13,7 +13,7 @@ h1{text-align: center;font-size: 20pt; font-family: Verdana; color: rgb(51, 102,
 </style></head>
 <body>
 <h1>STM32CubeMP1 Firmware Examples for STM32MP1xx Series</h1>
-<p class="copyright">Copyright 2019 STMicroelectronics</p>
+<p class="copyright">Copyright 2021 STMicroelectronics</p>
 <div class="picture"> <img alt="" id="_x0000_i1025" src="../_htmresc/st_logo.png" style="border: 0px solid ; width: 104px; height: 77px;"> </div>
 <p>The STM32CubeMP1 Firmware package comes with a rich set of
 examples running on STMicroelectronics boards, organized by board and
@@ -91,8 +91,8 @@ specific needs as to test a Firmware directly on coprocessor</li>
 <li><a href="https://wiki.st.com/stm32mpu" target="_blank">Wiki</a>: Wiki STM32 MP1 Main Page.</li>
 <li><a href="https://wiki.st.com/stm32mpu/index.php/Category:STM32CubeMP1" target="_blank">Wiki</a>: Wiki STM32CubeMP1.</li>
 </ul><br>STM32MP157C-DK2 projects :<ul><li>All projects available with 3 IDEs ( STM32CubeIDE, IAR,&nbsp;KEIL&nbsp;), except 3 projects&nbsp;only available with
-STM32CubeIDE - <span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></li></ul><p>STM32MP157C-EV1 projects :</p><ul><li>All projects implemented on STM32CubeIDE<span style="font-weight: bold;"></span></li><li><span style="font-weight: bold;"></span>Few projects available with 3 IDEs ( 
-STM32CubeIDE, IAR,&nbsp;KEIL&nbsp;) - <span style="font-weight: bold;">(**)</span></li></ul><br>
+STM32CubeIDE - <span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);">(*)</span></span></li><li><span style="background-color: rgb(255, 255, 204);">New projects</span></li></ul><p>STM32MP157C-EV1 projects :</p><ul><li>All projects implemented on STM32CubeIDE<span style="font-weight: bold;"></span></li><li><span style="font-weight: bold;"></span>Few projects available with 3 IDEs ( 
+STM32CubeIDE, IAR,&nbsp;KEIL&nbsp;) - <span style="font-weight: bold;">(**)</span></li><li><span style="background-color: rgb(255, 255, 204);">New projects</span></li></ul><span style="background-color: rgb(255, 255, 204);"></span><br><br>
 <table style="background-color: rgb(240, 240, 255); width: 1282px;" border="1">
 <tbody>
 <tr style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" align="center">
@@ -133,10 +133,10 @@ number of templates: 2</b></td>
 <td style="width: 130px;"></td>
 </tr>
 <tr align="center">
-<td style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" rowspan="24">
+<td style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" rowspan="32">
 <p id="Examples">Examples</p>
 </td>
-<td rowspan="1" align="left">
+<td colspan="1" rowspan="4" align="left">
 <p id="ADC">ADC</p>
 </td>
 <td style="width: 229px;" align="left">
@@ -154,7 +154,13 @@ mode).
 Engineering</td>
 <td style="width: 130px;">Cortex-M4 </td>
 </tr>
-<tr align="center">
+<tr><td>ADC_AnalogWatchdog</td><td>How to use the ADC peripheral to perform conversions with an analog watchdog <br>and out-of-window interrupts enabled.</td><td style="text-align: center; background-color: rgb(255, 255, 204);"><font color="green" size="5">x</font></td><td style="text-align: center;">-</td><td style="text-align: center;">Production<br>
+&amp;<br>
+Engineering</td><td style="text-align: center;">Cortex-M4</td></tr><tr><td>ADC_OverSampler</td><td>How to configure and use the ADC to convert an external<br>analog input combined with oversampling feature to increase resolution through the HAL API.</td><td style="text-align: center; background-color: rgb(255, 255, 204);"><font color="green" size="5">x</font></td><td style="text-align: center;">-</td><td style="text-align: center;">Production<br>
+&amp;<br>
+Engineering</td><td style="text-align: center;">Cortex-M4</td></tr><tr><td>ADC_MultiChannelSingleConversion</td><td>How to use an ADC peripheral to convert several channels. ADC conversions are <br>performed successively in a scan sequence.</td><td style="text-align: center; background-color: rgb(255, 255, 204);"><font color="green" size="5">x</font></td><td style="text-align: center;">-</td><td style="text-align: center;">Production<br>
+&amp;<br>
+Engineering</td><td style="text-align: center;">Cortex-M4</td></tr><tr align="center">
 <td rowspan="1" align="left">
 <p id="CRC">CRC</p>
 </td>
@@ -333,7 +339,7 @@ Engineering</td>
 <td style="width: 130px;">Cortex-M4 </td>
 </tr>
 <tr align="center">
-<td rowspan="1" align="left">
+<td colspan="1" rowspan="2" align="left">
 <p id="LPTIM">LPTIM</p>
 </td>
 <td style="width: 229px;" align="left">
@@ -352,7 +358,9 @@ DK2</span>)<br>
 Engineering (EV1 and DK2)</td>
 <td style="width: 130px;">Cortex-M4 </td>
 </tr>
-<tr>
+<tr><td>LPTIM_PWM_LSE</td><td>This example describes how to configure and use LPTIM to generate a PWM in low power mode<br>using the LSE as a counter clock, through the HAL LPTIM API.</td><td style="text-align: center; background-color: rgb(255, 255, 204);"><font color="green" size="5">x</font></td><td style="text-align: center;">-</td><td style="text-align: center;">Production<br>
+&amp;<br>
+Engineering</td><td style="text-align: center;">Cortex-M4</td></tr><tr>
 <td>PWR</td>
 <td>PWR_STOP_CoPro</td>
 <td>How to enter the CSTOP and STOP modes using CM4 core<br>
@@ -443,7 +451,7 @@ Engineering</td>
 <td style="width: 130px;">Cortex-M4 </td>
 </tr>
 <tr align="center">
-<td rowspan="1" align="left">
+<td colspan="1" rowspan="5" align="left">
 <p id="TIM">TIM</p>
 </td>
 <td style="width: 229px;" align="left">
@@ -460,7 +468,15 @@ cycle using the TIMER DMA burst feature.
 Engineering</td>
 <td style="width: 130px;">Cortex-M4 </td>
 </tr>
-<tr align="center">
+<tr><td>TIM_OnePulse</td><td>This example shows how to use the TIMER peripheral to generate a single pulse when<br>&nbsp;a rising edge of an external signal is received on the TIMER Input pin.</td><td style="text-align: center; background-color: rgb(255, 255, 204);"><font color="green" size="5">x</font></td><td style="text-align: center;">-</td><td style="text-align: center;">Production<br>
+&amp;<br>
+Engineering</td><td style="text-align: center;">Cortex-M4</td></tr><tr><td>TIM_PWMOutput</td><td>This example shows how to configure the TIM peripheral in PWM (Pulse Width Modulation) <br>mode.</td><td style="text-align: center; background-color: rgb(255, 255, 204);"><font color="green" size="5">x</font></td><td style="text-align: center;">-</td><td style="text-align: center;">Production<br>
+&amp;<br>
+Engineering</td><td style="text-align: center;">Cortex-M4</td></tr><tr><td>TIM_Synchronization</td><td>This example shows how to synchronize TIM2 and Timers (TIM8 and TIM1) in parallel mode.</td><td style="text-align: center; background-color: rgb(255, 255, 204);"><font color="green" size="5">x</font></td><td style="text-align: center;">-</td><td style="text-align: center;">Production<br>
+&amp;<br>
+Engineering</td><td style="text-align: center;">Cortex-M4</td></tr><tr><td>TIM_TimeBase</td><td>This example shows how to configure the TIM peripheral to generate a time base of <br>one second with the corresponding Interrupt request.</td><td style="text-align: center; background-color: rgb(255, 255, 204);"><font color="green" size="5">x</font></td><td style="text-align: center;">-</td><td style="text-align: center;">Production<br>
+&amp;<br>
+Engineering</td><td style="text-align: center;">Cortex-M4</td></tr><tr align="center">
 <td colspan="1" rowspan="3" align="left">
 <p id="UART">UART</p>
 </td>
@@ -514,14 +530,14 @@ Engineering</td>
 </tr>
 <tr style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" align="center">
 <td style="width: 266px;" colspan="3"><b>Total
-number of examples: 40</b></td>
-<td style="width: 130px;">20</td>
+number of examples: 48</b></td>
+<td style="width: 130px;">28</td>
 <td style="width: 130px;">20</td>
 <td style="width: 130px;"></td>
 <td style="width: 130px;"></td>
 </tr>
 <tr align="center">
-<td style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" rowspan="8">
+<td style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" rowspan="9">
 <p id="Applications">Applications</p>
 </td>
 <td rowspan="1" align="left">
@@ -559,7 +575,7 @@ Engineering</td>
 <td style="width: 130px;">Cortex-M4 </td>
 </tr>
 <tr align="center">
-<td rowspan="5">OpenAMP</td>
+<td rowspan="6">OpenAMP</td>
 <td style="width: 229px;" align="left">
 <p id="OpenAMP_TTY_echo">OpenAMP_Dynamic_ResMgr</p>
 </td>
@@ -600,7 +616,7 @@ enter different PWR system operating mode (Run, Stop and Standby).
 </tr>
 <tr><td><p id="OpenAMP_raw">OpenAMP_raw&nbsp;<span style="font-weight: bold;"></span></p></td><td>How to
 use OpenAMP MW to create an Inter-Processor Communication channel.</td><td style="width: 130px; text-align: center;"><font color="green" size="5">x&nbsp;</font><span style="font-weight: bold;">(**)</span></td><td style="width: 130px; text-align: center;"><font color="green" size="5">x</font><span style="font-weight: bold;"><span style="color: rgb(51, 102, 255);"></span></span></td><td style="width: 130px; text-align: center;">Production<br>
-</td><td style="width: 130px; text-align: center;">Cortex-M4 </td></tr><tr align="center">
+</td><td style="width: 130px; text-align: center;">Cortex-M4 </td></tr><tr><td>OpenAMP_for_signed_fw</td><td>How to use OpenAMP MW + Virtual UART to create an Inter-Processor Communication channel seen as TTY device in Linux OS<br>for protected firmware loaded by OP-TEE secure application.</td><td style="text-align: center; background-color: rgb(255, 255, 204);"><font color="green" size="5">x</font></td><td style="text-align: center; background-color: rgb(255, 255, 204);"><font color="green" size="5">x</font></td><td style="text-align: center;">Production</td><td style="text-align: center;">Cortex-M4</td></tr><tr align="center">
 <td style="width: 229px;" align="left">
 <p id="OpenAMP_raw">OpenAMP_FreeRTOS_echo</p>
 </td>
@@ -614,9 +630,9 @@ use OpenAMP MW to create an Inter-Processor Communication channel.</td><td style
 </tr>
 <tr style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" align="center">
 <td style="width: 266px;" colspan="3"><b>Total
-number of applications: 13</b></td>
+number of applications: 15</b></td>
+<td style="width: 130px;">8</td>
 <td style="width: 130px;">7</td>
-<td style="width: 130px;">6</td>
 <td style="width: 130px;"></td>
 <td style="width: 130px;"></td>
 </tr>
@@ -650,9 +666,9 @@ number of demonstrations: 2</b></td>
 </tr>
 <tr style="background-repeat: no-repeat; background-position: right center; background-color: rgb(57, 169, 220); color: rgb(255, 255, 255);" align="center">
 <td style="width: 266px;" colspan="4"><b>Total
-number of projects: 57</b></td>
+number of projects: 67</b></td>
+<td style="width: 130px;">38</td>
 <td style="width: 130px;">29</td>
-<td style="width: 130px;">28</td>
 <td style="width: 130px;"></td>
 <td style="width: 130px;"></td>
 </tr>

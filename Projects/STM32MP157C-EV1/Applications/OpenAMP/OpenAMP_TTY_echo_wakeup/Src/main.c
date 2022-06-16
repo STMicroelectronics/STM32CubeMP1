@@ -7,13 +7,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics. 
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2021 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the 
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -78,6 +77,8 @@ VIRT_UART_HandleTypeDef huart0;
 __IO FlagStatus VirtUart0RxMsg = RESET;
 uint8_t VirtUart0ChannelBuffRx[MAX_BUFFER_SIZE];
 uint16_t VirtUart0ChannelRxSize = 0;
+
+uint16_t Shutdown_Req = 0;
 
 #define MSG_STOP "*stop"
 #define MSG_STANDBY "*standby"
@@ -147,6 +148,9 @@ int main(void)
    MX_IPCC_Init();
   /* OpenAmp initialisation ---------------------------------*/
   MX_OPENAMP_Init(RPMSG_REMOTE, NULL);
+
+  /* Shutdown mechanism initialisation  */
+  CoproSync_Init();
 
   /* USER CODE BEGIN SysInit */
 
@@ -243,7 +247,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
+  while (!Shutdown_Req)
   {
     /* USER CODE END WHILE */
 
@@ -272,6 +276,25 @@ int main(void)
       ubUserButtonClickEvent = RESET;
     }
   }
+
+  /* Deinit the peripherals */
+  HAL_ADC_Stop_DMA(&hadc2);
+
+  HAL_TIM_Base_Stop(&htim2);
+  BSP_LED_Off(LED4);
+
+  PERIPH_LOCK(EXTI);
+  HAL_EXTI_ClearConfigLine(&hexti62);
+  PERIPH_UNLOCK(EXTI);
+
+  VIRT_UART_DeInit(&huart0);
+
+  /* When ready, notify the remote processor that we can be shut down */
+  HAL_IPCC_NotifyCPU(&hipcc, COPRO_SYNC_SHUTDOWN_CHANNEL, IPCC_CHANNEL_DIR_RX);
+
+  log_info("Cortex-M4 boot successful shutdown\n");
+
+  while(1);
   /* USER CODE END 3 */
 }
 
@@ -1046,6 +1069,11 @@ void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef *hadc)
   BSP_LED_Off(LED4);
 }
 
+void CoproSync_ShutdownCb(IPCC_HandleTypeDef * hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir)
+{
+  Shutdown_Req = 1;
+}
+
 /**
   * @brief  ADC error callback in non blocking mode
   *        (ADC conversion with interruption or transfer by DMA)
@@ -1101,4 +1129,3 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

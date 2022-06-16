@@ -17,6 +17,7 @@
   */
 
 /* Includes ----------------------------------------------------------------------*/
+#include "stm32mp15xx_disco.h"
 #include "stm32mp15xx_disco_bus.h"
 #include "stm32mp15xx_disco_stpmic1.h"
 #include <string.h>
@@ -791,7 +792,6 @@ regul_struct regulators_table[] = {
 /* Private function prototypes -----------------------------------------------*/
 void STPMU1_IrqHandler(void);
 void STPMU1_INTn_Callback(PMIC_IRQn IRQn);
-static void My_Error_Handler(void);
 static regul_struct *STPMU1_Get_Regulator_Data(PMIC_RegulId_TypeDef id);
 static uint8_t STPMU1_Voltage_Find_Index(PMIC_RegulId_TypeDef id, uint16_t milivolts);
 
@@ -808,7 +808,7 @@ static regul_struct *STPMU1_Get_Regulator_Data(PMIC_RegulId_TypeDef id)
       return &regulators_table[i];
   }
   /* id not found */
-  My_Error_Handler();
+  BSP_Error_Handler();
   return NULL;
 }
 
@@ -824,7 +824,7 @@ static uint8_t STPMU1_Voltage_Find_Index(PMIC_RegulId_TypeDef id, uint16_t miliv
     }
   }
   /* voltage not found */
-  My_Error_Handler();
+  BSP_Error_Handler();
   return 0;
 }
 
@@ -901,14 +901,17 @@ void STPMU1_IrqHandler(void)
   * @brief  This function is executed in case of error occurrence.
   * @retval None
   */
-static void My_Error_Handler(void)
+void BSP_Error_Handler(void)
 {
-  /* Error if LED1 is slowly blinking (1 sec. period) */
+  BSP_LED_Init(LED_RED);
+
+  /* Infinite loop */
   while(1)
-  {    
-    //BSP_LED_Toggle(LED4);
+  {
+    /* Toggle LED_RED */
+    BSP_LED_Toggle(LED_RED);
     HAL_Delay(500);
-  } 
+  }
 }
 
 
@@ -962,7 +965,7 @@ uint8_t STPMU1_Register_Read(uint8_t register_id)
   /* Check the communication status */
   if(status != BSP_ERROR_NONE)
   {
-    My_Error_Handler();
+    BSP_Error_Handler();
   }
   return Value;
 }
@@ -976,7 +979,7 @@ void STPMU1_Register_Write(uint8_t register_id, uint8_t value)
   /* Check the communication status */
   if(status != BSP_ERROR_NONE)
   {
-    My_Error_Handler();
+    BSP_Error_Handler();
   }
 
   /* verify register content */
@@ -985,7 +988,7 @@ void STPMU1_Register_Write(uint8_t register_id, uint8_t value)
     uint8_t readval = STPMU1_Register_Read(register_id);
     if (readval != value)
     {
-      My_Error_Handler();
+      BSP_Error_Handler();
     }
   }
   return ;

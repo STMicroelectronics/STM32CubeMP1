@@ -8,12 +8,13 @@
   * @brief   Description of the OpenAMP TTY echo wake up Application.
   ******************************************************************************
   *
-  * Copyright (c) 2019 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2021 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
   *
   ******************************************************************************
   @endverbatim
@@ -71,6 +72,9 @@ In this example:
     > echo "Hello Virtual UART0" >/dev/ttyRPMSG0
 
     You should get "Hello Virtual UART0" in Linux console
+
+    > ./fw_cortex_m4.sh stop
+      For this example, on Stop the Cortex-A7 send a shutdown request through IPCC peripheral to the Cortex-M4 so that it is able to take necessary actions to stop ADC and DMA before stopping the example.
 
 
 ----------------------------------------------

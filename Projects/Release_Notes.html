@@ -44,13 +44,164 @@
 <div class="col-sm-12 col-lg-8">
 <h1 id="update-history">Update History</h1>
 <div class="collapse">
-<input type="checkbox" id="collapse-section0" checked aria-hidden="true"> <label for="collapse-section0" checked aria-hidden="true"><strong>V1.5.0 / 04-November-2021</strong></label>
+<input type="checkbox" id="collapse-section0" checked aria-hidden="true"> <label for="collapse-section0" checked aria-hidden="true"><strong>V1.6.0 / 02-June-2022</strong></label>
 <div>
 <h2 id="main-changes">Main Changes</h2>
 <ul>
 <li><strong>Maintenance release of STM32CubeMP15 Projects</strong> for STM32MP15xx devices</li>
 </ul>
 <h2 id="contents">Contents</h2>
+<p><small>The components flagged by “<span class="icon-st-update"></span>” have changed since the previous release. “<span class="icon-st-add"></span>” are new.</small></p>
+<ul>
+<li><strong>Application</strong>:
+<ul>
+<li>Update project relying on OpenAMP 2021.10</li>
+<li>OpenAMP_TTY_echo_wakeup example: <span class="icon-st-update"></span>
+<ul>
+<li>implement the firmware shutdown to force the stop of ADC and DMA</li>
+</ul></li>
+<li>Fix include declaration with gcc++ in openamp</li>
+<li>Implement OpenAMP_for_signed_fw project</li>
+</ul></li>
+<li><strong>Examples</strong>:
+<ul>
+<li>Update LPTIM_PulseCounter example (add low power mode) for MP15 EVAL board <span class="icon-st-update"></span></li>
+<li>Implement LPTIM_PWM_LSE example for MP15 EVAL board <span class="icon-st-add"></span></li>
+<li>Implement ADC_MultiChannelSingleConversion example for MP15 EVAL board <span class="icon-st-add"></span></li>
+<li>Implement TIM_OnePulse example for MP15 EVAL board <span class="icon-st-add"></span></li>
+<li>Implement TIM_PWMOutput example for MP15 EVAL board <span class="icon-st-add"></span></li>
+<li>Implement TIM_Synchronization example for MP15 EVAL board <span class="icon-st-add"></span></li>
+<li>Implement TIM_TimeBase example for MP15 EVAL board <span class="icon-st-add"></span></li>
+<li>Implement ADC AnalogWatchdog example for MP15 EVAL board <span class="icon-st-add"></span></li>
+<li>Implement ADC Oversampler example for MP15 EVAL board <span class="icon-st-add"></span></li>
+</ul></li>
+<li><strong>All</strong>:
+<ul>
+<li>Cleanup license headers and copyright</li>
+</ul></li>
+</ul>
+<h3 id="projects"><strong>Projects</strong></h3>
+<table>
+<caption>Projects <strong>STM32MP157C-DK2</strong></caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Board</th>
+<th style="text-align: left;">Project category</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: left;">Path</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">STM32MP157C-DK2</td>
+<td style="text-align: left;">Applications</td>
+<td style="text-align: left;">V1.6.0</td>
+<td style="text-align: left;">Projects/STM32MP157C-DK2/Applications</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32MP157C-DK2</td>
+<td style="text-align: left;">Demonstrations</td>
+<td style="text-align: left;">V1.6.0</td>
+<td style="text-align: left;">Projects/STM32MP157C-DK2/Demonstrations</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32MP157C-DK2</td>
+<td style="text-align: left;">Examples</td>
+<td style="text-align: left;">V1.6.0</td>
+<td style="text-align: left;">Projects/STM32MP157C-DK2/Examples</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32MP157C-DK2</td>
+<td style="text-align: left;">Templates</td>
+<td style="text-align: left;">V1.6.0</td>
+<td style="text-align: left;">Projects/STM32MP157C-DK2/Templates</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Projects <strong>STM32MP157C-EV1</strong></caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Board</th>
+<th style="text-align: left;">Project category</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: left;">Path</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">STM32MP157C-EV1</td>
+<td style="text-align: left;">Applications</td>
+<td style="text-align: left;">V1.6.0</td>
+<td style="text-align: left;">Projects/STM32MP157C-EV1/Applications</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32MP157C-EV1</td>
+<td style="text-align: left;">Demonstrations</td>
+<td style="text-align: left;">V1.6.0</td>
+<td style="text-align: left;">Projects/STM32MP157C-EV1/Demonstrations</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32MP157C-EV1</td>
+<td style="text-align: left;">Examples</td>
+<td style="text-align: left;">V1.6.0</td>
+<td style="text-align: left;">Projects/STM32MP157C-EV1/Examples</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32MP157C-EV1</td>
+<td style="text-align: left;">Templates</td>
+<td style="text-align: left;">V1.6.0</td>
+<td style="text-align: left;">Projects/STM32MP157C-EV1/Templates</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong></p>
+<ul>
+<li>The execution of the examples could be done in 2 different mode :
+<ul>
+<li>Production boot mode: Firmware is loaded in coprocessor by the master processor (Cortex A7 - Flash Memory boot mode)</li>
+<li>Engineering boot mode is used for specific needs as to test a Firmware directly on coprocessor</li>
+</ul></li>
+<li>For the exaustive list please refer to this table <a href="STM32CubeProjectsList.html">STM32CubeProjectsList</a>.</li>
+</ul>
+<h2 id="supported-devices-and-boards">Supported Devices and boards</h2>
+<ul>
+<li>STM32MP151 / STM32MP153 and STM32MP157 devices</li>
+<li>STM32MP157C Discover and Evaluation boards</li>
+</ul>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>The current default IDE = STM32CubeIDE
+<ul>
+<li>All-in-one multi-OS development tool STM32CubeIDE: v1.10.0: <span style="font-color: blue;"><a href="https://www.st.com/en/development-tools/stm32cubeide.html">link</a></span>
+<ul>
+<li>gcc toolchain version = 10.3-2021.10</li>
+</ul></li>
+</ul></li>
+<li>Other IDE’s supporting STM32MP1 devices (portage for all projects not completed):
+<ul>
+<li>IAR Embedded Workbench for ARM (EWARM) toolchain: v8.40.1: <span style="font-color: blue;"><a href="https://www.iar.com/iar-embedded-workbench/">link</a></span></li>
+<li>RealView Microcontroller Development Kit (MDK-ARM) toolchain v5.27: <span style="font-color: blue;"><a href="http://www.keil.com/appnotes/docs/apnt_319.asp">link</a></span></li>
+</ul></li>
+</ul>
+<h2 id="known-limitations">Known Limitations</h2>
+<ul>
+<li>The projects are not generated with STM32CubeMX tool</li>
+</ul>
+<h2 id="backward-compatibility">Backward Compatibility</h2>
+<ul>
+<li>Not applicable</li>
+</ul>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section3" aria-hidden="true"> <label for="collapse-section3" aria-hidden="true"><strong>V1.5.0 / 04-November-2021</strong></label>
+<div>
+<h2 id="main-changes-1">Main Changes</h2>
+<ul>
+<li><strong>Maintenance release of STM32CubeMP15 Projects</strong> for STM32MP15xx devices</li>
+</ul>
+<h2 id="contents-1">Contents</h2>
 <p><small>The components flagged by “<span class="icon-st-update"></span>” have changed since the previous release. “<span class="icon-st-add"></span>” are new.</small></p>
 <ul>
 <li><strong>Application</strong>:
@@ -64,7 +215,7 @@
 </ul></li>
 <li><strong>Remove SW4STM32 Projects</strong> ( obsolete IDE)</li>
 </ul>
-<h3 id="projects"><strong>Projects</strong></h3>
+<h3 id="projects-1"><strong>Projects</strong></h3>
 <table>
 <caption>Projects <strong>STM32MP157C-DK2</strong></caption>
 <thead>
@@ -148,12 +299,12 @@
 </ul></li>
 <li>For the exaustive list please refer to this table <a href="STM32CubeProjectsList.html">STM32CubeProjectsList</a>.</li>
 </ul>
-<h2 id="supported-devices-and-boards">Supported Devices and boards</h2>
+<h2 id="supported-devices-and-boards-1">Supported Devices and boards</h2>
 <ul>
 <li>STM32MP151 / STM32MP153 and STM32MP157 devices</li>
 <li>STM32MP157C Discover and Evaluation boards</li>
 </ul>
-<h2 id="dependencies">Dependencies</h2>
+<h2 id="dependencies-1">Dependencies</h2>
 <ul>
 <li>The current default IDE = STM32CubeIDE
 <ul>
@@ -165,11 +316,11 @@
 <li>RealView Microcontroller Development Kit (MDK-ARM) toolchain v5.27: <span style="font-color: blue;"><a href="http://www.keil.com/appnotes/docs/apnt_319.asp">link</a></span></li>
 </ul></li>
 </ul>
-<h2 id="known-limitations">Known Limitations</h2>
+<h2 id="known-limitations-1">Known Limitations</h2>
 <ul>
 <li>The projects are not generated with STM32CubeMX tool</li>
 </ul>
-<h2 id="backward-compatibility">Backward Compatibility</h2>
+<h2 id="backward-compatibility-1">Backward Compatibility</h2>
 <ul>
 <li>Not applicable</li>
 </ul>
@@ -178,7 +329,7 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section2" aria-hidden="true"> <label for="collapse-section2" aria-hidden="true"><strong>V1.4.0 / 09-June-2021</strong></label>
 <div>
-<h2 id="main-changes-1">Main Changes</h2>
+<h2 id="main-changes-2">Main Changes</h2>
 <ul>
 <li><strong>Maintenance release of STM32CubeMP15 Projects</strong> for STM32MP15xx devices
 <ul>
@@ -186,8 +337,8 @@
 <li>Port AI_Character_Recognition on STM32CubeIDE</li>
 </ul></li>
 </ul>
-<h2 id="contents-1">Contents</h2>
-<h3 id="projects-1">Projects</h3>
+<h2 id="contents-2">Contents</h2>
+<h3 id="projects-2">Projects</h3>
 <p><small>The components flagged by “<span class="icon-st-update"></span>” have changed since the previous release. “<span class="icon-st-add"></span>” are new.</small></p>
 <table>
 <caption>Projects <strong>STM32MP157C-DK2</strong></caption>
@@ -272,20 +423,20 @@
 </ul></li>
 <li>For the exaustive list please refer to this table STM32CubeProjectsList.html</li>
 </ul>
-<h2 id="supported-devices-and-boards-1">Supported Devices and boards</h2>
+<h2 id="supported-devices-and-boards-2">Supported Devices and boards</h2>
 <ul>
 <li>STM32MP151 / STM32MP153 and STM32MP157 devices</li>
 <li>STM32MP157C Discover and Evaluation boards</li>
 </ul>
-<h2 id="dependencies-1">Dependencies</h2>
+<h2 id="dependencies-2">Dependencies</h2>
 <ul>
 <li>None</li>
 </ul>
-<h2 id="known-limitations-1">Known Limitations</h2>
+<h2 id="known-limitations-2">Known Limitations</h2>
 <ul>
 <li>The projects are not generated with STM32CubeMX tool</li>
 </ul>
-<h2 id="backward-compatibility-1">Backward Compatibility</h2>
+<h2 id="backward-compatibility-2">Backward Compatibility</h2>
 <ul>
 <li>Not applicable</li>
 </ul>

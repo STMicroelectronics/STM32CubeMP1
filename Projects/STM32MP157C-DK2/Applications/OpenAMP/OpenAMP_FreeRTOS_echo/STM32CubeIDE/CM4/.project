@@ -323,9 +323,9 @@
 			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/OpenAMP/open-amp/lib/virtio/virtqueue.c</locationURI>
 		</link>
 		<link>
-			<name>Middlewares/OpenAMP/libmetal/freertos/cortexm/sys.c</name>
+			<name>Middlewares/OpenAMP/libmetal/freertos/template/sys.c</name>
 			<type>1</type>
-			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/OpenAMP/libmetal/lib/system/freertos/cortexm/sys.c</locationURI>
+			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/OpenAMP/libmetal/lib/system/freertos/template/sys.c</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

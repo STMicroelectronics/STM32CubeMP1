@@ -254,6 +254,7 @@ typedef struct
   * @{
   */
 uint32_t         BSP_GetVersion(void);
+void             BSP_Error_Handler(void);
 
 /** @addtogroup STM32MP15XX_DISCO_LOW_LEVEL_Exported_Functions_Group1 LED Functions
   * @{

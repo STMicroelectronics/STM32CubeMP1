@@ -34,13 +34,13 @@
 <div class="col-sm-12 col-lg-8">
 <h1 id="update-history">Update History</h1>
 <div class="collapse">
-<input type="checkbox" id="collapse-section0" checked aria-hidden="true"> <label for="collapse-section0" aria-hidden="true"><strong>V1.5.0 / 04-November-2021</strong></label>
+<input type="checkbox" id="collapse-section0" checked aria-hidden="true"> <label for="collapse-section0" aria-hidden="true"><strong>V1.6.0 / 02-June-2022</strong></label>
 <div>
 <h2 id="main-changes">Main Changes</h2>
 <p><strong>Maintenance Release of STMP32MP1xx_EVAL BSP</strong></p>
 <h2 id="contents">Contents</h2>
 <ul>
-<li>Update the licenses declaration</li>
+<li>Add BSP_Error_Handler() to manage BSP Errors</li>
 </ul>
 <h2 id="known-limitations">Known Limitations</h2>
 <ul>
@@ -57,13 +57,13 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section5" aria-hidden="true"> <label for="collapse-section5" aria-hidden="true"><strong>V1.4.0 / 27-January-2021</strong></label>
+<input type="checkbox" id="collapse-section6" aria-hidden="true"> <label for="collapse-section6" aria-hidden="true"><strong>V1.5.0 / 04-November-2021</strong></label>
 <div>
 <h2 id="main-changes-1">Main Changes</h2>
 <p><strong>Maintenance Release</strong> of STMP32MP15xx_EVAL BSP</p>
 <h2 id="contents-1">Contents</h2>
 <ul>
-<li>No Update</li>
+<li>Update the licenses declaration</li>
 </ul>
 <h2 id="known-limitations-1">Known Limitations</h2>
 <ul>
@@ -78,16 +78,13 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section4" aria-hidden="true"> <label for="collapse-section4" aria-hidden="true"><strong>V1.3.0 / 20-October-2020</strong></label>
+<input type="checkbox" id="collapse-section5" aria-hidden="true"> <label for="collapse-section5" aria-hidden="true"><strong>V1.4.0 / 27-January-2021</strong></label>
 <div>
 <h2 id="main-changes-2">Main Changes</h2>
 <p><strong>Maintenance Release</strong> of STMP32MP15xx_EVAL BSP</p>
 <h2 id="contents-2">Contents</h2>
 <ul>
-<li>Fix unterminated extern “C” definitions:
-<ul>
-<li>impacted files : stm32mp15xx_eval_conf_template.h and stm32mp15xx_eval_errno.h</li>
-</ul></li>
+<li>No Update</li>
 </ul>
 <h2 id="known-limitations-2">Known Limitations</h2>
 <ul>
@@ -102,13 +99,16 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section3" aria-hidden="true"> <label for="collapse-section3" aria-hidden="true"><strong>V1.2.0 / 03-February-2020</strong></label>
+<input type="checkbox" id="collapse-section4" aria-hidden="true"> <label for="collapse-section4" aria-hidden="true"><strong>V1.3.0 / 20-October-2020</strong></label>
 <div>
 <h2 id="main-changes-3">Main Changes</h2>
 <p><strong>Maintenance Release</strong> of STMP32MP15xx_EVAL BSP</p>
 <h2 id="contents-3">Contents</h2>
 <ul>
-<li>No update</li>
+<li>Fix unterminated extern “C” definitions:
+<ul>
+<li>impacted files : stm32mp15xx_eval_conf_template.h and stm32mp15xx_eval_errno.h</li>
+</ul></li>
 </ul>
 <h2 id="known-limitations-3">Known Limitations</h2>
 <ul>
@@ -123,14 +123,13 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section2" aria-hidden="true"> <label for="collapse-section2" aria-hidden="true"><strong>V1.1.0 / 10-September-2019</strong></label>
+<input type="checkbox" id="collapse-section3" aria-hidden="true"> <label for="collapse-section3" aria-hidden="true"><strong>V1.2.0 / 03-February-2020</strong></label>
 <div>
 <h2 id="main-changes-4">Main Changes</h2>
-<p><strong>First Maintenance Release</strong> of STMP32MP15xx_EVAL BSP</p>
+<p><strong>Maintenance Release</strong> of STMP32MP15xx_EVAL BSP</p>
 <h2 id="contents-4">Contents</h2>
 <ul>
-<li><p>Add support of console input from COM</p></li>
-<li><p>Rename stm32mp15xx_eval_stpmu1 file to stm32mp15xx_eval_stpmic1</p></li>
+<li>No update</li>
 </ul>
 <h2 id="known-limitations-4">Known Limitations</h2>
 <ul>
@@ -145,10 +144,15 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section1" aria-hidden="true"> <label for="collapse-section1" aria-hidden="true"><strong>V1.0.0 / 22-January-2019</strong></label>
+<input type="checkbox" id="collapse-section2" aria-hidden="true"> <label for="collapse-section2" aria-hidden="true"><strong>V1.1.0 / 10-September-2019</strong></label>
 <div>
 <h2 id="main-changes-5">Main Changes</h2>
-<p><strong>First official release STM32MP15xx-EVAL</strong> board drivers for STM32CubeMP1 FW package</p>
+<p><strong>First Maintenance Release</strong> of STMP32MP15xx_EVAL BSP</p>
+<h2 id="contents-5">Contents</h2>
+<ul>
+<li><p>Add support of console input from COM</p></li>
+<li><p>Rename stm32mp15xx_eval_stpmu1 file to stm32mp15xx_eval_stpmic1</p></li>
+</ul>
 <h2 id="known-limitations-5">Known Limitations</h2>
 <ul>
 <li>None</li>
@@ -158,6 +162,23 @@
 <li>None</li>
 </ul>
 <h2 id="notes-5">Notes</h2>
+<p>stm32mp15xx_eval_conf_template.h file must be copied in user application as &gt;stm32mp15xx_eval_conf.h with optional configuration update</p>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section1" aria-hidden="true"> <label for="collapse-section1" aria-hidden="true"><strong>V1.0.0 / 22-January-2019</strong></label>
+<div>
+<h2 id="main-changes-6">Main Changes</h2>
+<p><strong>First official release STM32MP15xx-EVAL</strong> board drivers for STM32CubeMP1 FW package</p>
+<h2 id="known-limitations-6">Known Limitations</h2>
+<ul>
+<li>None</li>
+</ul>
+<h2 id="dependencies-6">Dependencies</h2>
+<ul>
+<li>None</li>
+</ul>
+<h2 id="notes-6">Notes</h2>
 <ul>
 <li>stm32mp15xx_eval_conf_template.h file must be copied in user application as &gt;stm32mp15xx_eval_conf.h with optional configuration update</li>
 </ul>

@@ -7,13 +7,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy;  Copyright (c) 2019 STMicroelectronics. 
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2021 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the 
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -28,16 +27,19 @@
 LPTIM_HandleTypeDef hlptim1;
 
 /* USER CODE BEGIN PV */
-
+RCC_ClkInitTypeDef  RCC_ClkInit;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-void Error_Handler(void);
 static void MX_GPIO_Init(void);
 static void MX_LPTIM1_Init(void);
 
 /* USER CODE BEGIN PFP */
+static HAL_StatusTypeDef SYSCLKConfig_STOP(void);
+static void RCC_backupClocks(void);
+static HAL_StatusTypeDef Prepare_IOComp(void);
+
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
@@ -78,11 +80,19 @@ int main(void)
   }
   /* USER CODE END Init */
 
-  /*HW semaphore Clock enable*/
-  __HAL_RCC_HSEM_CLK_ENABLE();
 
   /* USER CODE BEGIN SysInit */
+  /* Prepare IO compensation mechanism */
+  if (Prepare_IOComp() != HAL_OK)
+  {
+    Error_Handler();
+  }
 
+  /* Enable IO compensation mechanism */
+  if (HAL_SYSCFG_EnableIOCompensation() !=  HAL_OK)
+  {
+    Error_Handler();
+  }
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -101,22 +111,55 @@ int main(void)
     Error_Handler();
   }
 
-  /* Disable autoreload write complete interrupt */
-  __HAL_LPTIM_DISABLE_IT(&hlptim1, LPTIM_IT_ARROK);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-  /* USER CODE END WHILE */
+    /* USER CODE END WHILE */
+    /* Insert 1 second delay */
+    HAL_Delay(500);
 
-  /* USER CODE BEGIN 3 */
+    __set_BASEPRI((DEFAULT_IRQ_PRIO + 1) << (8 - __NVIC_PRIO_BITS));
+
+    /* Back up clock context */
+    RCC_backupClocks();
+
+    /* Disable IO Compensation */
+    HAL_SYSCFG_DisableIOCompensation();
+
+    /* Clear the Low Power MCU flags before going into CSTOP */
+    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_STOP);
+
+    /* Enter STOP mode */
+    HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
+
+    /* ... STOP mode ... */
+
+    /* Test if system was on STOP mode */
+    if(__HAL_PWR_GET_FLAG(PWR_FLAG_STOP) == 1U)
+    {
+      /* Clear the Low Power MCU flags */
+      __HAL_PWR_CLEAR_FLAG(PWR_FLAG_STOP);
+
+      /* Restore clocks */
+      if (SYSCLKConfig_STOP() != HAL_OK)
+      {
+        Error_Handler();
+      }
+    }
+
+    /* Enable IO Compensation */
+    if (HAL_SYSCFG_EnableIOCompensation() != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    /* All level of ITs can interrupt */
+    __set_BASEPRI(0U);
 
   }
-  /* USER CODE END 3 */
-
 }
 
 /**
@@ -133,15 +176,19 @@ void SystemClock_Config(void)
   HAL_PWR_EnableBkUpAccess();
   __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_MEDIUMHIGH);
 
-  /**Initializes the CPU, AHB and APB busses clocks 
+  /**Initializes the CPU, AHB and APB busses clocks
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSE
-                |RCC_OSCILLATORTYPE_LSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_LSI
+                              |RCC_OSCILLATORTYPE_HSE|RCC_OSCILLATORTYPE_LSE
+                              |RCC_OSCILLATORTYPE_CSI;
   RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS_DIG;
   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
+  RCC_OscInitStruct.HSICalibrationValue = 0x0; /* Default reset value */
   RCC_OscInitStruct.HSIDivValue = RCC_HSI_DIV1;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
+  RCC_OscInitStruct.CSIState = RCC_CSI_ON;
+  RCC_OscInitStruct.CSICalibrationValue = 0x10; /* Default reset value */
 
   /**PLL1 Config
   */
@@ -203,14 +250,14 @@ void SystemClock_Config(void)
 
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
-  Error_Handler();
+    Error_Handler();
   }
   /**RCC Clock Config
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_ACLK
-                |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2
-                |RCC_CLOCKTYPE_PCLK3|RCC_CLOCKTYPE_PCLK4
-                |RCC_CLOCKTYPE_PCLK5|RCC_CLOCKTYPE_MPU;
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2
+                              |RCC_CLOCKTYPE_PCLK3|RCC_CLOCKTYPE_PCLK4
+                              |RCC_CLOCKTYPE_PCLK5|RCC_CLOCKTYPE_MPU;
   RCC_ClkInitStruct.MPUInit.MPU_Clock = RCC_MPUSOURCE_PLL1;
   RCC_ClkInitStruct.MPUInit.MPU_Div = RCC_MPU_DIV2;
   RCC_ClkInitStruct.AXISSInit.AXI_Clock = RCC_AXISSOURCE_PLL2;
@@ -225,7 +272,7 @@ void SystemClock_Config(void)
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct) != HAL_OK)
   {
-  Error_Handler();
+    Error_Handler();
   }
 
   /**Set the HSE division factor for RTC clock
@@ -252,78 +299,23 @@ static void MX_LPTIM1_Init(void)
   {
     Error_Handler();
   }
-
 }
 
-/** Configure pins as 
-        * Analog 
-        * Input 
-        * Output
-        * EVENT_OUT
-        * EXTI
-     PD5   ------> USART2_TX
-     PG6   ------> SDMMC2_CMD
-     PB3   ------> SDMMC2_D2
-     PD4   ------> USART2_RTS
-     PB15   ------> SDMMC2_D1
-     PB4   ------> SDMMC2_D3
-     PE3   ------> SDMMC2_CK
-     PB14   ------> SDMMC2_D0
-     PD6   ------> USART2_RX
-     PD2   ------> SDMMC1_CMD
-     PC12   ------> SDMMC1_CK
-     PD3   ------> USART2_CTS
-     PC10   ------> SDMMC1_D2
-     PC11   ------> SDMMC1_D3
-     PC9   ------> SDMMC1_D1
-     PC8   ------> SDMMC1_D0
-     PZ1   ------> I2S1_SDI
-     PZ4   ------> I2C4_SCL
-     PZ0   ------> I2S1_CK
-     PZ3   ------> I2S1_WS
-     PZ5   ------> I2C4_SDA
-     PZ2   ------> I2S1_SDO
-     PE2   ------> ETH1_TXD3
-     PC2   ------> ETH1_TXD2
-     PF15   ------> I2C1_SDA
-     PG5   ------> ETH1_CLK125
-     PG11   ------> UART4_TX
-     PB5   ------> ETH1_CLK
-     PB2   ------> UART4_RX
-     PD12   ------> I2C1_SCL
-     PG14   ------> ETH1_TXD1
-     PG13   ------> ETH1_TXD0
-     PA1   ------> ETH1_RX_CLK
-     PC1   ------> ETH1_MDC
-     PB1   ------> ETH1_RXD3
-     PB11   ------> ETH1_TX_CTL
-     PG4   ------> ETH1_GTX_CLK
-     PB0   ------> ETH1_RXD2
-     PC5   ------> ETH1_RXD1
-     PA7   ------> ETH1_RX_CTL
-     USB_DM1   ------> USBH_HS1_DM
-     PA2   ------> ETH1_MDIO
-     PC4   ------> ETH1_RXD0
-     USB_DP1   ------> USBH_HS1_DP
-*/
+/**
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
 static void MX_GPIO_Init(void)
 {
-
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
-  __HAL_RCC_GPIOG_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
-  __HAL_RCC_GPIOF_CLK_ENABLE();
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOE_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOI_CLK_ENABLE();
 }
+
 /* USER CODE BEGIN 4 */
 
 /**
-  * @brief  Autoreload match callback in non blocking mode 
+  * @brief  Autoreload match callback in non blocking mode
   * @param  hlptim : LPTIM handle
   * @retval None
   */
@@ -336,6 +328,115 @@ void HAL_LPTIM_AutoReloadMatchCallback(LPTIM_HandleTypeDef *hlptim)
 /* USER CODE END 4 */
 
 /**
+  * @brief  After a STOP platform mode re-enable PLL3 and restore the CM4
+  *         clock source muxer and the CM4 prescaler.
+  * @note   Use polling mode for timeout generation as code is used
+  *         on critical section.
+  * @note   RCC HAL macros used in this case to allow MCU to wake-up as quick
+  *         as possible from STOP mode.
+  * @param  None
+  * @retval HAL_StatusTypeDef value
+  */
+static HAL_StatusTypeDef SYSCLKConfig_STOP(void)
+{
+  /* Update SystemCoreClock variable */
+  SystemCoreClock = HAL_RCC_GetSystemCoreClockFreq();
+
+  /* Reconfigure Systick */
+  if (HAL_InitTick(uwTickPrio) != HAL_OK)
+  {
+    return HAL_ERROR;
+  }
+
+  /* Enable PLL3 if needed */
+  if (RCC_ClkInit.MCUInit.MCU_Clock == RCC_MCUSSOURCE_PLL3)
+  {
+    /* Enable PLL3 */
+    __HAL_RCC_PLL3_ENABLE();
+
+    /* Wait till PLL3 is ready */
+    __WAIT_EVENT_TIMEOUT(__HAL_RCC_GET_FLAG(RCC_FLAG_PLL3RDY),
+                         CLOCKSWITCH_TIMEOUT_VALUE);
+
+    /* Enable PLL3 outputs */
+    __HAL_RCC_PLL3CLKOUT_ENABLE(RCC_PLL3_DIVP | RCC_PLL3_DIVQ | RCC_PLL3_DIVR);
+  }
+
+  /* Configure MCU clock only */
+  __HAL_RCC_MCU_SOURCE(RCC_ClkInit.MCUInit.MCU_Clock);
+
+  /* Wait till MCU is ready */
+  __WAIT_EVENT_TIMEOUT(__HAL_RCC_GET_FLAG(RCC_FLAG_MCUSSRCRDY),
+                       CLOCKSWITCH_TIMEOUT_VALUE);
+
+  /* Update SystemCoreClock variable */
+  SystemCoreClock = HAL_RCC_GetSystemCoreClockFreq();
+
+  /* Reconfigure Systick */
+  if (HAL_InitTick(uwTickPrio) != HAL_OK)
+  {
+    return HAL_ERROR;
+  }
+
+  /* Set MCU division factor */
+  __HAL_RCC_MCU_DIV(RCC_ClkInit.MCUInit.MCU_Div);
+
+  /* Wait till MCUDIV is ready */
+  __WAIT_EVENT_TIMEOUT(__HAL_RCC_GET_FLAG(RCC_FLAG_MCUDIVRDY),
+                       CLOCKSWITCH_TIMEOUT_VALUE);
+
+  /* Update SystemCoreClock variable */
+  SystemCoreClock = HAL_RCC_GetSystemCoreClockFreq();
+
+  /* Reconfigure Systick */
+  if (HAL_InitTick(uwTickPrio) != HAL_OK)
+  {
+    return HAL_ERROR;
+  }
+
+  return HAL_OK;
+}
+
+/**
+  * @brief  Back up clock tree
+  * @param  None
+  * @retval None
+  */
+static void RCC_backupClocks(void)
+{
+  uint32_t *pFLatency = NULL;
+
+  /* Back up MCU clock configuration */
+  HAL_RCC_GetClockConfig(&RCC_ClkInit, pFLatency);
+}
+
+/**
+  * @brief  Prepare IO compensation
+  *         For Configuring IO compensation SYSCFG peripheral must be clocked.
+  *         For enabling IO compensation ensure CSI Oscillator is enabled and
+  *         ready (in RCC).
+  *  @note  The CSI oscillator is disabled automatically in Stop mode if not
+  *         requested for other usages, and the CSI is always OFF in Standby mode.
+  * @param  None
+  * @retval HAL_StatusTypeDef value
+  */
+static HAL_StatusTypeDef Prepare_IOComp(void)
+{
+  HAL_StatusTypeDef status = HAL_OK;
+
+  /* SYSCFG Clock enable (used for IO compensation configuration) */
+  __HAL_RCC_SYSCFG_CLK_ENABLE();
+
+  /* Checks CSI is enabled */
+  if (__HAL_RCC_GET_FLAG(RCC_FLAG_CSIRDY) != 1U)
+  {
+    status = HAL_ERROR;
+  }
+
+  return status;
+}
+
+/**
   * @brief  This function is executed in case of error occurrence.
   * @param  file: The file name as string.
   * @param  line: The line in file as a number.
@@ -345,7 +446,7 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
-  while(1) 
+  while(1)
   {
   }
   /* USER CODE END Error_Handler_Debug */
@@ -360,7 +461,7 @@ void Error_Handler(void)
   * @retval None
   */
 void assert_failed(uint8_t* file, uint32_t line)
-{ 
+{
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
@@ -373,12 +474,3 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/**
-  * @}
-  */
-
-/**
-  * @}
-  */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -1,0 +1,101 @@
+/**
+  @page ADC_OverSampler ADC example started by Linux Remote Processor Framework
+
+  @verbatim
+  ******************** (C) COPYRIGHT 2021 STMicroelectronics *******************
+  * @file    ADC/ADC_OverSampler/Remoteproc/README
+  * @author  MCD Application Team
+  * @brief   How to run example using Linux Remote Processor Framework
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2021 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  @endverbatim
+
+@par Description of M4 Cube example with Linux Remote Processor Framework
+
+When Cube firmware is running on Cortex-M4, System Clock tree and regulators(vrefbuf) are configured by Cortex-A7
+Besides, clock source for each peripheral assigned to Cortex-M4 is done by Cortex-A7.
+
+
+@par How to use it ?
+
+In order to make the program work with Linux running on Cortex-A7, you must do the following :
+Before running M4 Cube example, you have to
+1) interrupt uboot
+2) choose the right configuration to make sure that M4 resources are assigned to Linux Resource Manager driver
+
+Then,
+ - Start example using the following command: "fw_cortex_m4.sh start" under example directory installed in userfs partition
+     * it will load and start firmware using Linux Remote Processor
+ - Stop example using the following command: "fw_cortex_m4.sh stop" under example directory installed in userfs partition
+     * it will stop firmware using Linux Remote Processor
+
+@par Example Description
+This example describes how to configure and use the ADC to convert an external
+analog input combined with oversampling feature to increase resolution through the HAL API.
+
+At the beginning of the main program the HAL_Init() function is called to reset 
+all the peripherals, initialize the Flash interface and the systick.
+The SystemClock_Config() function is used to configure the system clock for STM32MP1xx Devices :
+
+The ADC is configured to convert continuously ADC_CHANNEL_16 (pin PA.04)
+while the oversampler is enabled. 
+Oversampling ratio is set to 1024 so the maximum output result 
+is 0xFFF * 1024 = 0x3FFC00 (22 bits). Result is 6-bit right shift.
+
+uwConvertedValue variable contains the 16-bit conversion result and 
+uwInputVoltage yields the input voltage in mV. 
+
+The converted value is monitored through debugger: uwConvertedValue and uwInputVoltage variables.
+
+STM32 board LED can be used to monitor the conversion:
+  - LED4 is ON when there is no error.
+  - LED4 blinks when there is an error.
+
+@note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
+      based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
+      a peripheral ISR process, then the SysTick interrupt must have higher priority (numerically lower)
+      than the peripheral interrupt. Otherwise the caller ISR process will be blocked.
+      To change the SysTick interrupt priority you have to use HAL_NVIC_SetPriority() function.
+      
+@note The example need to ensure that the SysTick time base is always set to 1 millisecond
+      to have correct HAL operation.
+
+@par Keywords
+
+Analog, ADC, Analog to Digital, oversampling, Continuous conversion, Measurement, Voltage
+
+@par Directory contents 
+
+  - ADC/ADC_OverSampler/Inc/stm32mp1xx_it.h         Interrupt handlers header file
+  - ADC/ADC_OverSampler/Inc/main.h                  Header for main.c module  
+  - ADC/ADC_OverSampler/Src/stm32mp1xx_it.c         Interrupt handlers
+  - ADC/ADC_OverSampler/Src/main.c                  Main program
+  - ADC/ADC_OverSampler/Src/system_stm32mp1xx.c     STM32MP1xx system source file
+
+
+@par Hardware and Software environment
+
+  - This example runs on STM32MP157CAAx devices.
+    
+  - This example has been tested with STM32MP157C-EV1 board and can be
+    easily tailored to any other supported device and development board.
+
+
+@par How to use it ? 
+
+In order to make the program work, you must do the following :
+ - Open your preferred toolchain
+ - Rebuild all files and load your image into target memory
+ - Run the example
+
+ * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+ */

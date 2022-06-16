@@ -1038,7 +1038,7 @@
   </Group>
 
   <Group>
-    <GroupName>Middlewares/OpenAMP/libmetal/generic/cortexm</GroupName>
+    <GroupName>Middlewares/OpenAMP/libmetal/generic/template</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -1050,7 +1050,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>../../../../../../Middlewares/Third_Party/OpenAMP/libmetal/lib/system/generic/cortexm/sys.c</PathWithFileName>
+      <PathWithFileName>../../../../../../Middlewares/Third_Party/OpenAMP/libmetal/lib/system/generic/template/sys.c</PathWithFileName>
       <FilenameWithoutPath>sys.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

@@ -980,4 +980,3 @@ WAKEUP_PIN_IRQHandler
  	  B  WAKEUP_PIN_IRQHandler 
 
 	 END 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
