@@ -2009,7 +2009,7 @@ HAL_StatusTypeDef HAL_ADCEx_InjectedConfigChannel(ADC_HandleTypeDef *hadc, ADC_I
                  ADC_CFGR2_OVSR  |
                  ADC_CFGR2_OVSS,
                  ADC_CFGR2_JOVSE                                                          |
-                 ((pConfigInjected->InjecOversampling.Ratio - 1UL) << ADC_CFGR2_OSR_Pos)  |
+                 ((pConfigInjected->InjecOversampling.Ratio - 1UL) << ADC_CFGR2_OVSR_Pos)  |
                  pConfigInjected->InjecOversampling.RightBitShift
                 );
     }
