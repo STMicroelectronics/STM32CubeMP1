@@ -11,7 +11,16 @@
    
 The **STM32CubeMP1 MPU Package** projects are directly running on Cortex-M4 of the STM32MP1 series boards. You can find in each Projects/*Board name* directories a set of software projects (Applications/Demonstration/Examples) 
 
+## Release note
+
+Details about the content of this release are available in the release note [here](https://htmlpreview.github.io/?https://github.com/STMicroelectronics/STM32CubeMP1/blob/master/Release_Notes.html).
+
+
 ## Boards available
   * STM32MP1
     * STM32MP157C-EV1 RevC
     * STM32MP157C-DK2 RevC
+
+## Troubleshooting
+
+Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) guide.
