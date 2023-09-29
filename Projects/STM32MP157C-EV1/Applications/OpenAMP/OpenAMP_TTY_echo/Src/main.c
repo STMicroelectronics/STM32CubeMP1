@@ -97,12 +97,13 @@ int main(void)
                                             ((HAL_GetHalVersion() >> 24) & 0x000000FF),
                                             ((HAL_GetHalVersion() >> 16) & 0x000000FF),
                                             ((HAL_GetHalVersion() >> 8) & 0x000000FF));
+  /*HW semaphore Clock enable*/
+  __HAL_RCC_HSEM_CLK_ENABLE();
+  
   BSP_LED_Init(LED4);
   BSP_LED_On(LED4);
   /* USER CODE END Init */
 
-  /*HW semaphore Clock enable*/
-  __HAL_RCC_HSEM_CLK_ENABLE();
   /* IPCC initialisation */
   MX_IPCC_Init();
   /* OpenAmp initialisation ---------------------------------*/
