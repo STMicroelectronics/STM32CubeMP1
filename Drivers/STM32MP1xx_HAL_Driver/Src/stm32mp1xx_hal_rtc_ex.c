@@ -1002,7 +1002,7 @@ HAL_StatusTypeDef HAL_RTCEx_SetSynchroShift(RTC_HandleTypeDef *hrtc, uint32_t Sh
   if (READ_BIT(RTC->CR, RTC_CR_REFCKON) == 0U)
   {
     /* Configure the Shift settings */
-    MODIFY_REG(RTC->SHIFTR, RTC_SHIFTR_SUBFS, (uint32_t)(ShiftSubFS) | (uint32_t)(ShiftAdd1S));
+    MODIFY_REG(RTC->SHIFTR, (RTC_SHIFTR_SUBFS | RTC_SHIFTR_ADD1S), (uint32_t)(ShiftSubFS) | (uint32_t)(ShiftAdd1S));
 
     /* If  RTC_CR_BYPSHAD bit = 0, wait for synchro else this check is not needed */
     if (READ_BIT(RTC->CR, RTC_CR_BYPSHAD) == 0U)
