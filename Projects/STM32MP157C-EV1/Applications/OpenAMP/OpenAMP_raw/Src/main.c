@@ -86,9 +86,9 @@ int main(void)
   }
 
   log_info("Cortex-M4 boot successful with STM32Cube FW version: v%ld.%ld.%ld \r\n",
-                                            ((HAL_GetHalVersion() >> 24) & 0x000000FF),
-                                            ((HAL_GetHalVersion() >> 16) & 0x000000FF),
-                                            ((HAL_GetHalVersion() >> 8) & 0x000000FF));
+                                            (long)((HAL_GetHalVersion() >> 24) & 0x000000FF),
+                                            (long)((HAL_GetHalVersion() >> 16) & 0x000000FF),
+                                            (long)((HAL_GetHalVersion() >> 8) & 0x000000FF));
   /* USER CODE END Init */
 
   /*HW semaphore Clock enable*/
@@ -127,7 +127,7 @@ int main(void)
 
       if (++count < 100)
       {
-        sprintf((char *)msg, "hello world! %02ld", count);
+        sprintf((char *)msg, "hello world! %02ld", (long)count);
       }
       else
       {

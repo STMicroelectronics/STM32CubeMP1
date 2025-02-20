@@ -21,6 +21,7 @@
 #include "stm32mp15xx_eval_bus.h"
 #include "stm32mp15xx_eval_stpmic1.h"
 #include <string.h>
+#include <stdio.h>
 
 /** @addtogroup BSP
   * @{

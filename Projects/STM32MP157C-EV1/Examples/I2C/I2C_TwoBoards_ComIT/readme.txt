@@ -113,7 +113,7 @@ transmission/reception process
     easily tailored to any other supported device and development board.    
 
   - STM32MP157C-EV1 Set-up
-
+    - Use MB1262C motherboard and make sure solder bridges SB52,SB55 (I2C5) and SB72,SB74 (I2C2)  are replaced by 0 ohm resitor.
     - Connect I2C_SCL line of Master board (PA11, CN13, pin3) to I2C_SCL line of Slave Board (PA11, CN13, pin3).
     - Connect I2C_SDA line of Master board (PA12, CN13, pin1) to I2C_SDA line of Slave Board (PA12, CN13, pin1).
     - Connect GND (CN13, pin7) of Master board to GND (CN13, pin7) of Slave Board.

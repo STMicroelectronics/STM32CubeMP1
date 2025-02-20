@@ -48,7 +48,7 @@ typedef void (* BSP_EXTI_LineCallback)(void);
 /** @brief STM32MP15XX DISCO BSP Driver version number V2.0.0
   */
 #define STM32MP15XX_DISCO_BSP_VERSION_MAIN   (0x01U) /*!< [31:24] main version */
-#define STM32MP15XX_DISCO_BSP_VERSION_SUB1   (0x06U) /*!< [23:16] sub1 version */
+#define STM32MP15XX_DISCO_BSP_VERSION_SUB1   (0x07U) /*!< [23:16] sub1 version */
 #define STM32MP15XX_DISCO_BSP_VERSION_SUB2   (0x00U) /*!< [15:8]  sub2 version */
 #define STM32MP15XX_DISCO_BSP_VERSION_RC     (0x00U) /*!< [7:0]  release candidate */
 #define STM32MP15XX_DISCO_BSP_VERSION         ((STM32MP15XX_DISCO_BSP_VERSION_MAIN << 24)\
@@ -391,6 +391,7 @@ int32_t BSP_PB_Init(Button_TypeDef Button, ButtonMode_TypeDef ButtonMode)
 #if defined (CORE_CA7)
         IRQ_SetPriority(BUTTON_IRQn[Button], 0x00);
         IRQ_Enable(BUTTON_IRQn[Button]);
+        UNUSED(BSP_BUTTON_IT_PRIORITY);
 #else
         HAL_NVIC_SetPriority((IRQn_Type)(BUTTON_IRQn[Button]), BSP_BUTTON_IT_PRIORITY[Button], 0x00);
         HAL_NVIC_EnableIRQ((IRQn_Type)(BUTTON_IRQn[Button]));

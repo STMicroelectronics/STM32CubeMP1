@@ -10,14 +10,14 @@
       <TargetName>Engineering</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
-      <uAC6>0</uAC6>
+      <pCCUsed>6220000::V6.22::ARMCLANG</pCCUsed>
+      <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32MP157CAAx:Cortex-M4</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32MP1xx_DFP.1.1.0</PackID>
-          <PackURL>http://www.keil.com/pack/</PackURL>
+          <PackID>Keil.STM32MP1xx_DFP.1.3.1</PackID>
+          <PackURL>https://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x10020000,0x00020000) IRAM2(0x10040000,0x00020000) IROM(0x10000000,0x00020000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000)</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
@@ -185,6 +185,8 @@
             <uocXRam>0</uocXRam>
             <RvdsVP>2</RvdsVP>
             <RvdsMve>0</RvdsMve>
+            <RvdsCdeCp>0</RvdsCdeCp>
+            <nBranchProt>0</nBranchProt>
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -312,7 +314,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
+            <Optim>2</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -321,7 +323,7 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>2</wLevel>
+            <wLevel>3</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>1</uC99>
@@ -351,7 +353,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <uClangAs>0</uClangAs>
+            <ClangAsOpt>4</ClangAsOpt>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -736,7 +738,7 @@
                 <NoWarn>2</NoWarn>
                 <uSurpInc>2</uSurpInc>
                 <useXO>2</useXO>
-                <uClangAs>2</uClangAs>
+                <ClangAsOpt>0</ClangAsOpt>
                 <VariousControls>
                   <MiscControls></MiscControls>
                   <Define></Define>
@@ -753,14 +755,14 @@
       <TargetName>Production</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
-      <uAC6>0</uAC6>
+      <pCCUsed>6220000::V6.22::ARMCLANG</pCCUsed>
+      <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32MP157CAAx:Cortex-M4</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32MP1xx_DFP.1.1.0</PackID>
-          <PackURL>http://www.keil.com/pack/</PackURL>
+          <PackID>Keil.STM32MP1xx_DFP.1.3.1</PackID>
+          <PackURL>https://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x10020000,0x00020000) IRAM2(0x10040000,0x00020000) IROM(0x10000000,0x00020000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000)</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
@@ -928,6 +930,8 @@
             <uocXRam>0</uocXRam>
             <RvdsVP>2</RvdsVP>
             <RvdsMve>0</RvdsMve>
+            <RvdsCdeCp>0</RvdsCdeCp>
+            <nBranchProt>0</nBranchProt>
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -1055,7 +1059,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
+            <Optim>2</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -1064,7 +1068,7 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>2</wLevel>
+            <wLevel>3</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>1</uC99>
@@ -1094,7 +1098,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <uClangAs>0</uClangAs>
+            <ClangAsOpt>4</ClangAsOpt>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -1479,7 +1483,7 @@
                 <NoWarn>2</NoWarn>
                 <uSurpInc>2</uSurpInc>
                 <useXO>2</useXO>
-                <uClangAs>2</uClangAs>
+                <ClangAsOpt>0</ClangAsOpt>
                 <VariousControls>
                   <MiscControls></MiscControls>
                   <Define></Define>
@@ -1497,8 +1501,8 @@
   <RTE>
     <apis/>
     <components>
-      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.1.2" condition="ARMv6_7_8-M Device">
-        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="5.4.0"/>
+      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="6.1.0" condition="ARMv6_7_8-M Device">
+        <package name="CMSIS" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="6.1.0"/>
         <targetInfos>
           <targetInfo name="Engineering"/>
           <targetInfo name="Production"/>
@@ -1511,11 +1515,11 @@
           <targetInfo name="Production"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP157 M4 CMSIS">
-        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="0.0.1-dev5"/>
+      <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP15x M4 CMSIS">
+        <package name="STM32MP1xx_DFP" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="Keil" version="1.3.1"/>
         <targetInfos>
-          <targetInfo excluded="1" name="Engineering" versionMatchMode=""/>
-          <targetInfo excluded="1" name="Production" versionMatchMode=""/>
+          <targetInfo excluded="1" name="Engineering"/>
+          <targetInfo excluded="1" name="Production"/>
         </targetInfos>
       </component>
     </components>
@@ -1527,18 +1531,15 @@
         <targetInfos/>
       </file>
       <file attr="config" category="utility" name="Tools\production.config" version="1.0.0">
-        <instance index="0">RTE\Device\STM32MP157CAAx_Cortex-M4\production.config</instance>
+        <instance index="0" removed="1">RTE\Device\STM32MP157CAAx_Cortex-M4\production.config</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP157 M4 CMSIS"/>
         <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.0"/>
-        <targetInfos>
-          <targetInfo excluded="1" name="Engineering"/>
-          <targetInfo excluded="1" name="Production"/>
-        </targetInfos>
+        <targetInfos/>
       </file>
-      <file attr="config" category="source" condition="ARMCC" name="MDK\Device\Source\ARM\startup_stm32mp15xx.s" version="1.0.0">
+      <file attr="config" category="source" condition="ARMCC" name="Drivers\CMSIS\Device\ST\STM32MP1xx\Source\Templates\arm\startup_stm32mp15xx.s" version="1.0.0">
         <instance index="0">RTE\Device\STM32MP157CAAx_Cortex-M4\startup_stm32mp15xx.s</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP157 M4 CMSIS"/>
-        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.0"/>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP15x M4 CMSIS"/>
+        <package name="STM32MP1xx_DFP" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="Keil" version="1.3.1"/>
         <targetInfos>
           <targetInfo excluded="1" name="Engineering"/>
           <targetInfo excluded="1" name="Production"/>
@@ -1546,8 +1547,8 @@
       </file>
       <file attr="config" category="linkerScript" condition="ARMCC" name="MDK\Device\Source\ARM\linker\stm32mp15xx_m4_sram.sct" version="1.0.0">
         <instance index="0">RTE\Device\STM32MP157CAAx_Cortex-M4\stm32mp15xx_m4_sram.sct</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP157 M4 CMSIS"/>
-        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.0"/>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP15x M4 CMSIS"/>
+        <package name="STM32MP1xx_DFP" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="Keil" version="1.3.1"/>
         <targetInfos>
           <targetInfo excluded="1" name="Engineering"/>
           <targetInfo excluded="1" name="Production"/>
@@ -1555,8 +1556,8 @@
       </file>
       <file attr="config" category="header" name="MDK\Templates\stm32mp1xx_hal_conf.h" version="1.0.0">
         <instance index="0">RTE\Device\STM32MP157CAAx_Cortex-M4\stm32mp1xx_hal_conf.h</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP157 M4 CMSIS"/>
-        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.0"/>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP15x M4 CMSIS"/>
+        <package name="STM32MP1xx_DFP" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="Keil" version="1.3.1"/>
         <targetInfos>
           <targetInfo excluded="1" name="Engineering"/>
           <targetInfo excluded="1" name="Production"/>
@@ -1564,8 +1565,8 @@
       </file>
       <file attr="config" category="source" name="Drivers\CMSIS\Device\ST\STM32MP1xx\Source\Templates\system_stm32mp1xx.c" version="1.0.0">
         <instance index="0">RTE\Device\STM32MP157CAAx_Cortex-M4\system_stm32mp1xx.c</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP157 M4 CMSIS"/>
-        <package name="STM32MP1xx_DFP" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.0"/>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32MP15x M4 CMSIS"/>
+        <package name="STM32MP1xx_DFP" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="Keil" version="1.3.1"/>
         <targetInfos>
           <targetInfo excluded="1" name="Engineering"/>
           <targetInfo excluded="1" name="Production"/>

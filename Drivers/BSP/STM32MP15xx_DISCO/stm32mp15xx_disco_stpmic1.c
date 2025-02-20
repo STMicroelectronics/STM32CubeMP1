@@ -819,7 +819,6 @@ static uint8_t STPMU1_Voltage_Find_Index(PMIC_RegulId_TypeDef id, uint16_t miliv
   for ( i = 0 ; i < regul->voltage_table_size ; i++)
   {
     if ( regul->voltage_table[i] == milivolts ) {
-      //printf("idx:%d for %dmV\n\r", (int)i, (int)milivolts);
       return i;
     }
   }
@@ -1177,12 +1176,12 @@ uint32_t BSP_PMIC_InitRegulators(void)
   STPMU1_Regulator_Enable(STPMU1_BUCK2);
 
   /* vdd */
-  STPMU1_Regulator_Voltage_Set(STPMU1_BUCK3, 1800);
+  STPMU1_Regulator_Voltage_Set(STPMU1_BUCK3, 3300);
   STPMU1_Regulator_Enable(STPMU1_BUCK3);
 
   /* 3v3 */
-  //STPMU1_Regulator_Voltage_Set(STPMU1_BUCK4, 3300);
-  //STPMU1_Regulator_Enable(STPMU1_BUCK4);
+  STPMU1_Regulator_Voltage_Set(STPMU1_BUCK4, 3300);
+  STPMU1_Regulator_Enable(STPMU1_BUCK4);
 
   /* 1v8_audio */
   STPMU1_Regulator_Voltage_Set(STPMU1_LDO1, 1800);
@@ -1223,45 +1222,6 @@ uint32_t BSP_PMIC_SwitchOff(void)
 
 __weak void BSP_PMIC_INTn_Callback(PMIC_IRQn IRQn)
 {
-  switch (IRQn)
-  {
-    case IT_PONKEY_F:
-      printf("IT_PONKEY_F");
-      break;
-
-    case IT_PONKEY_R:
-      printf("IT_PONKEY_R");
-      break;
-
-    case IT_WAKEUP_F:
-      printf("IT_WAKEUP_F");
-      break;
-
-    case IT_WAKEUP_R:
-      printf("IT_WAKEUP_R");
-      break;
-
-    case IT_VBUS_OTG_F:
-      printf("IT_VBUS_OTG_F");
-      break;
-
-    case IT_SWOUT_F:
-      printf("IT_SWOUT_F");
-      break;
-
-    case IT_TWARN_R:
-      printf("IT_TWARN_R");
-      break;
-
-    case IT_TWARN_F:
-      printf("IT_TWARN_F");
-      break;
-
-    default:
-      printf("%d",IRQn);
-      break;
-  }
-  printf(" Interrupt received\n\r");
 }
 
 void STPMU1_INTn_Callback(PMIC_IRQn IRQn) {

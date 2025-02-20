@@ -73,6 +73,11 @@
 			<locationURI>PARENT-2-PROJECT_LOC/Src/stm32mp1xx_it.c</locationURI>
 		</link>
 		<link>
+			<name>Application/User/syscalls.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Src/syscalls.c</locationURI>
+		</link>
+		<link>
 			<name>Drivers/BSP/stm32mp15xx_eval.c</name>
 			<type>1</type>
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/BSP/STM32MP15xx_EVAL/stm32mp15xx_eval.c</locationURI>

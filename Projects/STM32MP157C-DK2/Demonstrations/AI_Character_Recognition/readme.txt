@@ -110,7 +110,7 @@ Notes:
           cat /sys/kernel/debug/remoteproc/remoteproc0/trace0
 
     Following command should be done in Linux console on CA7 to run the example :
-    > /usr/local/demo/bin/ai_char_reco_launcher /usr/local/demo/bin/apps_launcher.sh
+    > /usr/local/demo/bin/ai_char_reco_launcher /usr/local/demo/bin/apps_launcher_example.sh
 
     You are ready to draw letter on the touch screen
 

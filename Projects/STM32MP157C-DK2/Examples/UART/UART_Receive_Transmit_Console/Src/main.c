@@ -20,6 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <stdio.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -52,7 +53,7 @@ static void MX_GPIO_Init(void);
 static void MX_USART3_UART_Init(void);
 
 /* USER CODE BEGIN PFP */
-#ifdef __GNUC__
+#if defined(__GNUC__) && !defined(__ARMCC_VERSION)
 /* With GCC, small printf (option LD Linker->Libraries->Small printf
    set to 'Yes') calls __io_putchar() */
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
@@ -60,7 +61,7 @@ static void MX_USART3_UART_Init(void);
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
 
-#ifdef __GNUC__
+#if defined(__GNUC__) && !defined(__ARMCC_VERSION)
 #define GETCHAR_PROTOTYPE int __io_getchar (void)
 #else
 #define GETCHAR_PROTOTYPE int fgetc(FILE * f)
@@ -339,11 +340,11 @@ int Serial_Scanf(char *ptr, int len)
   thechar= ' ';
   while(thechar!= '\n' && thechar != '\r' && DataIdx<len)
   {
-#ifdef __GNUC__
+#if defined(__GNUC__) && !defined(__ARMCC_VERSION)
     thechar = __io_getchar();
 
 #else
-    thechar = fgetc(NULL);
+    thechar = getchar();
 #endif
   if ( thechar  >= 0xFF)
   {
@@ -361,11 +362,19 @@ int Serial_Scanf(char *ptr, int len)
   * @retval None
   */
 
+int __write(int file, char *buf, int size)
+{
+  (void)file;
+  (void)size;
+  HAL_UART_Transmit(&huart1, (uint8_t *)buf, 1, 0xFFFF);
+  return 1;
+}
+
 PUTCHAR_PROTOTYPE
 {
   /* Place your implementation of fputc here */
   /* e.g. write a character to the USART3 and Loop until the end of transmission */
-  HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
+  __write(1, (char *)&ch, 1);
 
   return ch;
 }

@@ -123,7 +123,7 @@ extern const uint8_t  __OPENAMP_region_size__;
 #define SHM_START_ADDRESS       ((metal_phys_addr_t)&__OPENAMP_region_start__)
 #define SHM_SIZE        ((size_t)&__OPENAMP_region_size__)
 
-#elif defined(__CC_ARM)
+#elif defined(__CC_ARM) || defined(__ARMCC_VERSION)
 /*
  * For MDK-ARM, the scatter file .sct should contain the following line:
  * LR_IROM1 ....  {

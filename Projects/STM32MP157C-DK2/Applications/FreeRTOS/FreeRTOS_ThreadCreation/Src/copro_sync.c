@@ -146,7 +146,7 @@ __weak void CoproSync_ShutdownCb(IPCC_HandleTypeDef * hipcc, uint32_t ChannelInd
   */
 __weak void CoproSync_RProcStateUpdateCb(IPCC_HandleTypeDef * hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir)
 {
-  RemoteProcState = (uint32_t)COPRO_SYNC_CORTEX_A_STATE;
+  RemoteProcState = (CoproSync_ProcState_t)COPRO_SYNC_CORTEX_A_STATE;
   HAL_IPCC_NotifyCPU(hipcc, ChannelIndex, IPCC_CHANNEL_DIR_RX);
 }
 

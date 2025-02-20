@@ -8,7 +8,7 @@
   * @brief   Description of the FreeRTOS Thread Creation example.
   ******************************************************************************
   *
-  * Copyright (c) 2021 STMicroelectronics.
+  * Copyright (c) 2024 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -52,7 +52,6 @@ Middleware, RTOS, FreeRTOS, Thread
 
 @par Directory contents
     - FreeRTOS/FreeRTOS_ThreadCreation/Src/main.c                       Main program
-	- FreeRTOS/FreeRTOS_ThreadCreation/Src/app_FreeRTOS.c               Code for freertos applications
     - FreeRTOS/FreeRTOS_ThreadCreation/Src/stm32mp1xx_hal_timebase_tim.c HAL timebase file
     - FreeRTOS/FreeRTOS_ThreadCreation/Src/stm32mp1xx_it.c               Interrupt handlers
 	- FreeRTOS/FreeRTOS_ThreadCreation/Src/stm32mp1xx_hal_msp.c          MSP Initialization file

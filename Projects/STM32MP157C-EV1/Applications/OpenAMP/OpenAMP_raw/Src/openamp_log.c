@@ -32,6 +32,7 @@
   * @{
   */
 #include "openamp_log.h"
+#include <stdio.h>
 /**
   * @}
   */

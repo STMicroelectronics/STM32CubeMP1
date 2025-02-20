@@ -78,6 +78,11 @@
 			<locationURI>PARENT-2-PROJECT_LOC/Src/stm32mp1xx_it.c</locationURI>
 		</link>
 		<link>
+			<name>Application/User/syscalls.c</name>
+			<type>1</type>
+			<locationURI>PARENT-6-PROJECT_LOC/STM32MP157C-DK2/Applications/FreeRTOS/FreeRTOS_ThreadCreation/STM32CubeIDE/CM4/Application/User/syscalls.c</locationURI>
+		</link>
+		<link>
 			<name>Drivers/BSP/stm32mp15xx_eval.c</name>
 			<type>1</type>
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/BSP/STM32MP15xx_EVAL/stm32mp15xx_eval.c</locationURI>
@@ -183,9 +188,9 @@
 			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/FreeRTOS/Source/timers.c</locationURI>
 		</link>
 		<link>
-			<name>Middlewares/FreeRTOS/CMSIS-RTOS/cmsis_os.c</name>
+			<name>Middlewares/FreeRTOS/CMSIS-RTOS/cmsis_os2.c</name>
 			<type>1</type>
-			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c</locationURI>
+			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c</locationURI>
 		</link>
 		<link>
 			<name>Middlewares/FreeRTOS/portable/heap_4.c</name>

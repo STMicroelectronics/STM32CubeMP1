@@ -5,42 +5,67 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>Release Notes for STM32MP1xx-Disco BSP Drivers</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="_htmresc/mini-st_2020.css" />
+  <link rel="icon" type="image/x-icon" href="_htmresc/favicon.png" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
-  <link rel="icon" type="image/x-icon" href="_htmresc/favicon.png" />
 </head>
 <body>
 <div class="row">
 <div class="col-sm-12 col-lg-4">
 <center>
-<h1 id="release-notes-for-stm32mp1xx-disco-bsp-drivers">Release Notes for <mark>STM32MP1xx-Disco BSP Drivers</mark></h1>
+<h1 id="release-notes-for-stm32mp1xx-disco-bsp-drivers">Release Notes
+for <mark>STM32MP1xx-Disco BSP Drivers</mark></h1>
 <p>Copyright © 2021 STMicroelectronics<br />
 </p>
-<a href="https://www.st.com" class="logo"><img src="_htmresc/st_logo_2020.png" alt="ST logo" /></a>
+<a href="https://www.st.com" class="logo"><img
+src="_htmresc/st_logo_2020.png" alt="ST logo" /></a>
 </center>
 <h1 id="purpose">Purpose</h1>
-<p>The BSP (Board Specific Package) drivers are parts of the STM32Cube package based on the HAL drivers and provide a set of high level APIs relative to the hardware components and features in the disco boards coming with the STM32Cube package for a given STM32 serie.</p>
-<p>The BSP drivers allow a quick access to the boards’ services using high level APIs and without any specific configuration as the link with the HAL and the external components is done in intrinsic within the drivers.</p>
-<p>From project settings points of view, user has only to add the necessary driver’s files in the workspace and call the needed functions from examples. However some low level configuration functions are weak and can be overridden by the applications if user wants to change some BSP drivers default behavior.</p>
+<p>The BSP (Board Specific Package) drivers are parts of the STM32Cube
+package based on the HAL drivers and provide a set of high level APIs
+relative to the hardware components and features in the disco boards
+coming with the STM32Cube package for a given STM32 serie.</p>
+<p>The BSP drivers allow a quick access to the boards’ services using
+high level APIs and without any specific configuration as the link with
+the HAL and the external components is done in intrinsic within the
+drivers.</p>
+<p>From project settings points of view, user has only to add the
+necessary driver’s files in the workspace and call the needed functions
+from examples. However some low level configuration functions are weak
+and can be overridden by the applications if user wants to change some
+BSP drivers default behavior.</p>
 </div>
-<div class="col-sm-12 col-lg-8">
-<h1 id="update-history">Update History</h1>
+<section id="update-history" class="col-sm-12 col-lg-8">
+<h1>Update History</h1>
 <div class="collapse">
-<input type="checkbox" id="collapse-section0" checked aria-hidden="true"> <label for="collapse-section0" aria-hidden="true"><strong>V1.6.0 / 02-June-2022</strong></label>
+<input type="checkbox" id="collapse-section0" checked aria-hidden="true">
+<label for="collapse-section0" aria-hidden="true"><strong>V1.7.0 /
+14-Feb-2025</strong></label>
 <div>
 <h2 id="main-changes">Main Changes</h2>
 <p><strong>Maintenance Release of STMP32MP1xx_DISCO BSP</strong></p>
 <h2 id="contents">Contents</h2>
 <ul>
-<li>Add BSP_Error_Handler() to manage BSP Errors</li>
+<li>Fix compilation warning in stm32mp15xx_disco.c</li>
 </ul>
 <h2 id="known-limitations">Known Limitations</h2>
 <ul>
@@ -52,18 +77,22 @@
 </ul>
 <h2 id="notes">Notes</h2>
 <ul>
-<li>stm32mp15xx_disco_conf_template.h file must be copied in user application as &gt;stm32mp15xx_disco_conf.h with optional configuration update</li>
+<li>stm32mp15xx_disco_conf_template.h file must be copied in user
+application as &gt;stm32mp15xx_disco_conf.h with optional configuration
+update</li>
 </ul>
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section6" aria-hidden="true"> <label for="collapse-section6" aria-hidden="true"><strong>V1.5.0 / 04-November-2021</strong></label>
+<input type="checkbox" id="collapse-section7" aria-hidden="true">
+<label for="collapse-section7" aria-hidden="true"><strong>V1.6.0 /
+02-June-2022</strong></label>
 <div>
 <h2 id="main-changes-1">Main Changes</h2>
 <p><strong>Maintenance Release of STMP32MP1xx_DISCO BSP</strong></p>
 <h2 id="contents-1">Contents</h2>
 <ul>
-<li>Update the licenses declaration</li>
+<li>Add BSP_Error_Handler() to manage BSP Errors</li>
 </ul>
 <h2 id="known-limitations-1">Known Limitations</h2>
 <ul>
@@ -74,17 +103,23 @@
 <li>None</li>
 </ul>
 <h2 id="notes-1">Notes</h2>
-<p>stm32mp15xx_disco_conf_template.h file must be copied in user application as &gt;stm32mp15xx_disco_conf.h with optional configuration update</p>
+<ul>
+<li>stm32mp15xx_disco_conf_template.h file must be copied in user
+application as &gt;stm32mp15xx_disco_conf.h with optional configuration
+update</li>
+</ul>
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section5" aria-hidden="true"> <label for="collapse-section5" aria-hidden="true"><strong>V1.4.0 / 27-January-2021</strong></label>
+<input type="checkbox" id="collapse-section6" aria-hidden="true">
+<label for="collapse-section6" aria-hidden="true"><strong>V1.5.0 /
+04-November-2021</strong></label>
 <div>
 <h2 id="main-changes-2">Main Changes</h2>
-<p><strong>Maintenance Release</strong> of STMP32MP15xx_DISCO BSP</p>
+<p><strong>Maintenance Release of STMP32MP1xx_DISCO BSP</strong></p>
 <h2 id="contents-2">Contents</h2>
 <ul>
-<li>No Update</li>
+<li>Update the licenses declaration</li>
 </ul>
 <h2 id="known-limitations-2">Known Limitations</h2>
 <ul>
@@ -95,20 +130,21 @@
 <li>None</li>
 </ul>
 <h2 id="notes-2">Notes</h2>
-<p>stm32mp15xx_disco_conf_template.h file must be copied in user application as &gt;stm32mp15xx_disco_conf.h with optional configuration update</p>
+<p>stm32mp15xx_disco_conf_template.h file must be copied in user
+application as &gt;stm32mp15xx_disco_conf.h with optional configuration
+update</p>
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section4" aria-hidden="true"> <label for="collapse-section4" aria-hidden="true"><strong>V1.3.0 / 20-October-2020</strong></label>
+<input type="checkbox" id="collapse-section5" aria-hidden="true">
+<label for="collapse-section5" aria-hidden="true"><strong>V1.4.0 /
+27-January-2021</strong></label>
 <div>
 <h2 id="main-changes-3">Main Changes</h2>
 <p><strong>Maintenance Release</strong> of STMP32MP15xx_DISCO BSP</p>
 <h2 id="contents-3">Contents</h2>
 <ul>
-<li>Fix unterminated extern “C” definitions:
-<ul>
-<li>impacted files : stm32mp15xx_disco_conf_template.h and stm32mp15xx_disco_errno.h</li>
-</ul></li>
+<li>No Update</li>
 </ul>
 <h2 id="known-limitations-3">Known Limitations</h2>
 <ul>
@@ -119,17 +155,25 @@
 <li>None</li>
 </ul>
 <h2 id="notes-3">Notes</h2>
-<p>stm32mp15xx_disco_conf_template.h file must be copied in user application as &gt;stm32mp15xx_disco_conf.h with optional configuration update</p>
+<p>stm32mp15xx_disco_conf_template.h file must be copied in user
+application as &gt;stm32mp15xx_disco_conf.h with optional configuration
+update</p>
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section3" aria-hidden="true"> <label for="collapse-section3" aria-hidden="true"><strong>V1.2.0 / 03-February-2020</strong></label>
+<input type="checkbox" id="collapse-section4" aria-hidden="true">
+<label for="collapse-section4" aria-hidden="true"><strong>V1.3.0 /
+20-October-2020</strong></label>
 <div>
 <h2 id="main-changes-4">Main Changes</h2>
 <p><strong>Maintenance Release</strong> of STMP32MP15xx_DISCO BSP</p>
 <h2 id="contents-4">Contents</h2>
 <ul>
-<li>No update</li>
+<li>Fix unterminated extern “C” definitions:
+<ul>
+<li>impacted files : stm32mp15xx_disco_conf_template.h and
+stm32mp15xx_disco_errno.h</li>
+</ul></li>
 </ul>
 <h2 id="known-limitations-4">Known Limitations</h2>
 <ul>
@@ -140,18 +184,21 @@
 <li>None</li>
 </ul>
 <h2 id="notes-4">Notes</h2>
-<p>stm32mp15xx_disco_conf_template.h file must be copied in user application as &gt;stm32mp15xx_disco_conf.h with optional configuration update</p>
+<p>stm32mp15xx_disco_conf_template.h file must be copied in user
+application as &gt;stm32mp15xx_disco_conf.h with optional configuration
+update</p>
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section2" aria-hidden="true"> <label for="collapse-section2" aria-hidden="true"><strong>V1.1.0 / 10-September-2019</strong></label>
+<input type="checkbox" id="collapse-section3" aria-hidden="true">
+<label for="collapse-section3" aria-hidden="true"><strong>V1.2.0 /
+03-February-2020</strong></label>
 <div>
 <h2 id="main-changes-5">Main Changes</h2>
-<p><strong>First Maintenance Release</strong> of STMP32MP15xx_DISCO BSP</p>
+<p><strong>Maintenance Release</strong> of STMP32MP15xx_DISCO BSP</p>
 <h2 id="contents-5">Contents</h2>
 <ul>
-<li><p>Add support of console input from COM</p></li>
-<li><p>Rename stm32mp15xx_eval_stpmu1 file to stm32mp15xx_eval_stpmic1</p></li>
+<li>No update</li>
 </ul>
 <h2 id="known-limitations-5">Known Limitations</h2>
 <ul>
@@ -162,14 +209,25 @@
 <li>None</li>
 </ul>
 <h2 id="notes-5">Notes</h2>
-<p>stm32mp15xx_disco_conf_template.h file must be copied in user application as &gt;stm32mp15xx_disco_conf.h with optional configuration update</p>
+<p>stm32mp15xx_disco_conf_template.h file must be copied in user
+application as &gt;stm32mp15xx_disco_conf.h with optional configuration
+update</p>
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section1" aria-hidden="true"> <label for="collapse-section1" aria-hidden="true"><strong>V1.0.0 / 22-January-2019</strong></label>
+<input type="checkbox" id="collapse-section2" aria-hidden="true">
+<label for="collapse-section2" aria-hidden="true"><strong>V1.1.0 /
+10-September-2019</strong></label>
 <div>
 <h2 id="main-changes-6">Main Changes</h2>
-<p><strong>First official release STM32MP15xx-DISCO</strong> board drivers for STM32CubeMP1 FW package</p>
+<p><strong>First Maintenance Release</strong> of STMP32MP15xx_DISCO
+BSP</p>
+<h2 id="contents-6">Contents</h2>
+<ul>
+<li><p>Add support of console input from COM</p></li>
+<li><p>Rename stm32mp15xx_eval_stpmu1 file to
+stm32mp15xx_eval_stpmic1</p></li>
+</ul>
 <h2 id="known-limitations-6">Known Limitations</h2>
 <ul>
 <li>None</li>
@@ -179,15 +237,41 @@
 <li>None</li>
 </ul>
 <h2 id="notes-6">Notes</h2>
+<p>stm32mp15xx_disco_conf_template.h file must be copied in user
+application as &gt;stm32mp15xx_disco_conf.h with optional configuration
+update</p>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section1" aria-hidden="true">
+<label for="collapse-section1" aria-hidden="true"><strong>V1.0.0 /
+22-January-2019</strong></label>
+<div>
+<h2 id="main-changes-7">Main Changes</h2>
+<p><strong>First official release STM32MP15xx-DISCO</strong> board
+drivers for STM32CubeMP1 FW package</p>
+<h2 id="known-limitations-7">Known Limitations</h2>
 <ul>
-<li>stm32mp15xx_disco_conf_template.h file must be copied in user application as &gt;stm32mp15xx_disco_conf.h with optional configuration update</li>
+<li>None</li>
+</ul>
+<h2 id="dependencies-7">Dependencies</h2>
+<ul>
+<li>None</li>
+</ul>
+<h2 id="notes-7">Notes</h2>
+<ul>
+<li>stm32mp15xx_disco_conf_template.h file must be copied in user
+application as &gt;stm32mp15xx_disco_conf.h with optional configuration
+update</li>
 </ul>
 </div>
 </div>
-</div>
+</section>
 </div>
 <footer class="sticky">
-For complete documentation on <mark>STM32 Microcontrollers</mark> , visit: <span style="font-color: blue;"><a href="http://www.st.com/STM32">www.st.com</a></span>
+For complete documentation on <mark>STM32 Microcontrollers</mark> ,
+visit: <span style="font-color: blue;"><a
+href="http://www.st.com/STM32">www.st.com</a></span>
 </footer>
 </body>
 </html>

@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2021 STMicroelectronics.
+  * Copyright (c) 2024 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -43,8 +43,20 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-osThreadId THREAD1Handle;
-osThreadId THREAD2Handle;
+static osThreadId_t THREAD1Handle;
+static const osThreadAttr_t ThreadOne_attributes = {
+  .name = "Thread One",
+  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 128
+};
+
+static osThreadId_t THREAD2Handle;
+static const osThreadAttr_t ThreadTwo_attributes = {
+  .name = "Thread Two",
+  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 128
+};
+
 /* USER CODE BEGIN PV */
 IPCC_HandleTypeDef hipcc;
 __IO uint32_t OsStatus = 0;
@@ -52,8 +64,8 @@ __IO uint32_t OsStatus = 0;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-void LED_Thread1(void const * argument);
-void LED_Thread2(void const * argument);
+static void LED_Thread1(void * argument);
+static void LED_Thread2(void * argument);
 static void MX_IPCC_Init(void);
 /* USER CODE BEGIN PFP */
 
@@ -81,6 +93,11 @@ int main(void)
        - Low Level Initialization
      */
   /* USER CODE END 1 */
+
+#if defined(DEBUG)
+  volatile int debug = 1;
+  while(debug);
+#endif
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -129,24 +146,21 @@ int main(void)
 
   /* USER CODE END RTOS_TIMERS */
   
+  osKernelInitialize();  /* Call init function for freertos objects (in freertos.c) */
+
   /* Create the thread(s) */
   /* definition and creation of THREAD1 */
-  osThreadDef(THREAD1, LED_Thread1, osPriorityBelowNormal, 0, 128);
-  THREAD1Handle = osThreadCreate(osThread(THREAD1), NULL);
-
-  /* definition and creation of THREAD2 */
-  osThreadDef(THREAD2, LED_Thread2, osPriorityBelowNormal, 0, 128);
-  THREAD2Handle = osThreadCreate(osThread(THREAD2), NULL);
-
-  /* USER CODE BEGIN RTOS_THREADS */
-  /* Set thread 2 in suspend state */
-  OsStatus = osThreadSuspend(THREAD2Handle); 
-  /* USER CODE END RTOS_THREADS */
-
-  /* USER CODE BEGIN RTOS_QUEUES */
-
-  /* USER CODE END RTOS_QUEUES */
-  
+  THREAD1Handle = osThreadNew(LED_Thread1, NULL, &ThreadOne_attributes);
+  if (NULL == THREAD1Handle)
+  {
+    Error_Handler();
+  }
+  /* definition and creation of THREAD1 */
+  THREAD2Handle = osThreadNew(LED_Thread2, NULL, &ThreadTwo_attributes);
+  if (NULL == THREAD2Handle)
+  {
+    Error_Handler();
+  }
 
   /* Start scheduler */
   osKernelStart();
@@ -300,7 +314,7 @@ static void MX_IPCC_Init(void)
   * @retval None
   */
 /* USER CODE END Header_LED_Thread1 */
-void LED_Thread1(void const * argument)
+static void LED_Thread1(void * argument)
 {
 
   /* USER CODE BEGIN 5 */
@@ -309,12 +323,12 @@ void LED_Thread1(void const * argument)
   /* Infinite loop */
   for (;;)
   {
-    count = osKernelSysTick() + 5000;
+    count = osKernelGetTickCount() + 5000;
 
     /* Turn on LED7 */
     BSP_LED_On(LED7);
 
-    while (count > osKernelSysTick())
+    while (count > osKernelGetTickCount())
     {
       /* Toggle LED7 every 250ms*/
       osDelay(250);
@@ -325,9 +339,9 @@ void LED_Thread1(void const * argument)
     BSP_LED_Off(LED7);
 
     /* Resume Thread 2 */
-    OsStatus = osThreadResume(THREAD2Handle);
+    osThreadResume(THREAD2Handle);
     /* Suspend Thread 1 : current thread */
-    OsStatus = osThreadSuspend(THREAD1Handle);
+    osThreadSuspend(THREAD1Handle);
   }
   /* USER CODE END 5 */ 
 }
@@ -339,7 +353,7 @@ void LED_Thread1(void const * argument)
 * @retval None
 */
 /* USER CODE END Header_LED_Thread2 */
-void LED_Thread2(void const * argument)
+static void LED_Thread2(void * argument)
 {
   /* USER CODE BEGIN LED_Thread2 */
   uint32_t count;
@@ -347,12 +361,12 @@ void LED_Thread2(void const * argument)
   /* Infinite loop */
   for (;;)
   {
-    count = osKernelSysTick() + 10000;
+    count = osKernelGetTickCount() + 10000;
 
     /* Turn on LED7 */
     BSP_LED_On(LED7);
 
-    while (count > osKernelSysTick())
+    while (count > osKernelGetTickCount())
     {
       /* Toggle LED7 every 500ms*/
       osDelay(500);
@@ -363,9 +377,9 @@ void LED_Thread2(void const * argument)
     BSP_LED_Off(LED7);
 
     /* Resume Thread 1 */
-    OsStatus = osThreadResume(THREAD1Handle);
+    osThreadResume(THREAD1Handle);
     /* Suspend Thread2 : current thread */
-    OsStatus = osThreadSuspend(THREAD2Handle); 
+    osThreadSuspend(THREAD2Handle);
   }
   /* USER CODE END LED_Thread2 */
 }
